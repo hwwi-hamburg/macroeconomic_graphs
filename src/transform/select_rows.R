@@ -4,6 +4,5 @@ select_monthly_value <- function(dat, row_indicator = 1) {
     dplyr::mutate(kennzahl = dplyr::row_number()) |>
     dplyr::filter(kennzahl == row_indicator) |>
     dplyr::ungroup() |>
-    dplyr::mutate(value = dplyr::coalesce(value, 0)) |>
     dplyr::select(-kennzahl)
 }
