@@ -6,7 +6,7 @@ Most R package dependencies are installed automatically on first run via `pacman
 Install the packages loaded or used outside that automatic list before the first run:
 
 ```r
-install.packages(c("restatis", "httr2", "seasonal"))
+install.packages(c("restatis", "httr2", "seasonal", "usethis"))
 ```
 
 ## Log In
@@ -27,12 +27,22 @@ Enter the token when prompted.
 
 ![token](doc/token.png)
 
+After authenticating to GENESIS, it will print a message with the genesis key. Please save this key to your `~/.Renviron` file as `GENESIS_KEY=<your key>` to avoid having to re-enter it in future sessions. You can edit your `~/.Renviron` file with usethis, enter your GENESIS_KEY, and save the file. Then restart R to load the new environment variable.
+```r
+library(usethis)
+usethis::edit_r_environ()
+```
+
+![renviron](doc/renviron.png)
+
+
 If, instead , you want to authenticate with your username and password, run the following in R:
 ```r
 restatis::gen_auth_save("genesis")
 ```
 
 Zensus 2022 can be configured in the same way by replacing `"genesis"` with `"zensus"`.
+
 ## Usage
 Run one of the following commands in the project terminal to generate graphs.
 ![example](doc/terminal.png) 
@@ -140,6 +150,3 @@ src/
     prices/               Prices graph specs
     trade/                Trade graph specs
 ```
-
-An AI-ready prompt for generating a graph file's `.graph_specs` metadata is
-available in [prompts/generate_graph_metadata.md](prompts/generate_graph_metadata.md).

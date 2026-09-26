@@ -6,7 +6,7 @@
                                       decimal_mark = ",",
                                       big_mark = ".") {
 
-#source("src/bootstrap.R")
+source("src/bootstrap.R")
   
   ger_raw <- with_cache(paste0("genesis_81000-0001_", DATA_START_YEAR),
                     genesis_fetch("81000-0001"))
