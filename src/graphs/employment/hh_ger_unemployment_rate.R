@@ -61,7 +61,7 @@
       label = "Hamburg and Germany unemployment rate",
       render = function() {
         GER <- file.path(OUT_DIR, "employment graphs/German labeling")
-        EN <- file.path(OUT_DIR, "employment graphs/German labeling")
+        EN <- file.path(OUT_DIR, "employment graphs/English labeling")
         render_graph(.hh_ger_unemployment_annual(caption = "Datenquelle: Statistisches Bundesamt",
                                                 label_ger = "Deutschland", label_hh = "Hamburg",
                                                 y_axis = "Arbeitslosenquote", decimal_mark = ",", big_mark = "."),
