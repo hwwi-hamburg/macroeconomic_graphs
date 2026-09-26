@@ -387,6 +387,8 @@ Parameters:
 - `y_breaks`: Y-axis breaks or a ggplot2 waiver.
 - `linewidth`: Width of the plotted line.
 
+An example can be found [here](src/graphs/employment/ger_employed_seasonal.R). 
+
 #### `plot_timeseries_multi()`
 
 ```r
@@ -423,6 +425,8 @@ Parameters:
 - `y_limits`: Optional two-element vector of y-axis limits.
 - `linewidth`: Width of the plotted lines.
 
+An example can be found [here](src/graphs/employment/ger_unemployed_west_east.R). 
+
 #### `plot_bar_date()`
 
 ```r
@@ -456,6 +460,8 @@ Parameters:
 - `x_breaks`: Date-break interval.
 - `y_limits`: Optional two-element vector of y-axis limits.
 
+An example can be found [here](src/graphs/trade/hh_trade_monthly.R).
+
 #### `plot_bar_growth()`
 
 ```r
@@ -482,6 +488,8 @@ Parameters:
 - `decimal_mark`: Decimal separator used in percentage labels.
 - `color`: Bar color.
 - `x_breaks`: Date-break interval.
+
+An example can be found [here](src/graphs/gdp/income_gdppc_growth.R). 
 
 #### `plot_bar()`
 
@@ -515,6 +523,8 @@ Parameters:
 - `y_limits`: Optional two-element vector of y-axis limits.
 - `position`: Bar-position adjustment, such as `"dodge"`, `"stack"`, or `"identity"`.
 
+An example can be found [here](src/graphs/trade/ger_export_development_nominal_real.R).
+
 #### `plot_bar_deviation()`
 
 ```r
@@ -547,6 +557,8 @@ Parameters:
 - `negative_label`: Legend label assigned to negative values.
 - `colors`: Colors for positive and negative bars, respectively.
 
+An example can be found [here](src/graphs/trade/trade_deviation.R).
+
 #### `plot_bar_ranking()`
 
 ```r
@@ -574,6 +586,8 @@ Parameters:
 - `decimal_mark`: Decimal separator used in value labels.
 - `big_mark`: Thousands separator used in value labels.
 - `color`: Bar color.
+
+An example can be found [here](src/graphs/gdp/ger_nominal_gdp_state_growth.R).
 
 #### `plot_dual_axis()`
 
@@ -612,6 +626,8 @@ Parameters:
 - `y_max_right`: Optional fixed maximum for the right axis.
 - `y_min_at_zero`: Whether both axes should start at zero.
 
+An example can be found [here](src/graphs/employment/ger_employed_unemployed.R).
+
 #### `plot_pie()`
 
 ```r
@@ -646,6 +662,8 @@ Parameters:
 - `x_limit`: Radial plotting limit, including space for outside labels.
 - `plot_margin`: ggplot2 margin around the chart.
 
+An example can be found [here](src/graphs/trade/trade_state_pies.R).
+
 #### `plot_choropleth_world()`
 
 ```r
@@ -676,6 +694,8 @@ Parameters:
 - `xlim`: Longitude limits.
 - `ylim`: Latitude limits.
 
+Examples can be found [here](src/graphs/trade/trade_country_choropleths.R).
+
 #### `plot_choropleth_world_div()`
 
 ```r
@@ -702,6 +722,8 @@ Parameters:
 - `caption`: Source caption.
 - `xlim`: Longitude limits.
 - `ylim`: Latitude limits.
+
+An example can be found [here](src/graphs/trade/trade_deviation.R).
 
 #### `plot_choropleth_ger()`
 
@@ -731,6 +753,8 @@ Parameters:
 - `high`: Color used at the high end of the scale.
 
 Brand colors (`blue`, `rubin`, `dark_blue`, `dark_rubin`, `light_blue`, `grey`, `dark_grey`, and the `hwwi_palette`/`hwwi_palette_rb` vectors) are defined in [src/theme.R](src/theme.R) — reuse them rather than hardcoding new colors.
+
+An example can be found [here](src/graphs/gdp/ger_nominal_gdp_state_per_capita.R).
 
 ## 6. Write the graph spec function
 
