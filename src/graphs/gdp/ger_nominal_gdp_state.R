@@ -14,14 +14,14 @@ ger_nominal_gdp_state <- function(y_axis, caption, decimal_mark = ",", big_mark 
   df  <- df[order(df$geo), ]
   y_high <- ceiling(max(df$value, na.rm = TRUE) / 100) * 100
   ggplot2::ggplot(df, ggplot2::aes(x = factor(geo, levels = df$geo), y = value)) +
-    ggplot2::geom_col(fill = hwwi_blue, width = 0.8) +
+    ggplot2::geom_col(fill = blue, width = 0.8) +
     ggplot2::scale_y_continuous(
       limits = c(0, y_high),
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
     ggplot2::labs(x = "", y = y_axis, caption = caption) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1))
 }
 

@@ -30,7 +30,7 @@ ger_short_time_employment <- function(caption,
                   y_axis_right = y_axis_right,
                   series_left  = label_kurzarbeit,
                   series_right = label_unemployment,
-                  colors       = c(hwwi_rubin, hwwi_blue),
+                  colors       = c(rubin, blue),
                   decimal_mark = decimal_mark,
                   y_max_right  = y_max_right)
 }

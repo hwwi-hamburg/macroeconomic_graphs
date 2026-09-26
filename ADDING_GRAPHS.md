@@ -352,7 +352,7 @@ When a graph needs lagged growth calculations, prefer `genesis_fetch_window(...,
 
 ## 5. Pick a plot builder
 
-All builders are located in `src/plot/` and append the current year to `caption`. Most apply `hwwi_theme()` automatically; `plot_pie()` uses `ggplot2::theme_void()` with its own caption and margin styling.
+All builders are located in `src/plot/` and append the current year to `caption`. Most apply `theme_hwwi()` automatically; `plot_pie()` uses `ggplot2::theme_void()` with its own caption and margin styling.
 
 #### `plot_timeseries()`
 
@@ -360,7 +360,7 @@ All builders are located in `src/plot/` and append the current year to `caption`
 plot_timeseries(
   dat, y_axis, caption,
   decimal_mark = ".", big_mark = ",",
-  color = hwwi_blue, x_breaks = "5 years",
+  color = blue, x_breaks = "5 years",
   y_limits = NULL, y_breaks = ggplot2::waiver(), linewidth = 1.8
 )
 ```
@@ -386,6 +386,8 @@ Parameters:
 - `y_limits`: Optional two-element vector of y-axis limits.
 - `y_breaks`: Y-axis breaks or a ggplot2 waiver.
 - `linewidth`: Width of the plotted line.
+
+An example can be found [here](src/graphs/employment/ger_employed_seasonal.R). 
 
 #### `plot_timeseries_multi()`
 
@@ -423,13 +425,15 @@ Parameters:
 - `y_limits`: Optional two-element vector of y-axis limits.
 - `linewidth`: Width of the plotted lines.
 
+An example can be found [here](src/graphs/employment/ger_unemployed_west_east.R). 
+
 #### `plot_bar_date()`
 
 ```r
 plot_bar_date(
   dat, y_axis, caption, labels = NULL,
   decimal_mark = ".", big_mark = ",",
-  colors = c(scales::alpha(hwwi_blue, 0.6), hwwi_rubin),
+  colors = c(scales::alpha(blue, 0.6), rubin),
   x_breaks = "2 years", y_limits = NULL
 )
 ```
@@ -456,12 +460,14 @@ Parameters:
 - `x_breaks`: Date-break interval.
 - `y_limits`: Optional two-element vector of y-axis limits.
 
+An example can be found [here](src/graphs/trade/hh_trade_monthly.R).
+
 #### `plot_bar_growth()`
 
 ```r
 plot_bar_growth(
   dat, y_axis, caption,
-  decimal_mark = ".", color = hwwi_blue, x_breaks = "2 years"
+  decimal_mark = ".", color = blue, x_breaks = "2 years"
 )
 ```
 
@@ -483,13 +489,15 @@ Parameters:
 - `color`: Bar color.
 - `x_breaks`: Date-break interval.
 
+An example can be found [here](src/graphs/gdp/income_gdppc_growth.R). 
+
 #### `plot_bar()`
 
 ```r
 plot_bar(
   dat, y_axis, caption, labels = NULL,
   decimal_mark = ".",
-  colors = c(alpha(hwwi_blue, 0.9), alpha(hwwi_rubin, 0.9)),
+  colors = c(alpha(blue, 0.9), alpha(rubin, 0.9)),
   y_limits = NULL, position = "dodge"
 )
 ```
@@ -515,6 +523,8 @@ Parameters:
 - `y_limits`: Optional two-element vector of y-axis limits.
 - `position`: Bar-position adjustment, such as `"dodge"`, `"stack"`, or `"identity"`.
 
+An example can be found [here](src/graphs/trade/ger_export_development_nominal_real.R).
+
 #### `plot_bar_deviation()`
 
 ```r
@@ -523,7 +533,7 @@ plot_bar_deviation(
   x_axis = "",
   decimal_mark = ".", big_mark = ",",
   positive_label = "Above average", negative_label = "Below average",
-  colors = c(hwwi_blue, hwwi_rubin)
+  colors = c(blue, rubin)
 )
 ```
 
@@ -547,13 +557,15 @@ Parameters:
 - `negative_label`: Legend label assigned to negative values.
 - `colors`: Colors for positive and negative bars, respectively.
 
+An example can be found [here](src/graphs/trade/trade_deviation.R).
+
 #### `plot_bar_ranking()`
 
 ```r
 plot_bar_ranking(
   dat, caption,
   x_axis = "",
-  decimal_mark = ".", big_mark = ",", color = hwwi_blue
+  decimal_mark = ".", big_mark = ",", color = blue
 )
 ```
 
@@ -575,6 +587,8 @@ Parameters:
 - `big_mark`: Thousands separator used in value labels.
 - `color`: Bar color.
 
+An example can be found [here](src/graphs/gdp/ger_nominal_gdp_state_growth.R).
+
 #### `plot_dual_axis()`
 
 ```r
@@ -582,7 +596,7 @@ plot_dual_axis(
   dat, caption,
   y_axis_left, y_axis_right, series_left, series_right,
   decimal_mark = ".", big_mark = ",",
-  colors = c(hwwi_blue, hwwi_rubin), x_breaks = "5 years",
+  colors = c(blue, rubin), x_breaks = "5 years",
   y_max_right = NULL, y_min_at_zero = TRUE
 )
 ```
@@ -611,6 +625,8 @@ Parameters:
 - `x_breaks`: Date-break interval.
 - `y_max_right`: Optional fixed maximum for the right axis.
 - `y_min_at_zero`: Whether both axes should start at zero.
+
+An example can be found [here](src/graphs/employment/ger_employed_unemployed.R).
 
 #### `plot_pie()`
 
@@ -646,12 +662,14 @@ Parameters:
 - `x_limit`: Radial plotting limit, including space for outside labels.
 - `plot_margin`: ggplot2 margin around the chart.
 
+An example can be found [here](src/graphs/trade/trade_state_pies.R).
+
 #### `plot_choropleth_world()`
 
 ```r
 plot_choropleth_world(
   dat, fill_col = "value", legend_title = "", caption = "",
-  low = "white", high = hwwi_blue,
+  low = "white", high = blue,
   xlim = c(-179, 179), ylim = c(-56, 85)
 )
 ```
@@ -675,6 +693,8 @@ Parameters:
 - `high`: Color used at the high end of the scale.
 - `xlim`: Longitude limits.
 - `ylim`: Latitude limits.
+
+Examples can be found [here](src/graphs/trade/trade_country_choropleths.R).
 
 #### `plot_choropleth_world_div()`
 
@@ -703,12 +723,14 @@ Parameters:
 - `xlim`: Longitude limits.
 - `ylim`: Latitude limits.
 
+An example can be found [here](src/graphs/trade/trade_deviation.R).
+
 #### `plot_choropleth_ger()`
 
 ```r
 plot_choropleth_ger(
   dat, fill_col = "value", legend_title = "", caption = "",
-  low = hwwi_rubin, high = hwwi_dark_rubin
+  low = rubin, high = dark_rubin
 )
 ```
 
@@ -730,7 +752,9 @@ Parameters:
 - `low`: Color used at the low end of the scale.
 - `high`: Color used at the high end of the scale.
 
-Brand colors (`hwwi_blue`, `hwwi_rubin`, `hwwi_dark_blue`, `hwwi_dark_rubin`, `hwwi_light_blue`, `hwwi_grey`, `hwwi_dark_grey`, and the `hwwi_palette`/`hwwi_palette_rb` vectors) are defined in [src/theme.R](src/theme.R) — reuse them rather than hardcoding new colors.
+Brand colors (`blue`, `rubin`, `dark_blue`, `dark_rubin`, `light_blue`, `grey`, `dark_grey`, and the `hwwi_palette`/`hwwi_palette_rb` vectors) are defined in [src/theme.R](src/theme.R) — reuse them rather than hardcoding new colors.
+
+An example can be found [here](src/graphs/gdp/ger_nominal_gdp_state_per_capita.R).
 
 ## 6. Write the graph spec function
 

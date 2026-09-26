@@ -22,7 +22,7 @@ ger_unemployment_civilian <- function(y_axis, caption,
     dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
   dat <- dplyr::bind_rows(rate_all, rate_dep)
   plot_timeseries_multi(dat, y_axis = y_axis, caption = caption,
-                         colors = c(hwwi_rubin, hwwi_blue),
+                         colors = c(rubin, blue),
                          decimal_mark = decimal_mark,
                          x_breaks = "2 years")
 }

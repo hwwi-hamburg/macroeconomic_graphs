@@ -72,10 +72,10 @@ list(id = "ger_bip_quarterly_volume", category = "GDP", label = "Germany Quarter
         GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(ger_bip_quarterly_volume("BIP (in Mrd. EUR, verkettete Volumen, saisonbereinigt)",
-            "Datenquelle: Statistisches Bundesamt (Destatis)", decimal_mark = ",", big_mark = "."), "GER BIP quarterly volume_ger",
+            "Quelle: Statistisches Bundesamt (Destatis) (2026). ", decimal_mark = ",", big_mark = "."), "GER BIP quarterly volume_ger",
             GER)
         render_graph(ger_bip_quarterly_volume("GDP (in Billion EUR, chain-linked volume, seasonally adjusted)",
-            "Data source: Federal statistical office (Destatis)", decimal_mark = ".", big_mark = ","),
+            "Source: Federal statistical office (Destatis) (2026).", decimal_mark = ".", big_mark = ","),
             "GER BIP quarterly volume_en", EN)
     })
 )

@@ -85,7 +85,7 @@ ger_interest_rate_hpi_dax <- function(caption,
     ggplot2::geom_line(data = dax,
       ggplot2::aes(x = date, y = value / scale_factor, color = label_dax), linewidth = 1.4) +
     ggplot2::scale_color_manual("",
-      values = setNames(c(hwwi_dark_grey, hwwi_rubin, hwwi_blue),
+      values = setNames(c(dark_grey, rubin, blue),
                         c(label_ecb, label_hpi, label_dax))) +
     ggplot2::scale_x_date(date_breaks = "2 years", date_labels = "%Y",
                           limits = c(start, max(dax$date, na.rm = TRUE)),
@@ -98,7 +98,7 @@ ger_interest_rate_hpi_dax <- function(caption,
                                                                  scientific = FALSE))
     ) +
     ggplot2::labs(x = "", caption = caption) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(legend.position = "bottom") +
     ggplot2::guides(
       color = ggplot2::guide_legend(nrow = 2, order = 1),

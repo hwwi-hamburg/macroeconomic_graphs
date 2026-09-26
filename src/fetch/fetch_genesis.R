@@ -445,3 +445,19 @@ fetch_state_deviation <- function(yr, state_key, direction = "export") {
   comp$Group       <- substr(comp$Group, 1, 55)
   comp
 }
+
+fetch_ger_cpi_yoy <- function(series_name = "inflation_rate") {
+  custom_start <- !is.null(getOption("hwwi.start.year"))
+  fetch_start <- if (custom_start) DATA_START_YEAR - 1L else DATA_START_YEAR
+  cache_key <- if (custom_start) {
+    paste0("genesis_61111-0002_yoy_preroll_", DATA_START_YEAR)
+  } else {
+    paste0("genesis_61111-0002_", DATA_START_YEAR)
+  }
+  raw <- with_cache(cache_key, genesis_fetch("61111-0002", start_year = fetch_start))
+  parse_genesis(raw, value_var = "PREIS1", unit_filter = "2020=100",
+                series_name = series_name, geo = "DEU") |>
+    dplyr::arrange(date) |>
+    dplyr::mutate(value = (value / dplyr::lag(value, 12) - 1) * 100) |>
+    dplyr::filter(!is.na(value), date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+}
