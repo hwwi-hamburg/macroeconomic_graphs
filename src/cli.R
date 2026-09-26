@@ -223,6 +223,20 @@ if (length(errors)) {
   for (e in errors) cat("  ✗ ", e, "\n", sep = "")
 } else {
   output_dir <- getOption("hwwi.output.dir", OUT_DIR)
+  if (!is.null(.output_folder)) {
+    index_path <- file.path(output_dir, "index.md")
+    lines <- c(
+      "# Generated graphs",
+      "",
+      "| Plot ID | Label |",
+      "| --- | --- |",
+      vapply(selected, function(i) {
+        g <- .graphs[[i]]
+        sprintf("| `%s` | %s |", g$id, g$label)
+      }, character(1))
+    )
+    writeLines(lines, index_path)
+  }
   cat(sprintf("  ✓ %d graph(s) generated in %s/\n", n_total, output_dir))
 }
 .hr()
