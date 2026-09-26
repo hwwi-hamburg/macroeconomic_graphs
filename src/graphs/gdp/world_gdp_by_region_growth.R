@@ -15,7 +15,7 @@ gdp_world_by_region_growth <- function(y_axis, caption, labels = NULL,
 
   year_levels <- levels(bar_dat$year)
   bar_colors  <- setNames(
-    c(hwwi_blue, hwwi_rubin, hwwi_grey)[seq_along(year_levels)],
+    c(blue, rubin, grey)[seq_along(year_levels)],
     year_levels
   )
 
@@ -50,7 +50,7 @@ gdp_world_by_region_growth <- function(y_axis, caption, labels = NULL,
       labels = function(x) paste0(format(x, decimal.mark = decimal_mark, scientific = FALSE), "%")
     ) +
     ggplot2::labs(x = "", y = y_axis, caption = caption) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(
       legend.position = "bottom",
       axis.text.x = ggplot2::element_text(

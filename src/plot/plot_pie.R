@@ -18,8 +18,8 @@ plot_pie <- function(dat, caption = "", big_mark = ".", decimal_mark = ",",
 
   n <- nrow(dat)
   if (is.null(colors)) {
-    colors <- c(rep(c(hwwi_dark_blue, hwwi_blue, hwwi_light_blue), length.out = n - 1),
-                hwwi_dark_blue)
+    colors <- c(rep(c(dark_blue, blue, light_blue), length.out = n - 1),
+                dark_blue)
   }
   dat$fill_color <- colors
 

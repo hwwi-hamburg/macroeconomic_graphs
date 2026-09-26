@@ -79,8 +79,8 @@ ger_govt_bond_yields <- function(y_axis, caption, decimal_mark = ",",
     plot_dat$series <- plot_dat$geo
   }
 
-  palette <- c(hwwi_light_blue, hwwi_blue, hwwi_dark_blue, hwwi_grey, hwwi_dark_rubin,
-               hwwi_dark_grey, hwwi_rubin, hwwi_light_blue, hwwi_blue, hwwi_dark_rubin)
+  palette <- c(light_blue, blue, dark_blue, grey, dark_rubin,
+               dark_grey, rubin, light_blue, blue, dark_rubin)
 
   ggplot2::ggplot(plot_dat,
     ggplot2::aes(x = date, y = value, color = series)) +
@@ -92,7 +92,7 @@ ger_govt_bond_yields <- function(y_axis, caption, decimal_mark = ",",
       labels = function(x) format(x, decimal.mark = decimal_mark, scientific = FALSE)
     ) +
     ggplot2::labs(x = "", y = y_axis, caption = caption) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(legend.position = "bottom") +
     ggplot2::guides(color = ggplot2::guide_legend(nrow = 3))
 }

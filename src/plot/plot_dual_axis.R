@@ -2,7 +2,7 @@ plot_dual_axis <- function(dat, caption,
                             y_axis_left, y_axis_right,
                             series_left, series_right,
                             decimal_mark = ".", big_mark = ",",
-                            colors = c(hwwi_blue, hwwi_rubin),
+                            colors = c(blue, rubin),
                             x_breaks = "5 years",
                             y_max_right = NULL,
                             y_min_at_zero = TRUE,
@@ -52,7 +52,7 @@ plot_dual_axis <- function(dat, caption,
       )
     ) +
     ggplot2::labs(x = "", caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(
       legend.position  = "bottom",
       axis.title.y     = ggplot2::element_text(color = colors[1]),
