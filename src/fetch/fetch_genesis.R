@@ -419,22 +419,6 @@ fetch_trade_share_deviation_by_country <- function(year, regional_key = "02", di
   tibble::tibble(geo = merged$geo, value = merged$state_share - merged$ger_share)
 }
 
-fetch_ger_cpi_yoy <- function(series_name = "inflation_rate") {
-  custom_start <- !is.null(getOption("hwwi.start.year"))
-  fetch_start <- if (custom_start) DATA_START_YEAR - 1L else DATA_START_YEAR
-  cache_key <- if (custom_start) {
-    paste0("genesis_61111-0002_yoy_preroll_", DATA_START_YEAR)
-  } else {
-    paste0("genesis_61111-0002_", DATA_START_YEAR)
-  }
-  raw <- with_cache(cache_key, genesis_fetch("61111-0002", start_year = fetch_start))
-  parse_genesis(raw, value_var = "PREIS1", unit_filter = "2020=100",
-                series_name = series_name, geo = "DEU") |>
-    dplyr::arrange(date) |>
-    dplyr::mutate(value = (value / dplyr::lag(value, 12) - 1) * 100) |>
-    dplyr::filter(!is.na(value), date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
-}
-
 # Shared data prep for state-vs-Germany commodity structure deviation charts.
 # Returns data frame with columns: Code, Group, diff (in percentage points).
 # state_key: "02" = Hamburg, "03" = Lower Saxony
