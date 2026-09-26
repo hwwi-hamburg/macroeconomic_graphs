@@ -6,7 +6,8 @@ ger_inflation_rate <- function(y_axis, caption, row_indicator = 2,  y_limits = c
                        unit_filter = "%",
                        series_name = "cpi",
                        geo         = "DEU",
-                       dropmissing = FALSE)
+                       dropmissing = FALSE,
+                       zero_values = "-")
   dat <- select_monthly_value(dat, row_indicator = row_indicator)
   plot_timeseries(dat, y_axis = y_axis, caption = caption, y_limits = y_limits)
 }

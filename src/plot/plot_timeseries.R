@@ -1,6 +1,6 @@
 plot_timeseries <- function(dat, y_axis, caption,
                              decimal_mark = ".", big_mark = ",",
-                             color = hwwi_blue, x_breaks = "5 years",
+                             color = blue, x_breaks = "5 years",
                              y_limits = NULL, y_breaks = ggplot2::waiver(),
                              linewidth = 1.8,
                              angle = 0) {
@@ -13,7 +13,7 @@ plot_timeseries <- function(dat, y_axis, caption,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
     ggplot2::labs(x = "", y = y_axis, caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = angle, hjust = 0.5))
 }
 
@@ -22,7 +22,7 @@ plot_timeseries <- function(dat, y_axis, caption,
 # factor levels so the larger-value series comes first (drawn behind the shorter).
 plot_bar_date <- function(dat, y_axis, caption, labels = NULL,
                            decimal_mark = ".", big_mark = ",",
-                           colors = c(scales::alpha(hwwi_blue, 0.6), hwwi_rubin),
+                           colors = c(scales::alpha(blue, 0.6), rubin),
                            x_breaks = "2 years", y_limits = NULL,
                           angle = 0) {
   ggplot2::ggplot(dat, ggplot2::aes(x = date, y = value, fill = series)) +
@@ -37,7 +37,7 @@ plot_bar_date <- function(dat, y_axis, caption, labels = NULL,
     ) +
     ggplot2::labs(x = "", y = y_axis, fill = "",
                   caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(legend.position = "bottom",
                    axis.text.x = ggplot2::element_text(angle = angle, hjust = 0.5))
 }
@@ -57,7 +57,7 @@ plot_timeseries_multi <- function(dat, y_axis, caption, labels = NULL,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
     ggplot2::labs(x = "", y = y_axis, color = "", caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(legend.position = "bottom", 
   axis.text.x = ggplot2::element_text(angle = angle, hjust = 0.5))
 }

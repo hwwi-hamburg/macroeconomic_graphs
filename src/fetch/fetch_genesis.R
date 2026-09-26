@@ -35,25 +35,67 @@ trim_start_year <- function(dat, start_year = DATA_START_YEAR) {
 #                 (e.g. list("2_variable_attribute_code" = "VGRPKM"))
 # scale         : numeric multiplier applied to value (e.g. 1/1e6 to convert Tsd.EUR → Mrd.EUR)
 parse_genesis <- function(raw, value_var, series_name = "value",
-                           unit = NA_character_, geo = "DEU",
-                           class_filters = NULL, unit_filter = NULL,
-                           scale = 1, dropmissing=TRUE) {
+                          unit = NA_character_, geo = "DEU",
+                          class_filters = NULL, unit_filter = NULL,
+                          scale = 1, dropmissing = TRUE,
+                          na_values = c("-", "/", ".", "", "..."),
+                          zero_values = character()) {
+  
   dat <- raw
-  dat <- dat[!is.na(dat$value_variable_code) & dat$value_variable_code == value_var, , drop = FALSE]
-  if (!is.null(unit_filter))
-    dat <- dat[dat$value_unit == unit_filter, , drop = FALSE]
-  if (!is.null(class_filters)) {
-    for (nm in names(class_filters)) {
-      fval <- class_filters[[nm]]
-      if (is.na(fval))
-        dat <- dat[is.na(dat[[nm]]), , drop = FALSE]
-      else
-        dat <- dat[!is.na(dat[[nm]]) & dat[[nm]] == fval, , drop = FALSE]
-    }
+  
+  dat <- dat[
+    !is.na(dat$value_variable_code) &
+      dat$value_variable_code == value_var,
+    ,
+    drop = FALSE
+  ]
+  
+  if (!is.null(unit_filter)) {
+    dat <- dat[
+      dat$value_unit == unit_filter,
+      ,
+      drop = FALSE
+    ]
   }
+  
+  if (!is.null(class_filters)) {
+    
+    for (nm in names(class_filters)) {
+      
+      fval <- class_filters[[nm]]
+      
+      if (is.na(fval)) {
+        
+        dat <- dat[
+          is.na(dat[[nm]]),
+          ,
+          drop = FALSE
+        ]
+        
+      } else {
+        
+        dat <- dat[
+          !is.na(dat[[nm]]) & dat[[nm]] == fval,
+          ,
+          drop = FALSE]}}}
+  
+  if (length(zero_values) > 0) {
+    dat$value[dat$value %in% zero_values] <- "0"}
+  
+  if (length(na_values) > 0) {
+    dat$value[dat$value %in% na_values] <- NA_character_}
+  
+  
   if (dropmissing) {
-    dat <- dat[!is.na(dat$value) & !dat$value %in% c("-", "/", ".", "", "..."), , drop = FALSE]}
-  if (nrow(dat) == 0) stop("parse_genesis: no rows after filtering")
+    dat <- dat[
+      !is.na(dat$value),
+      ,
+      drop = FALSE]}
+  
+  if (nrow(dat) == 0) {
+    stop("parse_genesis: no rows after filtering")
+  }
+  
   tibble::tibble(
     date   = .genesis_date(dat),
     value  = as.numeric(gsub(",", ".", dat$value)) * scale,

@@ -34,3 +34,6 @@ ADDING_GRAPHS_files/
 *.swp
 *.swo
 *~
+
+# Local configuration overrides
+src/local_config.R

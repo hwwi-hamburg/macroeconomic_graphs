@@ -41,7 +41,7 @@ source("src/bootstrap.R")
     series_left = "Hamburg",
     series_right = "Deutschland",
     decimal_mark = ",", big_mark = ".",
-    colors = c(hwwi_dark_rubin, hwwi_dark_blue), x_breaks = "1 year",
+    colors = c(dark_rubin, dark_blue), x_breaks = "1 year",
     y_max_right = NULL, y_min_at_zero = TRUE, angle = 45
   )
   

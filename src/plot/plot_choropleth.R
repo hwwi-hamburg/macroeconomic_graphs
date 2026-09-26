@@ -5,14 +5,14 @@
     legend.direction     = "horizontal",
     legend.key.height    = grid::unit(0.45, "cm"),
     legend.text          = ggplot2::element_text(size = 9),
-    legend.title         = ggplot2::element_text(size = 10, colour = hwwi_dark_grey, face = "bold"),
+    legend.title         = ggplot2::element_text(size = 10, colour = dark_grey, face = "bold"),
     legend.background    = ggplot2::element_blank(),
     plot.caption         = ggplot2::element_text(hjust = 0, margin = ggplot2::margin(t = 10))
   )
 }
 
 plot_choropleth_world <- function(dat, fill_col = "value", legend_title = "",
-                                   caption = "", low = "white", high = hwwi_blue,
+                                   caption = "", low = "white", high = blue,
                                    xlim = c(-179, 179), ylim = c(-56, 85)) {
   # Some GENESIS country tables include a monetary observation and a tiny
   # auxiliary observation under the same country code. Choropleths need one
@@ -41,7 +41,7 @@ plot_choropleth_world <- function(dat, fill_col = "value", legend_title = "",
                                   )) +
     ggplot2::coord_sf(xlim = xlim, ylim = ylim, expand = FALSE) +
     ggplot2::labs(fill = legend_title, caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
-    hwwi_theme(no_axes = TRUE) +
+    theme_hwwi(no_axes = TRUE) +
     .choropleth_world_theme()
 }
 
@@ -55,7 +55,7 @@ plot_choropleth_world_div <- function(dat, fill_col = "value", legend_title = ""
     ggplot2::geom_sf(data = dat_sf, ggplot2::aes(fill = .data[[fill_col]]),
                      na.rm = TRUE, colour = NA) +
     ggplot2::geom_sf(data = world, fill = NA, linewidth = 0.2, colour = "grey70") +
-    ggplot2::scale_fill_gradient2(low = hwwi_rubin, mid = "white", high = hwwi_blue,
+    ggplot2::scale_fill_gradient2(low = rubin, mid = "white", high = blue,
                                    midpoint = 0, na.value = "grey88",
                                    limits = c(-abs_max, abs_max),
                                    breaks = scales::breaks_pretty(n = 4),
@@ -67,12 +67,12 @@ plot_choropleth_world_div <- function(dat, fill_col = "value", legend_title = ""
                                    )) +
     ggplot2::coord_sf(xlim = xlim, ylim = ylim, expand = FALSE) +
     ggplot2::labs(fill = legend_title, caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
-    hwwi_theme(no_axes = TRUE) +
+    theme_hwwi(no_axes = TRUE) +
     .choropleth_world_theme()
 }
 
 plot_choropleth_ger <- function(dat, fill_col = "value", legend_title = "",
-                                  caption = "", low = hwwi_rubin, high = hwwi_dark_rubin) {
+                                  caption = "", low = rubin, high = dark_rubin) {
   states     <- rnaturalearth::ne_states(country = "germany", returnclass = "sf")
   lbl_pts    <- sf::st_point_on_surface(states)
   dat_sf     <- dplyr::left_join(dat, states[, c("name", "geometry")],
@@ -94,7 +94,7 @@ plot_choropleth_ger <- function(dat, fill_col = "value", legend_title = "",
     ggplot2::scale_fill_gradient(low = low, high = high, na.value = NA,
                                   limits = c(fill_min, fill_max)) +
     ggplot2::labs(fill = legend_title, caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
-    hwwi_theme(no_axes = TRUE) +
+    theme_hwwi(no_axes = TRUE) +
     ggplot2::theme(legend.position = "right",
                    legend.text  = ggplot2::element_text(size = 9),
                    legend.title = ggplot2::element_text(size = 12))

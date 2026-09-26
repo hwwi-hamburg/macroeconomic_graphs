@@ -86,7 +86,7 @@ ger_survey_interest_cpi <- function(caption,
       ggplot2::aes(x = date, y = value, color = series), linewidth = 1.4) +
     ggplot2::scale_color_manual("",
       values = setNames(
-        c(hwwi_rubin, hwwi_dark_grey, hwwi_blue),
+        c(rubin, dark_grey, blue),
         c(label_cpi, label_ecb_main, label_effr)
       )
     ) +
@@ -102,7 +102,7 @@ ger_survey_interest_cpi <- function(caption,
                                                                  scientific = FALSE))
     ) +
     ggplot2::labs(x = "", caption = caption) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(legend.position = "bottom") +
     ggplot2::guides(
       color = ggplot2::guide_legend(nrow = 2, order = 2),

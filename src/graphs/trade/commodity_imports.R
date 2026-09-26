@@ -29,8 +29,8 @@
                      character(1), USE.NAMES = TRUE)
   }
   plot_timeseries_multi(dat, y_axis = y_axis, caption = caption, labels = labels,
-                         colors = c(hwwi_blue, hwwi_dark_blue, hwwi_dark_grey,
-                                    hwwi_dark_rubin, hwwi_rubin, hwwi_light_blue),
+                         colors = c(blue, dark_blue, dark_grey,
+                                    dark_rubin, rubin, light_blue),
                          decimal_mark = decimal_mark, big_mark = big_mark,
                          x_breaks = "2 years") +
     ggplot2::guides(color = ggplot2::guide_legend(nrow = 2, byrow = TRUE))

@@ -117,6 +117,13 @@ Runs with `--start-year=YYYY` write to `out/custom start <YYYY>/<category-folder
 
 Runs with `--output-folder=NAME` output all graphs into `out/NAME/`. Add `--language=de` or `--language=en` to generate only one label variant.
 
+#### Change the master output folder 
+The file local_config is used to override the default configuration settings stored in the github repository. It is loaded later in `bootstrap.R` and can be used to change the default output folder. For example, to change the output folder to `../graph_outputs`, create a file `src/local_config.R` with the following content:
+
+```r
+OUT_DIR="../graph_outputs"
+```
+
 
 #### Developer Note
 Fetched data is cached to `cache/<key>.rds` so repeated runs don't re-hit the data sources. For modules that use `DATA_START_YEAR`, a different `--start-year` produces different cache keys, so those modules fetch fresh data rather than reusing the default run's cache. Delete the relevant `.rds` file (or call `bust_cache()` in an R session) to force a refetch.

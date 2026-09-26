@@ -1,6 +1,7 @@
 library(restatis)
 library(httr2)
 source("src/config.R")
+if (file.exists("src/local_config.R")) source("src/local_config.R")
 source("src/graph_modules.R")
 source("src/theme.R")
 source("src/render.R")

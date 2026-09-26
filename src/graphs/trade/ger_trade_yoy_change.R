@@ -16,16 +16,16 @@
 
   if (show_trend) {
     ggplot2::ggplot(dat, ggplot2::aes(x = date, y = value)) +
-      ggplot2::geom_line(linewidth = 1.6, color = hwwi_blue) +
+      ggplot2::geom_line(linewidth = 1.6, color = blue) +
       ggplot2::stat_smooth(method = "lm", formula = y ~ x, se = FALSE,
-                            linetype = "dashed", linewidth = 1, color = hwwi_blue,
+                            linetype = "dashed", linewidth = 1, color = blue,
                             fullrange = FALSE) +
       ggplot2::scale_x_date(date_breaks = x_breaks, date_labels = "%Y") +
       ggplot2::scale_y_continuous(
         labels = function(x) format(x, decimal.mark = decimal_mark, scientific = FALSE)
       ) +
       ggplot2::labs(x = "", y = y_axis, caption = caption) +
-      hwwi_theme()
+      theme_hwwi()
   } else {
     plot_timeseries(dat, y_axis = y_axis, caption = caption,
                     decimal_mark = decimal_mark, x_breaks = x_breaks)

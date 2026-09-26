@@ -1,7 +1,7 @@
 # Single-series annual bar chart for growth rate data.
 # Adds bold % text labels, 1% y-axis breaks, 2-year x-axis breaks.
 plot_bar_growth <- function(dat, y_axis, caption, decimal_mark = ".",
-                             color = hwwi_blue, x_breaks = "2 years") {
+                             color = blue, x_breaks = "2 years") {
   y_min <- floor(min(dat$value, na.rm = TRUE))
   y_max <- ceiling(max(dat$value, na.rm = TRUE))
   ggplot2::ggplot(dat, ggplot2::aes(x = date, y = value)) +
@@ -19,12 +19,12 @@ plot_bar_growth <- function(dat, y_axis, caption, decimal_mark = ".",
       labels = function(x) paste0(format(x, decimal.mark = decimal_mark, scientific = FALSE), "%")
     ) +
     ggplot2::labs(x = "", y = y_axis, caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
-    hwwi_theme()
+    theme_hwwi()
 }
 
 plot_bar <- function(dat, y_axis, caption, labels = NULL,
                       decimal_mark = ".",
-                      colors = c(alpha(hwwi_blue, 0.9), alpha(hwwi_rubin, 0.9)),
+                      colors = c(alpha(blue, 0.9), alpha(rubin, 0.9)),
                       y_limits = NULL, position = "dodge") {
   ggplot2::ggplot(dat, ggplot2::aes(
     x = date,
@@ -46,7 +46,7 @@ plot_bar <- function(dat, y_axis, caption, labels = NULL,
       labels = function(x) format(x, decimal.mark = decimal_mark, scientific = FALSE)
     ) +
     ggplot2::labs(x = "", y = y_axis, caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
-    hwwi_theme() +
+    theme_hwwi() +
     ggplot2::theme(legend.position = "bottom",
                    axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
 }
