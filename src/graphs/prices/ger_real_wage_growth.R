@@ -68,4 +68,4 @@ list(id = "ger_real_wage_index", category = "Prices", label = "GER real wage ind
 )
 
 if (!exists("auto_run_graph_file", mode = "function")) source("src/graph_modules.R")
-auto_run_graph_file("src/graphs/employment/ger_real_wage_growth.R", .graph_specs)
+auto_run_graph_file("src/graphs/prices/ger_real_wage_growth.R", .graph_specs)
