@@ -37,21 +37,18 @@ ger_survey_interest_cpi <- function(caption,
                                      decimal_mark   = ".") {
   start <- as.Date(paste0(DATA_START_MONTH, "-01"))
 
-  ecb_deposit <- with_cache("bb_ecb_deposit",
-                             fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBFAC.EUR.ME")) |>
+  ecb_deposit <- fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBFAC.EUR.ME") |>
     dplyr::filter(date >= start)
-  ecb_lending <- with_cache("bb_ecb_lending",
-                             fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBREF.EUR.ME")) |>
+  ecb_lending <- fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBREF.EUR.ME") |>
     dplyr::filter(date >= start)
-  ecb_main    <- with_cache("bb_ecb_main",
-                             fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBMIN.EUR.ME")) |>
+  ecb_main    <- fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBMIN.EUR.ME") |>
     dplyr::filter(date >= start)
 
-  effr     <- with_cache("fred_dff_monthly", .fetch_fred_monthly_avg("DFF")) |>
+  effr     <- .fetch_fred_monthly_avg("DFF") |>
     dplyr::filter(date >= start)
-  fed_u    <- with_cache("fred_dfedtaru_monthly", .fetch_fred_monthly_avg("DFEDTARU")) |>
+  fed_u    <- .fetch_fred_monthly_avg("DFEDTARU") |>
     dplyr::filter(date >= start)
-  fed_l    <- with_cache("fred_dfedtarl_monthly", .fetch_fred_monthly_avg("DFEDTARL")) |>
+  fed_l    <- .fetch_fred_monthly_avg("DFEDTARL") |>
     dplyr::filter(date >= start)
 
   cpi <- fetch_ger_cpi_yoy(series_name = label_cpi)

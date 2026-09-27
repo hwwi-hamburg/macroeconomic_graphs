@@ -33,7 +33,7 @@ ger_interest_rate_cpi <- function(caption,
                                    y_axis           = "Zins- und Inflationsrate (in %)",
                                    decimal_mark     = ",",
                                    big_mark         = ".") {
-  ecb <- with_cache("ecb_deposit_rate", .fetch_ecb_deposit_rate()) |>
+  ecb <- .fetch_ecb_deposit_rate() |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01"))) |>
     dplyr::mutate(series = label_rate)
 

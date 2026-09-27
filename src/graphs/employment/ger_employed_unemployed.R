@@ -11,8 +11,7 @@ ger_employed_unemployed <- function(caption,
                                      big_mark         = ".") {
   raw_emp   <- with_cache("genesis_81000-0015_1991",
                            genesis_fetch("81000-0015", start_month = 1991))
-  raw_unemp <- with_cache("genesis_13211-0001_1991",
-                           genesis_fetch("13211-0001", start_month = 1991))
+  raw_unemp <- with_cache("genesis_13211-0001", genesis_fetch("13211-0001"))
   employed <- parse_genesis(raw_emp,
                              value_var     = "ERW063",
                              class_filters = list("2_variable_attribute_code" = NA_character_),

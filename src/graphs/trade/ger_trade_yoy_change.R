@@ -2,7 +2,7 @@
 
 .ger_trade_yoy <- function(value_var, series_name, y_axis, caption, decimal_mark,
                              show_trend = FALSE, x_breaks = "2 years") {
-  raw <- with_cache("genesis_51000-0002_yoy", genesis_fetch("51000-0002"))
+  raw <- with_cache("genesis_51000-0002", genesis_fetch("51000-0002"))
   dat <- parse_genesis(raw, value_var = value_var, series_name = series_name,
                         geo = "DEU", scale = 1 / 1e6) |>
     dplyr::arrange(date) |>
