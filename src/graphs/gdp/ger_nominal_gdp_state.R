@@ -1,7 +1,7 @@
 # Nominal GDP (Mrd. EUR) for German Bundesländer - bar chart, latest available year.
 # GENESIS 82111-0010, BIP006 (GDP at current prices, Mill. EUR). Sorted alphabetically.
 ger_nominal_gdp_state <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
-  raw <- with_cache(paste0("genesis_82111-0010_", DATA_START_YEAR),
+  raw <- with_cache("genesis_82111-0010",
                     genesis_fetch("82111-0010"))
   dat <- raw[!is.na(raw$value_variable_code) & raw$value_variable_code == "BIP006" &
                !is.na(raw$value) & !raw$value %in% c("-", "/", ".", "", "..."), , drop = FALSE]

@@ -1,17 +1,13 @@
 # Germany monthly trade: absolute year-on-year change (Mrd. EUR), table 51000-0002.
 
 .ger_trade_yoy <- function(value_var, series_name, y_axis, caption, decimal_mark,
-                             show_trend = FALSE, x_breaks = "2 years",
-                             start_year = DATA_START_YEAR) {
-  raw <- with_cache(
-    paste0("genesis_51000-0002_yoy_preroll_", start_year),
-    genesis_fetch_window("51000-0002", start_year = start_year, pre_roll = TRUE)
-  )
+                             show_trend = FALSE, x_breaks = "2 years") {
+  raw <- with_cache("genesis_51000-0002_yoy", genesis_fetch("51000-0002"))
   dat <- parse_genesis(raw, value_var = value_var, series_name = series_name,
                         geo = "DEU", scale = 1 / 1e6) |>
     dplyr::arrange(date) |>
     dplyr::mutate(value = value - dplyr::lag(value, 12)) |>
-    trim_start_year(start_year) |>
+    trim_start_month(DATA_START_MONTH) |>
     dplyr::filter(!is.na(value))
 
   if (show_trend) {
@@ -35,8 +31,7 @@
 ger_export_yoy_change <- function(y_axis, caption, decimal_mark = ",")
   .ger_trade_yoy("WERTA", "export_yoy", y_axis, caption, decimal_mark,
                  show_trend  = TRUE,
-                 x_breaks    = "1 year",
-                 start_year  = DATA_START_YEAR)
+                 x_breaks    = "1 year")
 
 ger_import_yoy_change <- function(y_axis, caption, decimal_mark = ",")
   .ger_trade_yoy("WERTE", "import_yoy", y_axis, caption, decimal_mark)

@@ -1,6 +1,6 @@
 .ger_bip_annual <- function(value_var, filter_code, series_name, y_axis, caption,
                             decimal_mark, big_mark = ",") {
-  raw <- with_cache(paste0("genesis_81000-0001_", DATA_START_YEAR),
+  raw <- with_cache(paste0("genesis_81000-0001_", DATA_START_MONTH),
                     genesis_fetch("81000-0001"))
 
   dat <- parse_genesis(
@@ -10,7 +10,7 @@
     series_name   = series_name,
     geo           = "DEU"
   ) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
 
   plot_timeseries(dat, y_axis = y_axis, caption = caption,
                   decimal_mark = decimal_mark, big_mark = big_mark)

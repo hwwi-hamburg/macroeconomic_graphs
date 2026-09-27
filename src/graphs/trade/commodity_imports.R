@@ -7,8 +7,8 @@
                                      decimal_mark = ",", big_mark = ".") {
   codes_key <- paste(commodity_codes, collapse = ",")
   raw <- with_cache(
-    paste0(cache_prefix, codes_key, "_", DATA_START_YEAR),
-    do.call(genesis_fetch, c(list(table, DATA_START_YEAR,
+    paste0(cache_prefix, codes_key),
+    do.call(genesis_fetch, c(list(table,
                                    classifyingvariable1 = "EGW3",
                                    classifyingkey1      = codes_key),
                               extra_fetch_args))
@@ -23,7 +23,7 @@
     )
   })
   dat <- dplyr::bind_rows(dat_list[!sapply(dat_list, is.null)]) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   if (!is.null(labels)) {
     labels <- vapply(labels, function(label) paste(strwrap(label, width = 32), collapse = "\n"),
                      character(1), USE.NAMES = TRUE)

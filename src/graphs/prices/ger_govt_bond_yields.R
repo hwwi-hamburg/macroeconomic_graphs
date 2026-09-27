@@ -44,12 +44,12 @@
 
 ger_govt_bond_yields <- function(y_axis, caption, decimal_mark = ",",
                                   country_names = NULL) {
-  start <- as.Date(paste0(DATA_START_YEAR, "-01-01"))
+  start <- as.Date(paste0(DATA_START_MONTH, "-01"))
 
-  raw_json <- with_cache(paste0("estat_ltgby_", DATA_START_YEAR), {
+  raw_json <- with_cache("estat_ltgby", {
     url <- paste0(
       "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ei_mfir_m",
-      "?format=JSON&indic=MF-LTGBY-RT&sinceTimePeriod=", DATA_START_YEAR, "-01&lang=EN"
+      "?format=JSON&indic=MF-LTGBY-RT&lang=EN"
     )
     r <- tryCatch(
       httr2::request(url) |> httr2::req_timeout(60) |> httr2::req_perform() |>

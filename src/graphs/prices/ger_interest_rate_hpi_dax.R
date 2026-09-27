@@ -1,9 +1,9 @@
 # ECB interest rate band (deposit/lending ribbon) + ECB main rate +
 # German House Price Index (GENESIS 61262-0001, annual) +
 # DAX index (Yahoo Finance ^GDAXI, monthly).
-# HPI and DAX are rebased to 100 at DATA_START_YEAR and scaled to the left (rate) axis.
+# HPI and DAX are rebased to 100 at DATA_START_MONTH and scaled to the left (rate) axis.
 
-.fetch_dax_monthly <- function(start_year) {
+.fetch_dax_monthly <- function() {
   r <- tryCatch(
     httr2::request("https://query1.finance.yahoo.com/v8/finance/chart/%5EGDAXI") |>
       httr2::req_url_query(interval = "1mo", range = "25y") |>
@@ -21,7 +21,7 @@
     date  = as.Date(format(times, "%Y-%m-01")),
     value = as.numeric(closes)
   ) |>
-    dplyr::filter(!is.na(value), date >= as.Date(paste0(start_year, "-01-01"))) |>
+    dplyr::filter(!is.na(value)) |>
     dplyr::arrange(date)
 }
 
@@ -33,19 +33,19 @@ ger_interest_rate_hpi_dax <- function(caption,
                                        y_axis_left  = "Zinssatz in %",
                                        y_axis_right = "Indexwert (Start = 100)",
                                        decimal_mark = ",") {
-  start <- as.Date(paste0(DATA_START_YEAR, "-01-01"))
+  start <- as.Date(paste0(DATA_START_MONTH, "-01"))
 
-  ecb_deposit <- with_cache(paste0("bb_ecb_deposit_", DATA_START_YEAR),
+  ecb_deposit <- with_cache("bb_ecb_deposit",
                              fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBFAC.EUR.ME")) |>
     dplyr::filter(date >= start)
-  ecb_lending <- with_cache(paste0("bb_ecb_lending_", DATA_START_YEAR),
+  ecb_lending <- with_cache("bb_ecb_lending",
                              fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBREF.EUR.ME")) |>
     dplyr::filter(date >= start)
-  ecb_main    <- with_cache(paste0("bb_ecb_main_", DATA_START_YEAR),
+  ecb_main    <- with_cache("bb_ecb_main",
                              fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBMIN.EUR.ME")) |>
     dplyr::filter(date >= start)
 
-  raw_hpi <- with_cache(paste0("genesis_61262-0001_", DATA_START_YEAR),
+  raw_hpi <- with_cache("genesis_61262-0001",
                          genesis_fetch("61262-0001"))
   hpi <- parse_genesis(raw_hpi,
                         value_var     = "PRE026",
@@ -55,8 +55,8 @@ ger_interest_rate_hpi_dax <- function(caption,
     dplyr::filter(date >= start) |>
     dplyr::arrange(date)
 
-  dax <- with_cache(paste0("dax_monthly_", DATA_START_YEAR),
-                    .fetch_dax_monthly(DATA_START_YEAR))
+  dax <- with_cache("dax_monthly", .fetch_dax_monthly()) |>
+    dplyr::filter(date >= start)
 
   # Rebase both indices to 100 at the first available observation >= start
   hpi_ref <- hpi$value[1]

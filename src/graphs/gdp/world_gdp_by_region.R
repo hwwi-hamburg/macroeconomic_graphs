@@ -1,6 +1,6 @@
 gdp_world_by_region <- function(y_axis, caption, labels,
                                   decimal_mark = ".", big_mark = ",") {
-  dat <- with_cache(paste0("wdi_NY.GDP.PCAP.PP.KD_regions_", DATA_START_YEAR),
+  dat <- with_cache("wdi_NY.GDP.PCAP.PP.KD_regions",
                     fetch_wdi("NY.GDP.PCAP.PP.KD", country = REGION_CODES))
   region_labels <- setNames(labels, REGION_ISO3C)
   dat <- dat |>

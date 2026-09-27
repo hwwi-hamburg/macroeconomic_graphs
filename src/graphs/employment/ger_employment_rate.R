@@ -3,9 +3,9 @@
 #              divided by Bevölkerungsstand (12411-0001, Dec-31 reference).
 # Replaces retired table 81000-0011 (ERW088 no longer published directly).
 ger_employment_rate <- function(y_axis, caption, decimal_mark = ",") {
-  raw_ep  <- with_cache(paste0("genesis_13321-0006_", DATA_START_YEAR),
+  raw_ep  <- with_cache("genesis_13321-0006",
                          genesis_fetch("13321-0006"))
-  raw_pop <- with_cache(paste0("genesis_12411-0001_", DATA_START_YEAR),
+  raw_pop <- with_cache("genesis_12411-0001",
                          genesis_fetch("12411-0001"))
 
   # Quarterly Erwerbspersonen (original, not SA) → annual average

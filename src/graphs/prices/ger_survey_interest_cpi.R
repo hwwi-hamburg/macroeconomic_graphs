@@ -5,7 +5,7 @@
 # CPI YoY: GENESIS 61111-0002 (PREIS1).
 # Both axes share the same % scale (dual labels only).
 
-.fetch_fred_monthly_avg <- function(series_id, start_year) {
+.fetch_fred_monthly_avg <- function(series_id) {
   r <- tryCatch(
     httr2::request("https://fred.stlouisfed.org/graph/fredgraph.csv") |>
       httr2::req_url_query(id = series_id) |>
@@ -18,7 +18,7 @@
   raw        <- utils::read.csv(textConnection(r), stringsAsFactors = FALSE)
   raw$date   <- as.Date(raw[[1]])
   raw$value  <- suppressWarnings(as.numeric(raw[[2]]))
-  raw        <- raw[!is.na(raw$value) & raw$date >= as.Date(paste0(start_year, "-01-01")), ]
+  raw        <- raw[!is.na(raw$value), ]
   raw$month  <- format(raw$date, "%Y-%m")
   monthly    <- tapply(raw$value, raw$month, mean, na.rm = TRUE)
   tibble::tibble(
@@ -35,24 +35,24 @@ ger_survey_interest_cpi <- function(caption,
                                      y_axis_left    = "Interest rate in %",
                                      y_axis_right   = "Change of consumer price index to previous year's month in %",
                                      decimal_mark   = ".") {
-  start <- as.Date(paste0(DATA_START_YEAR, "-01-01"))
+  start <- as.Date(paste0(DATA_START_MONTH, "-01"))
 
-  ecb_deposit <- with_cache(paste0("bb_ecb_deposit_", DATA_START_YEAR),
+  ecb_deposit <- with_cache("bb_ecb_deposit",
                              fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBFAC.EUR.ME")) |>
     dplyr::filter(date >= start)
-  ecb_lending <- with_cache(paste0("bb_ecb_lending_", DATA_START_YEAR),
+  ecb_lending <- with_cache("bb_ecb_lending",
                              fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBREF.EUR.ME")) |>
     dplyr::filter(date >= start)
-  ecb_main    <- with_cache(paste0("bb_ecb_main_", DATA_START_YEAR),
+  ecb_main    <- with_cache("bb_ecb_main",
                              fetch_bundesbank_series("BBIN1", "M.D0.ECB.ECBMIN.EUR.ME")) |>
     dplyr::filter(date >= start)
 
-  effr     <- with_cache(paste0("fred_dff_monthly_", DATA_START_YEAR),
-                          .fetch_fred_monthly_avg("DFF", DATA_START_YEAR))
-  fed_u    <- with_cache(paste0("fred_dfedtaru_monthly_", DATA_START_YEAR),
-                          .fetch_fred_monthly_avg("DFEDTARU", DATA_START_YEAR))
-  fed_l    <- with_cache(paste0("fred_dfedtarl_monthly_", DATA_START_YEAR),
-                          .fetch_fred_monthly_avg("DFEDTARL", DATA_START_YEAR))
+  effr     <- with_cache("fred_dff_monthly", .fetch_fred_monthly_avg("DFF")) |>
+    dplyr::filter(date >= start)
+  fed_u    <- with_cache("fred_dfedtaru_monthly", .fetch_fred_monthly_avg("DFEDTARU")) |>
+    dplyr::filter(date >= start)
+  fed_l    <- with_cache("fred_dfedtarl_monthly", .fetch_fred_monthly_avg("DFEDTARL")) |>
+    dplyr::filter(date >= start)
 
   cpi <- fetch_ger_cpi_yoy(series_name = label_cpi)
 
