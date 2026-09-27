@@ -2,8 +2,7 @@ source("src/bootstrap.R")
 
 # Use cached data from the employment graph module
 # The with_cache() wrapper ensures we don't re-fetch if data is already cached
-stellen_raw <- with_cache("genesis_13211-0001_1991",
-                          genesis_fetch("13211-0001", start_year = 1991))
+stellen_raw <- with_cache("genesis_13211-0001", genesis_fetch("13211-0001"))
 
 arbeitslosigkeit <- parse_genesis(
   stellen_raw,

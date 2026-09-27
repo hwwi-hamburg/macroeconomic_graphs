@@ -8,10 +8,10 @@
                       ) {
   source("src/bootstrap.R")
 
-  ger_raw <- with_cache(paste0("genesis_82111-0002_", DATA_START_YEAR),
+  ger_raw <- with_cache("genesis_82111-0002",
                         genesis_fetch("82111-0002"))
   
-  hh_raw <- with_cache(paste0("genesis_82111-0011_", DATA_START_YEAR),
+  hh_raw <- with_cache("genesis_82111-0011",
                         genesis_fetch("82111-0011"))
 
   sectors_list <- c("WZ08-A", "WZ08-B-E", "WZ08-F","WZ08-G-T") 

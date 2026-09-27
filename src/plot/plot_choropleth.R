@@ -13,7 +13,7 @@
 
 plot_choropleth_world <- function(dat, fill_col = "value", legend_title = "",
                                    caption = "", low = "white", high = blue,
-                                   xlim = c(-179, 179), ylim = c(-56, 85)) {
+                                   xlim = c(-179, 179), ylim = c(-56, 85), year = NULL) {
   # Some GENESIS country tables include a monetary observation and a tiny
   # auxiliary observation under the same country code. Choropleths need one
   # non-negative trade value per country; retain the monetary (largest) value.
@@ -40,13 +40,14 @@ plot_choropleth_world <- function(dat, fill_col = "value", legend_title = "",
                                     barheight = grid::unit(0.45, "cm")
                                   )) +
     ggplot2::coord_sf(xlim = xlim, ylim = ylim, expand = FALSE) +
-    ggplot2::labs(fill = legend_title, caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(fill = legend_title, caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi(no_axes = TRUE) +
     .choropleth_world_theme()
 }
 
 plot_choropleth_world_div <- function(dat, fill_col = "value", legend_title = "",
-                                       caption = "", xlim = c(-179, 179), ylim = c(-56, 85)) {
+                                       caption = "", xlim = c(-179, 179), ylim = c(-56, 85),
+                                       year = NULL) {
   world   <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
   dat_sf  <- dplyr::left_join(world, dat, by = c("iso_a3_eh" = "geo")) |> sf::st_as_sf()
   abs_max <- max(abs(dat[[fill_col]]), na.rm = TRUE)
@@ -66,13 +67,13 @@ plot_choropleth_world_div <- function(dat, fill_col = "value", legend_title = ""
                                      barheight = grid::unit(0.45, "cm")
                                    )) +
     ggplot2::coord_sf(xlim = xlim, ylim = ylim, expand = FALSE) +
-    ggplot2::labs(fill = legend_title, caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(fill = legend_title, caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi(no_axes = TRUE) +
     .choropleth_world_theme()
 }
 
 plot_choropleth_ger <- function(dat, fill_col = "value", legend_title = "",
-                                  caption = "", low = rubin, high = dark_rubin) {
+                                  caption = "", low = rubin, high = dark_rubin, year = NULL) {
   states     <- rnaturalearth::ne_states(country = "germany", returnclass = "sf")
   lbl_pts    <- sf::st_point_on_surface(states)
   dat_sf     <- dplyr::left_join(dat, states[, c("name", "geometry")],
@@ -93,7 +94,8 @@ plot_choropleth_ger <- function(dat, fill_col = "value", legend_title = "",
     ) +
     ggplot2::scale_fill_gradient(low = low, high = high, na.value = NA,
                                   limits = c(fill_min, fill_max)) +
-    ggplot2::labs(fill = legend_title, caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(fill = legend_title,
+                  caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi(no_axes = TRUE) +
     ggplot2::theme(legend.position = "right",
                    legend.text  = ggplot2::element_text(size = 9),

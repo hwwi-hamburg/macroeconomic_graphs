@@ -1,8 +1,16 @@
 # Nominal GDP per capita for German Bundesländer — bar chart and choropleth map.
-# Source: Statistische Ämter des Bundes und der Länder (local CSV).
+# Source: Statistische Ämter des Bundes und der Länder (local CSV, not fetched
+# live — update the file and .GDP_STATE_PER_CAPITA_CSV below together when a
+# newer vintage becomes available).
+.GDP_STATE_PER_CAPITA_CSV <- file.path("data", "wirtschaftsleistung-bundeslaender-2024.csv")
 
-.read_gdp_state_per_capita <- function() {
-  csv_path <- file.path("data", "wirtschaftsleistung-bundeslaender-2024.csv")
+# The caption year always reflects this file's actual vintage, not today's
+# date, since the data doesn't move with time the way a live fetch would.
+.gdp_state_per_capita_year <- function(csv_path = .GDP_STATE_PER_CAPITA_CSV) {
+  as.integer(sub(".*-([0-9]{4})\\.csv$", "\\1", basename(csv_path)))
+}
+
+.read_gdp_state_per_capita <- function(csv_path = .GDP_STATE_PER_CAPITA_CSV) {
   if (!file.exists(csv_path)) stop("Missing repository data file: ", csv_path)
   raw <- utils::read.csv2(csv_path, fileEncoding = "UTF-8-BOM", stringsAsFactors = FALSE)
   colnames(raw) <- c("geo", "value")
@@ -13,7 +21,8 @@
 }
 
 ger_nominal_gdp_state_per_capita <- function(y_axis, caption,
-                                              decimal_mark = ",", big_mark = ".") {
+                                              decimal_mark = ",", big_mark = ".",
+                                              year = .gdp_state_per_capita_year()) {
   dat    <- .read_gdp_state_per_capita()
   dat    <- dat[order(dat$value, decreasing = TRUE), ]
   y_high <- ceiling(max(dat$value, na.rm = TRUE) / 10000) * 10000
@@ -25,16 +34,17 @@ ger_nominal_gdp_state_per_capita <- function(y_axis, caption,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = caption) +
+    ggplot2::labs(x = "", y = y_axis, caption = paste0(caption, " ", year)) +
     theme_hwwi() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1))
 }
 
-ger_nominal_gdp_state_per_capita_map <- function(legend_title, caption) {
+ger_nominal_gdp_state_per_capita_map <- function(legend_title, caption,
+                                                  year = .gdp_state_per_capita_year()) {
   dat <- .read_gdp_state_per_capita()
   plot_choropleth_ger(dat, fill_col = "value",
                       legend_title = legend_title, caption = caption,
-                      low = "white", high = rubin)
+                      low = "white", high = rubin, year = year)
 }
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────

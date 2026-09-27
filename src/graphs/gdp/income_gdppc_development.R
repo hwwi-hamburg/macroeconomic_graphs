@@ -1,5 +1,5 @@
 .wdi_gdppc_dev <- function(country, y_axis, caption, decimal_mark = ".", big_mark = ",") {
-  dat <- with_cache(paste0("wdi_NY.GDP.PCAP.PP.KD_", country, "_", DATA_START_YEAR),
+  dat <- with_cache(paste0("wdi_NY.GDP.PCAP.PP.KD_", country),
                     fetch_wdi("NY.GDP.PCAP.PP.KD", country = country)) |>
     dplyr::arrange(date)
   plot_timeseries(dat, y_axis = y_axis, caption = caption,

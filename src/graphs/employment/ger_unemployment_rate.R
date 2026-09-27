@@ -1,5 +1,5 @@
 ger_unemployment_rate <- function(y_axis, caption, decimal_mark = ",") {
-  raw <- with_cache(paste0("genesis_13211-0002_", DATA_START_YEAR),
+  raw <- with_cache("genesis_13211-0002",
                     genesis_fetch("13211-0002"))
   dat <- parse_genesis(raw,
                         value_var     = "ERW112",

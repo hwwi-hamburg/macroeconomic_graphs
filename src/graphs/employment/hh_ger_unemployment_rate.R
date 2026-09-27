@@ -4,10 +4,10 @@
                                         y_axis = "Arbeitslosenquote",
                                         decimal_mark = ",",
                                         big_mark = ".") {
-  ger_raw <- with_cache(paste0("genesis_13211-0001_", DATA_START_YEAR),
+  ger_raw <- with_cache("genesis_13211-0001",
                         genesis_fetch("13211-0001"))
 
-  hh_raw <- with_cache(paste0("genesis_13211-0007_", DATA_START_YEAR),
+  hh_raw <- with_cache("genesis_13211-0007",
                        genesis_fetch("13211-0007"))
 
   ger_dat <- parse_genesis(

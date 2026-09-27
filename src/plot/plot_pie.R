@@ -1,4 +1,4 @@
-plot_pie <- function(dat, caption = "", big_mark = ".", decimal_mark = ",",
+plot_pie <- function(dat, caption = "", big_mark = ".", decimal_mark = ",", year = NULL,
                       colors = NULL,
                       n_inside    = 1,        # largest n slices get white interior labels
                       inside_x    = 1.8,      # x position for inside labels
@@ -37,7 +37,7 @@ plot_pie <- function(dat, caption = "", big_mark = ".", decimal_mark = ",",
       label_color = ifelse(is_inside, "white", "black")
     )
 
-  full_caption <- paste0(caption, " ", format(Sys.Date(), "%Y"))
+  full_caption <- paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))
 
   pie <- ggplot2::ggplot(dat, ggplot2::aes(ymin = ymin, ymax = ymax, xmin = 0, xmax = 4,
                                             fill = I(fill_color))) +

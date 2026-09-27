@@ -1,5 +1,5 @@
 .wdi_gdppc_growth <- function(country, y_axis, caption, decimal_mark = ".") {
-  dat <- with_cache(paste0("wdi_NY.GDP.PCAP.KD.ZG_", country, "_", DATA_START_YEAR),
+  dat <- with_cache(paste0("wdi_NY.GDP.PCAP.KD.ZG_", country),
                     fetch_wdi("NY.GDP.PCAP.KD.ZG", country = country)) |>
     dplyr::filter(!is.na(value)) |>
     dplyr::arrange(date)

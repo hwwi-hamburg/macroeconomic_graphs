@@ -8,7 +8,7 @@ ger_short_time_employment <- function(caption,
                                        y_axis_right      = "Arbeitslosenquote in %",
                                        decimal_mark      = ",",
                                        y_max_right       = NULL) {
-  raw <- with_cache(paste0("genesis_13211-0002_", DATA_START_YEAR),
+  raw <- with_cache("genesis_13211-0002",
                     genesis_fetch("13211-0002"))
   kurzarbeit <- parse_genesis(raw,
                                value_var     = "ERW064",
@@ -16,14 +16,14 @@ ger_short_time_employment <- function(caption,
                                series_name   = label_kurzarbeit,
                                geo           = "DEU",
                                scale         = 1 / 1000) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   unemployment <- parse_genesis(raw,
                                  value_var     = "ERW112",
                                  class_filters = list("2_variable_attribute_code" = NA),
                                  series_name   = label_unemployment,
                                  geo           = "DEU") |>
     dplyr::arrange(date) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   dat <- dplyr::bind_rows(kurzarbeit, unemployment)
   plot_dual_axis(dat, caption = caption,
                   y_axis_left  = y_axis_left,

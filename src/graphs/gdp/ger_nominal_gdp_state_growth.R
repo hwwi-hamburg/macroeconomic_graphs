@@ -5,10 +5,7 @@
 # by state instead of a single-year level. Uses yoy_growth() per state.
 
 .ger_gdp_state_growth_helper <- function() {
-  raw <- with_cache(
-    paste0("genesis_82111-0010_", DATA_START_YEAR),
-    genesis_fetch("82111-0010", start_year = DATA_START_YEAR)
-  )
+  raw <- with_cache("genesis_82111-0010", genesis_fetch("82111-0010"))
 
   rows <- raw[
     !is.na(raw$value_variable_code) & raw$value_variable_code == "BIP006" &

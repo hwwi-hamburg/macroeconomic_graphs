@@ -3,8 +3,8 @@
 # the definition remains consistent with the historical charts.
 
 .hh_trade_annual_aircraft <- function() {
-  with_cache(paste0("genesis_hh_trade_monthly_", HH_AIRCRAFT_ARCHIVE_START_YEAR),
-             fetch_hh_trade_monthly(HH_AIRCRAFT_ARCHIVE_START_YEAR)) |>
+  with_cache(paste0("genesis_hh_trade_monthly_", HH_AIRCRAFT_ARCHIVE_START_MONTH),
+             fetch_hh_trade_monthly(HH_AIRCRAFT_ARCHIVE_START_MONTH)) |>
     dplyr::mutate(year = as.integer(format(date, "%Y"))) |>
     dplyr::group_by(series, year) |>
     dplyr::summarise(
@@ -38,38 +38,38 @@ trade_import_hamburg <- function(y_axis, caption, labels,
 }
 
 trade_export_lowersaxony <- function(y_axis, caption, decimal_mark = ",", y_limits = NULL) {
-  dat <- with_cache(paste0("genesis_ls_trade_gp19_", DATA_START_YEAR), fetch_ls_trade()) |>
+  dat <- with_cache("genesis_ls_trade_gp19", fetch_ls_trade()) |>
     dplyr::filter(series == "Export")
   plot_bar(dat, y_axis = y_axis, caption = caption,
             decimal_mark = decimal_mark, y_limits = y_limits)
 }
 
 trade_import_lowersaxony <- function(y_axis, caption, decimal_mark = ",", y_limits = NULL) {
-  dat <- with_cache(paste0("genesis_ls_trade_gp19_", DATA_START_YEAR), fetch_ls_trade()) |>
+  dat <- with_cache("genesis_ls_trade_gp19", fetch_ls_trade()) |>
     dplyr::filter(series == "Import")
   plot_bar(dat, y_axis = y_axis, caption = caption,
             decimal_mark = decimal_mark, y_limits = y_limits)
 }
 
 trade_export_germany <- function(y_axis, caption, decimal_mark = ",", y_limits = NULL) {
-  raw <- with_cache(paste0("genesis_51000-0001_", DATA_START_YEAR),
+  raw <- with_cache("genesis_51000-0001",
                     genesis_fetch("51000-0001"))
   dat <- parse_genesis(raw, value_var = "WERTA",
                         series_name = "Export", unit = "Mrd. EUR", geo = "DEU",
                         scale = 1 / 1e6) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   plot_bar(dat, y_axis = y_axis, caption = caption,
             decimal_mark = decimal_mark, y_limits = y_limits,
             colors = c(alpha(blue, 0.9)))
 }
 
 trade_import_germany <- function(y_axis, caption, decimal_mark = ",", y_limits = NULL) {
-  raw <- with_cache(paste0("genesis_51000-0001_", DATA_START_YEAR),
+  raw <- with_cache("genesis_51000-0001",
                     genesis_fetch("51000-0001"))
   dat <- parse_genesis(raw, value_var = "WERTE",
                         series_name = "Import", unit = "Mrd. EUR", geo = "DEU",
                         scale = 1 / 1e6) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   plot_bar(dat, y_axis = y_axis, caption = caption,
             decimal_mark = decimal_mark, y_limits = y_limits,
             colors = c(alpha(rubin, 0.9)))

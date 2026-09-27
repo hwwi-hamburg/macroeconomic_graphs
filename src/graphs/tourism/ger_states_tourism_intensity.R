@@ -7,16 +7,16 @@
                                           ) {
   source("src/bootstrap.R")
   
-  states_raw <- with_cache(paste0("genesis_45412-0020_", DATA_START_YEAR),
+  states_raw <- with_cache("genesis_45412-0020",
                            genesis_fetch("45412-0020"))
   
-  ger_raw <- with_cache(paste0("genesis_45412-0001_", DATA_START_YEAR),
+  ger_raw <- with_cache("genesis_45412-0001",
                         genesis_fetch("45412-0001"))
   
-  states_pop_raw <- with_cache(paste0("genesis_12411-0010", DATA_START_YEAR),
+  states_pop_raw <- with_cache("genesis_12411-0010",
                                       genesis_fetch("12411-0010"))
   
-  ger_pop_raw <- with_cache(paste0("genesis_12411-0001", DATA_START_YEAR),
+  ger_pop_raw <- with_cache("genesis_12411-0001",
                             genesis_fetch("12411-0001"))
   
   

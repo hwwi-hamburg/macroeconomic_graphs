@@ -1,6 +1,6 @@
 .wdi_gdp_line <- function(indicator, country, scale = 1, y_axis, caption,
                            decimal_mark = ".", big_mark = ",", y_limits = NULL) {
-  dat <- with_cache(paste0("wdi_", indicator, "_", country, "_", DATA_START_YEAR),
+  dat <- with_cache(paste0("wdi_", indicator, "_", country),
                     fetch_wdi(indicator, country = country)) |>
     dplyr::mutate(value = value * scale) |>
     dplyr::arrange(date)
@@ -10,7 +10,7 @@
 
 .wdi_gdp_bar <- function(indicator, country, scale = 1, y_axis, caption,
                           decimal_mark = ".") {
-  dat <- with_cache(paste0("wdi_", indicator, "_", country, "_", DATA_START_YEAR),
+  dat <- with_cache(paste0("wdi_", indicator, "_", country),
                     fetch_wdi(indicator, country = country)) |>
     dplyr::mutate(value = value * scale) |>
     dplyr::filter(!is.na(value)) |>

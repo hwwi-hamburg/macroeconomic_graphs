@@ -49,9 +49,8 @@ Just have a look at the code to get an idea of the structure of a graph file.
 ```r
 # Wrap the plot logic in a function
 ger_bip_annual_growth <- function(y_axis, caption, decimal_mark = ",") {
-  # 1. Fetch the raw data
-  raw <- with_cache(paste0("genesis_81000-0001_", DATA_START_YEAR),
-                    genesis_fetch("81000-0001"))
+  # 1. Fetch the raw data (always the entire available history — see Step 3)
+  raw <- with_cache("genesis_81000-0001", genesis_fetch("81000-0001"))
 
   # 2. Parse the series you want to plot
   dat <- parse_genesis(
@@ -92,7 +91,7 @@ The plotting logic is wrapped as a function such that it can be called with diff
 
 The plotting logic starts with fetching the raw data from GENESIS. 
 Afterwards, the data is parsed into the standard data format by specifying the neccessary filters. 
-Then, the data is transformed as necessary, in this case by filtering the data to the requested start year. 
+Then, the data is transformed as necessary — most graphs trim the parsed result to the requested start month with `trim_start_month()` or an explicit date filter (see Step 3 and Step 6). 
 Finally, the plot is built using one of the predefined plot helpers.
 In the following sections, each of the steps is explained in more detail.
 
@@ -116,7 +115,7 @@ In this section, we will explain how to fetch data from each of the available da
 ### GENESIS
 For creating a new graph from a GENESIS table, start in the [GENESIS-Online](https://www-genesis.destatis.de) catalog to find the **table key** used in `genesis_fetch()`.
 
-For parsing the raw results, you usually need three pieces of information: the **value-variable code** to keep, any **classifying filters** for only using a specific subset, and, for lagged calculations, whether you need one extra **pre-roll year**.
+For parsing the raw results, you usually need two pieces of information: the **value-variable code** to keep and any **classifying filters** for only using a specific subset.
 
 To find the right value-variable code and filter values, fetch the raw table first and inspect its columns:
 
@@ -136,12 +135,12 @@ dplyr::distinct(dplyr::select(filtered, dplyr::starts_with("2_variable_attribute
 Check the outputs of `value_variable_code` for the series you want to plot. 
 Afterwards, use the `*_attribute_code` fields when the table contains multiple regions, units, or classifications and you only want one of them. 
 
-If a graph needs a lagged calculation such as year-on-year growth, fetch one extra year of data with `genesis_fetch_window(..., pre_roll = TRUE)` and trim the visible range later with `trim_start_year()`.
+If a graph needs a lagged calculation such as year-on-year growth, you don't need to do anything special: `genesis_fetch()` already returns the entire available history by default, so the lag has real data to look back on. Just compute the growth, then trim the visible range afterwards with `trim_start_month()` or an explicit date filter.
 
 #### `genesis_fetch()`
 
 ```r
-genesis_fetch(table_key, start_year = DATA_START_YEAR, end_year = 2100, ...)
+genesis_fetch(table_key, start_month = 1900, end_year = 2100, ...)
 ```
 
 Downloads a raw table from Destatis GENESIS using `restatis::gen_table()`.
@@ -149,7 +148,7 @@ Downloads a raw table from Destatis GENESIS using `restatis::gen_table()`.
 Parameters:
 
 - `table_key`: GENESIS table identifier, such as `"81000-0001"`.
-- `start_year`: First year to request. Defaults to `DATA_START_YEAR`.
+- `start_month`: First year to request. Defaults to `1900` — i.e. all available history — so the result is cacheable independent of `DATA_START_MONTH`. Only pass this explicitly for snapshot-style fetches that genuinely need one fixed year (e.g. `genesis_fetch(table_key, year, year)`).
 - `end_year`: Last year to request. Defaults to `2100`, allowing GENESIS to return all currently available observations.
 - `...`: Additional filters passed to `restatis::gen_table()`, such as `regionalvariable`, `regionalkey`, `classifyingvariable1`, or `classifyingkey1`.
 
@@ -192,7 +191,7 @@ Returns a tibble in the standard shape.
 fetch_wdi(
   indicator,
   country,
-  start = DATA_START_YEAR,
+  start = 1960,
   end = as.integer(format(Sys.Date(), "%Y"))
 )
 ```
@@ -203,7 +202,7 @@ Parameters:
 
 - `indicator`: WDI indicator code, such as `"NY.GDP.PCAP.PP.KD"`.
 - `country`: ISO3C country code, WDI aggregate code such as `"1W"`, or a vector of codes.
-- `start`: First year to request.
+- `start`: First year to request. Defaults to `1960` (all available history), so the result is cacheable independent of `DATA_START_MONTH`.
 - `end`: Last year to request. Defaults to the current year.
 
 Returns `tibble(date, value, series, unit, geo)`.
@@ -266,9 +265,9 @@ Trade graphs also have higher-level domain fetchers in `fetch_genesis.R` (`fetch
 
 ## 3. Cache the raw fetch
 
-Use `with_cache()` for any source that is expensive to fetch or likely to be reused. Include every parameter that changes the returned data in the cache key. For GENESIS graphs with a pre-roll year, key the cache on the display start year and the pre-roll flag, just like the graph modules do.
+Use `with_cache()` for any source that is expensive to fetch or likely to be reused. `with_cache()` refetches at most once per calendar month on its own (see [src/fetch/cache.R](src/fetch/cache.R)), so **don't** put `DATA_START_MONTH` in the cache key — `genesis_fetch()` and `fetch_wdi()` default to pulling the entire available history, and that one cached fetch should serve every display start, including `--start-year`/`--start-month` runs. Key the cache on whatever actually changes the raw result: the table/indicator and any fixed filter arguments.
 
-For GENESIS time-series graphs, `genesis_fetch_window(..., pre_roll = TRUE)` fetches one extra year before the visible range, and `trim_start_year()` removes that extra history after parsing or transformation.
+Trim to the display window *after* caching, with `trim_start_month()` or an explicit date filter — never by narrowing what gets fetched. Because the full history is always fetched, lagged calculations (year-on-year growth, etc.) just work: compute the lag first, trim second.
 
 #### `with_cache()`
 
@@ -276,22 +275,19 @@ For GENESIS time-series graphs, `genesis_fetch_window(..., pre_roll = TRUE)` fet
 with_cache(key, expr, cache_dir = CACHE_DIR)
 ```
 
-Returns a saved result when one exists; otherwise, evaluates the expression and saves its result as an RDS file.
+Returns a saved result when one exists and it's from the current calendar month; otherwise evaluates the expression, saves the result, and returns it.
 
 Parameters:
 
-- `key`: Unique cache identifier. Include every fetch parameter that changes the result.
+- `key`: Unique cache identifier. Include every fetch parameter that changes the result — but not `DATA_START_MONTH`, since the fetch itself doesn't depend on it.
 - `expr`: Fetch expression to evaluate on a cache miss.
 - `cache_dir`: Directory containing the RDS cache files. Defaults to `CACHE_DIR`.
 
-Include `DATA_START_YEAR` in `key` whenever the fetch depends on it. This ensures that the `--start-year=YYYY` CLI option selects a separate cache entry (see [CLAUDE.md](CLAUDE.md#--start-year-override)):
-
 ```r
-raw <- with_cache(paste0("genesis_81000-0001_", DATA_START_YEAR),
-                  genesis_fetch("81000-0001"))
+raw <- with_cache("genesis_81000-0001", genesis_fetch("81000-0001"))
 ```
 
-For snapshot-style data (a single year, e.g. trade-structure pies), key by that year instead:
+For snapshot-style data (a single fixed year, e.g. trade-structure pies), key by that year instead — these intentionally narrow the fetch, so the year belongs in both the call and the key:
 
 ```r
 raw <- with_cache(paste0("genesis_51000-0005_", year), fetch_ger_trade_commodity(year))
@@ -348,7 +344,7 @@ Returns the input data with `value` replaced by the adjusted series. It returns 
 
 Most GENESIS tables already offer seasonally adjusted or chain-indexed variants as a `class_filters` code (see the `ger_bip_*` specs), which is preferred over adjusting client-side.
 
-When a graph needs lagged growth calculations, prefer `genesis_fetch_window(..., pre_roll = TRUE)` plus `trim_start_year()` over manual date filtering inside the graph module.
+When a graph needs lagged growth calculations, compute the lag on the full fetched history first, then call `trim_start_month()` (or an explicit date filter) to cut to the display window — trimming before the lag would turn the first visible rows into `NA`.
 
 ## 5. Pick a plot builder
 
@@ -764,10 +760,9 @@ Add a function under `src/graphs/<category>/` (`gdp/`, `employment/`, `prices/`,
 ```r
 # src/graphs/gdp/my_new_graph.R
 my_new_graph <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
-  dat <- with_cache(paste0("genesis_XXXXX-XXXX_", DATA_START_YEAR),
-                    genesis_fetch("XXXXX-XXXX")) |>
+  dat <- with_cache("genesis_XXXXX-XXXX", genesis_fetch("XXXXX-XXXX")) |>
     parse_genesis(value_var = "...", series_name = "my_series", geo = "DEU") |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   plot_timeseries(dat, y_axis = y_axis, caption = caption,
                   decimal_mark = decimal_mark, big_mark = big_mark)
 }

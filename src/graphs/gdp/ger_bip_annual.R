@@ -4,7 +4,7 @@
 
 .ger_bip_annual <- function(value_var, filter_code, series_name, y_axis, caption,
                               decimal_mark, big_mark = ",") {
-  raw <- with_cache(paste0("genesis_81000-0001_", DATA_START_YEAR),
+  raw <- with_cache("genesis_81000-0001",
                     genesis_fetch("81000-0001"))
   dat <- parse_genesis(raw,
                         value_var     = value_var,

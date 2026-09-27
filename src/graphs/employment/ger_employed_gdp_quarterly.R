@@ -7,7 +7,7 @@ ger_employed_gdp_quarterly <- function(caption,
                                         y_axis_left    = "Erwerbstätige (in Tsd.)",
                                         y_axis_right   = "BIP nach Quartalen (Mrd. EUR)",
                                         decimal_mark   = ",", big_mark = ".") {
-  raw_emp <- with_cache(paste0("genesis_13321-0002_", DATA_START_YEAR),
+  raw_emp <- with_cache("genesis_13321-0002",
                          genesis_fetch("13321-0002"))
   employed <- parse_genesis(raw_emp,
                              value_var     = "ERW002",
@@ -17,9 +17,9 @@ ger_employed_gdp_quarterly <- function(caption,
                              series_name   = label_employed,
                              geo           = "DEU",
                              scale         = 1) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
 
-  raw_gdp <- with_cache(paste0("genesis_81000-0002_", DATA_START_YEAR),
+  raw_gdp <- with_cache("genesis_81000-0002",
                          genesis_fetch("81000-0002"))
   gdp <- parse_genesis(raw_gdp,
                         value_var     = "VGR014",
@@ -28,7 +28,7 @@ ger_employed_gdp_quarterly <- function(caption,
                                               "4_variable_attribute_code" = "VGRPVK"),
                         series_name   = label_bip,
                         geo           = "DEU") |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
 
   dat <- dplyr::bind_rows(employed, gdp)
   plot_dual_axis(dat, caption = caption,

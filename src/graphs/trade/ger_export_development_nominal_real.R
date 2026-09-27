@@ -2,19 +2,19 @@
 # Nominal from GENESIS 51000-0001; real from 81000-0027.
 
 .ger_trade_nominal_real_bar <- function(nom_var, real_var, y_axis, caption, labels, decimal_mark) {
-  raw_nom <- with_cache(paste0("genesis_51000-0001_", DATA_START_YEAR),
+  raw_nom <- with_cache("genesis_51000-0001",
                          genesis_fetch("51000-0001"))
   nom <- parse_genesis(raw_nom, value_var = nom_var,
                         series_name = "Nominal", unit = "Mrd. EUR", geo = "DEU",
                         scale = 1 / 1e6)
 
-  raw_real <- with_cache(paste0("genesis_81000-0027_", DATA_START_YEAR),
+  raw_real <- with_cache("genesis_81000-0027",
                           genesis_fetch("81000-0027"))
   real <- parse_genesis(raw_real, value_var = real_var,
                          series_name = "Real", unit = "Mrd. EUR", geo = "DEU")
 
   dat <- dplyr::bind_rows(nom, real) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   plot_bar(dat, y_axis = y_axis, caption = caption, labels = labels,
             decimal_mark = decimal_mark)
 }

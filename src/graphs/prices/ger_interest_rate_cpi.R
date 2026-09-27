@@ -2,7 +2,7 @@
 # ECB rate fetched from FRED public CSV (ECBDFR series, daily → monthly average).
 # Inflation from Destatis GENESIS table 61111-0002 (monthly YoY CPI change).
 
-.fetch_ecb_deposit_rate <- function(start_year) {
+.fetch_ecb_deposit_rate <- function() {
   r <- tryCatch(
     httr2::request("https://fred.stlouisfed.org/graph/fredgraph.csv") |>
       httr2::req_url_query(id = "ECBDFR") |>
@@ -14,7 +14,7 @@
   raw <- utils::read.csv(textConnection(r), stringsAsFactors = FALSE)
   raw$date   <- as.Date(raw$observation_date)
   raw$value  <- suppressWarnings(as.numeric(raw$ECBDFR))
-  raw <- raw[!is.na(raw$value) & raw$date >= as.Date(paste0(start_year, "-01-01")), ]
+  raw <- raw[!is.na(raw$value), ]
   # Compute monthly average from daily data
   raw$month <- format(raw$date, "%Y-%m")
   monthly <- tapply(raw$value, raw$month, mean, na.rm = TRUE)
@@ -33,8 +33,8 @@ ger_interest_rate_cpi <- function(caption,
                                    y_axis           = "Zins- und Inflationsrate (in %)",
                                    decimal_mark     = ",",
                                    big_mark         = ".") {
-  ecb <- with_cache(paste0("ecb_deposit_rate_", DATA_START_YEAR),
-                    .fetch_ecb_deposit_rate(DATA_START_YEAR)) |>
+  ecb <- .fetch_ecb_deposit_rate() |>
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01"))) |>
     dplyr::mutate(series = label_rate)
 
   inflation <- fetch_ger_cpi_yoy(series_name = label_inflation)
