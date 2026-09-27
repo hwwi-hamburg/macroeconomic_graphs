@@ -6,7 +6,8 @@ plot_dual_axis <- function(dat, caption,
                             x_breaks = "5 years",
                             y_max_right = NULL,
                             y_min_at_zero = TRUE,
-                            angle = 0) {
+                            angle = 0,
+                            year = NULL) {
   left  <- dat[dat$series == series_left,  ]
   right <- dat[dat$series == series_right, ]
 
@@ -51,7 +52,7 @@ plot_dual_axis <- function(dat, caption,
                                      decimal.mark = decimal_mark, scientific = FALSE)
       )
     ) +
-    ggplot2::labs(x = "", caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = "", caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(
       legend.position  = "bottom",

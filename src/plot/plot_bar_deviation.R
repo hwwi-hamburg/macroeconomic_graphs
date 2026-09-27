@@ -4,7 +4,8 @@ plot_bar_deviation <- function(dat, caption,
                                 big_mark        = ",",
                                 positive_label  = "Above average",
                                 negative_label  = "Below average",
-                                colors          = c(blue, rubin)) {
+                                colors          = c(blue, rubin),
+                                year            = NULL) {
   dat <- dat[order(dat$value), ]
   dat$series <- factor(dat$series, levels = unique(dat$series))
   dat$direction <- ifelse(dat$value >= 0, positive_label, negative_label)
@@ -23,7 +24,7 @@ plot_bar_deviation <- function(dat, caption,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = x_axis, y = "", caption = paste0(caption, " ", format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = x_axis, y = "", caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom")
 }
