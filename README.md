@@ -112,16 +112,16 @@ out/<category-folder>/German labeling/<title>.jpeg
 out/<category-folder>/English labeling/<title>.jpeg
 ```
 
-The current category-folder names are `GDP graphs`, `employment graphs`, `prices graphs`, and `trade graphs`. A small number of Prices modules currently use `Prices graphs` with an uppercase `P`, so those files may appear in a separate directory on case-sensitive file systems.
+The current category-folder names are `GDP graphs`, `employment graphs`, `prices graphs`, and `trade graphs`.
 
 e.g. `out/GDP graphs/English labeling/GER BIP annual growth - chain index_en.jpeg`.
 
-Runs with `--start-year=YYYY` or `--start-month=YYYY-MM` write to `out/custom start <YYYY[-MM]>/<category-folder>/...` instead, keeping the standard output untouched.
+Runs with `--start-year=YYYY` or `--start-month=YYYY-MM` write to `out/custom start <YYYY[-MM]>/<category-folder>/...` instead, keeping the standard output folders untouched.
 
 Runs with `--output-folder=NAME` output all graphs into `out/NAME/`. Add `--language=de` or `--language=en` to generate only one label variant.
 
 #### Change the master output folder
-The file local_config is used to override the default configuration settings stored in the github repository. It is loaded later in `bootstrap.R` and can be used to change the default output folder. For example, to change the output folder to `../graph_outputs`, create a file `src/local_config.R` with the following content:
+The file `src/local_config.R` is used to override the default configuration settings stored in the file `src/config.R`. It is loaded later in `bootstrap.R` and can be used to change the default output folder. For example, to change the output folder to `../macroeconomic_graph_outputs`, create a file `src/local_config.R` with the following content:
 
 ```r
 OUT_DIR="../macroeconomic_graphs_outputs"
