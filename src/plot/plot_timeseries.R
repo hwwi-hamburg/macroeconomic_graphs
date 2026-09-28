@@ -13,7 +13,7 @@ plot_timeseries <- function(dat, y_axis, source,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = angle, hjust = 0.5))
 }
@@ -36,7 +36,7 @@ plot_bar_date <- function(dat, y_axis, source, labels = NULL,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, fill = "",
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), fill = "",
                   caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom",
@@ -58,7 +58,7 @@ plot_timeseries_multi <- function(dat, y_axis, source, labels = NULL,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, color = "", caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), color = "", caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom", 
   axis.text.x = ggplot2::element_text(angle = angle, hjust = 0.5))

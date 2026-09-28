@@ -88,7 +88,7 @@ ger_govt_bond_yields <- function(y_axis, source, decimal_mark = ",",
     ggplot2::scale_y_continuous(
       labels = function(x) format(x, decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = source) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), caption = source) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom") +
     ggplot2::guides(color = ggplot2::guide_legend(nrow = 3))

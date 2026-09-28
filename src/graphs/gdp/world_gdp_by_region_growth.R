@@ -49,7 +49,7 @@ gdp_world_by_region_growth <- function(y_axis, source, labels = NULL,
       breaks = seq(y_min, y_max, by = 1),
       labels = function(x) paste0(format(x, decimal.mark = decimal_mark, scientific = FALSE), "%")
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = source) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), caption = source) +
     theme_hwwi() +
     ggplot2::theme(
       legend.position = "bottom",

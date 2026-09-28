@@ -88,9 +88,9 @@ ger_interest_rate_hpi_dax <- function(source,
                           limits = c(start, max(dax$date, na.rm = TRUE)),
                           expand = c(0, 0)) +
     ggplot2::scale_y_continuous(
-      name     = y_axis_left,
+      name     = wrap_axis_label(y_axis_left),
       labels   = function(x) format(x, decimal.mark = decimal_mark, scientific = FALSE),
-      sec.axis = ggplot2::sec_axis(~ . * scale_factor, name = y_axis_right,
+      sec.axis = ggplot2::sec_axis(~ . * scale_factor, name = wrap_axis_label(y_axis_right),
                                     labels = function(x) format(x, decimal.mark = decimal_mark,
                                                                  scientific = FALSE))
     ) +

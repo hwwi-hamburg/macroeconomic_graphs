@@ -92,9 +92,9 @@ ger_survey_interest_cpi <- function(source,
                           limits = c(start, max(cpi$date, na.rm = TRUE)),
                           expand = c(0, 0)) +
     ggplot2::scale_y_continuous(
-      name     = y_axis_left,
+      name     = wrap_axis_label(y_axis_left),
       labels   = function(x) format(x, decimal.mark = decimal_mark, scientific = FALSE),
-      sec.axis = ggplot2::sec_axis(~., name = y_axis_right,
+      sec.axis = ggplot2::sec_axis(~., name = wrap_axis_label(y_axis_right),
                                     labels = function(x) format(x, decimal.mark = decimal_mark,
                                                                  scientific = FALSE))
     ) +

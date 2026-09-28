@@ -34,7 +34,7 @@ ger_nominal_gdp_state_per_capita <- function(y_axis, source,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = paste0(source, " ", year)) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), caption = paste0(source, " ", year)) +
     theme_hwwi() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1))
 }

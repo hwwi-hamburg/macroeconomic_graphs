@@ -20,7 +20,7 @@
       ggplot2::scale_y_continuous(
         labels = function(x) format(x, decimal.mark = decimal_mark, scientific = FALSE)
       ) +
-      ggplot2::labs(x = "", y = y_axis, caption = source) +
+      ggplot2::labs(x = "", y = wrap_axis_label(y_axis), caption = source) +
       theme_hwwi()
   } else {
     plot_timeseries(dat, y_axis = y_axis, source = source,

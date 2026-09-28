@@ -20,7 +20,7 @@ ger_nominal_gdp_state <- function(y_axis, source, decimal_mark = ",", big_mark =
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = source) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), caption = source) +
     theme_hwwi() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1))
 }
