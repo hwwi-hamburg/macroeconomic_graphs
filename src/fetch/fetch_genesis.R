@@ -1,10 +1,15 @@
 # Fetch any GENESIS table via restatis → long/tidy tibble (ffcsv format).
 # Accepts the same filter params as gen_table: classifyingvariable1/key1, regionalvariable/key, etc.
-genesis_fetch <- function(table_key, start_year = DATA_START_YEAR, end_year = 2100, ...) {
+# Defaults to the entire available history (matching restatis::gen_table's own
+# defaults) so the result is cacheable independent of DATA_START_MONTH; callers
+# that genuinely want a single year (snapshot pies/choropleths) pass
+# start_month/end_year explicitly. Trim to the display window downstream with
+# trim_start_month() or an explicit date filter.
+genesis_fetch <- function(table_key, start_month = 1900, end_year = 2100, ...) {
   restatis::gen_table(
     name      = table_key,
     database  = "genesis",
-    startyear = as.integer(start_year),
+    startyear = start_month_year(start_month),
     endyear   = as.integer(end_year),
     language  = "de",
     all_character = TRUE,
@@ -12,19 +17,9 @@ genesis_fetch <- function(table_key, start_year = DATA_START_YEAR, end_year = 21
   )
 }
 
-# Fetch a GENESIS table with optional pre-roll data for lagged calculations.
-# When `pre_roll = TRUE`, the fetch starts one year earlier than `start_year`
-# so functions like yoy_growth() can compute the first visible change without
-# special casing in the graph module.
-genesis_fetch_window <- function(table_key, start_year = DATA_START_YEAR,
-                                 end_year = 2100, pre_roll = FALSE, ...) {
-  fetch_start <- if (pre_roll) as.integer(start_year) - 1L else as.integer(start_year)
-  genesis_fetch(table_key, start_year = fetch_start, end_year = end_year, ...)
-}
-
 # Trim a standard tibble to the requested display window.
-trim_start_year <- function(dat, start_year = DATA_START_YEAR) {
-  dplyr::filter(dat, date >= as.Date(paste0(start_year, "-01-01")))
+trim_start_month <- function(dat, start_month = DATA_START_MONTH) {
+  dplyr::filter(dat, date >= as.Date(paste0(start_month, "-01-01")))
 }
 
 # Parse a genesis_fetch() tibble into normalized tibble(date, value, series, unit, geo).
@@ -186,9 +181,9 @@ de_country_to_iso3c <- function(names_de) {
 }
 
 # Hamburg total trade and totals excluding other transport equipment.
-fetch_hh_trade <- function(start_year = DATA_START_YEAR) {
-  trade_raw <- genesis_fetch("51000-0030", start_year, regionalvariable = "DLANDX", regionalkey = "02")
-  transport_raw <- genesis_fetch("51000-0034", start_year,
+fetch_hh_trade <- function() {
+  trade_raw <- genesis_fetch("51000-0030", regionalvariable = "DLANDX", regionalkey = "02")
+  transport_raw <- genesis_fetch("51000-0034",
                                  classifyingvariable1 = "GP19B2", classifyingkey1 = "GP19-30",
                                  regionalvariable = "DLANDX", regionalkey = "02")
   .state_trade_long(trade_raw, transport_raw, state_key = "02", geo = "HH")
@@ -199,10 +194,10 @@ fetch_hh_trade <- function(start_year = DATA_START_YEAR) {
 # In 51000-0031: month in variable 1, state in variable 2 (code "02").
 # In 51000-0035: month in variable 1, state in variable 2, commodity in variable 3.
 # Values are in Tsd. EUR; scale = 1/1e6 converts to Mrd. EUR.
-fetch_hh_trade_monthly <- function(start_year = DATA_START_YEAR) {
-  trade_raw <- genesis_fetch("51000-0031", start_year,
+fetch_hh_trade_monthly <- function(start_month = DATA_START_MONTH) {
+  trade_raw <- genesis_fetch("51000-0031", start_month,
                               regionalvariable = "DLANDX", regionalkey = "02")
-  air_raw <- genesis_fetch("51000-0035", start_year,
+  air_raw <- genesis_fetch("51000-0035", start_month,
                            classifyingvariable1 = "EGW3", classifyingkey1 = "EGW883",
                            regionalvariable = "DLANDX", regionalkey = "02")
   cf  <- list("2_variable_attribute_code" = "02")
@@ -228,9 +223,9 @@ fetch_hh_trade_monthly <- function(start_year = DATA_START_YEAR) {
 }
 
 # Lower Saxony total trade and totals excluding other transport equipment.
-fetch_ls_trade <- function(start_year = DATA_START_YEAR) {
-  trade_raw <- genesis_fetch("51000-0030", start_year, regionalvariable = "DLANDX", regionalkey = "03")
-  transport_raw <- genesis_fetch("51000-0034", start_year,
+fetch_ls_trade <- function() {
+  trade_raw <- genesis_fetch("51000-0030", regionalvariable = "DLANDX", regionalkey = "03")
+  transport_raw <- genesis_fetch("51000-0034",
                                  classifyingvariable1 = "GP19B2", classifyingkey1 = "GP19-30",
                                  regionalvariable = "DLANDX", regionalkey = "03")
   .state_trade_long(trade_raw, transport_raw, state_key = "03", geo = "LS")
@@ -447,17 +442,10 @@ fetch_state_deviation <- function(yr, state_key, direction = "export") {
 }
 
 fetch_ger_cpi_yoy <- function(series_name = "inflation_rate") {
-  custom_start <- !is.null(getOption("hwwi.start.year"))
-  fetch_start <- if (custom_start) DATA_START_YEAR - 1L else DATA_START_YEAR
-  cache_key <- if (custom_start) {
-    paste0("genesis_61111-0002_yoy_preroll_", DATA_START_YEAR)
-  } else {
-    paste0("genesis_61111-0002_", DATA_START_YEAR)
-  }
-  raw <- with_cache(cache_key, genesis_fetch("61111-0002", start_year = fetch_start))
+  raw <- with_cache("genesis_61111-0002", genesis_fetch("61111-0002"))
   parse_genesis(raw, value_var = "PREIS1", unit_filter = "2020=100",
                 series_name = series_name, geo = "DEU") |>
     dplyr::arrange(date) |>
     dplyr::mutate(value = (value / dplyr::lag(value, 12) - 1) * 100) |>
-    dplyr::filter(!is.na(value), date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(!is.na(value), date >= as.Date(paste0(DATA_START_MONTH, "-01")))
 }

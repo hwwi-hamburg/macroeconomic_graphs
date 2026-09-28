@@ -4,7 +4,7 @@
 
 .ger_bip_quarterly <- function(value_var, sa_code, filter_code, series_name,
                                  y_axis, caption, decimal_mark, big_mark = ",") {
-  raw <- with_cache(paste0("genesis_81000-0002_", DATA_START_YEAR),
+  raw <- with_cache("genesis_81000-0002",
                     genesis_fetch("81000-0002"))
   dat <- parse_genesis(raw,
                         value_var     = value_var,
@@ -13,7 +13,7 @@
                                              "4_variable_attribute_code" = filter_code),
                         series_name   = series_name,
                         geo           = "DEU") |>
-    trim_start_year(DATA_START_YEAR)
+    trim_start_month(DATA_START_MONTH)
   plot_timeseries(dat, y_axis = y_axis, caption = caption,
                   decimal_mark = decimal_mark, big_mark = big_mark,
                   x_breaks = "2 years")

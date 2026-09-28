@@ -1,5 +1,5 @@
 ger_cpi <- function(y_axis, caption, y_limits = c(40, 130)) {
-  raw <- with_cache(paste0("genesis_61111-0002_", DATA_START_YEAR),
+  raw <- with_cache("genesis_61111-0002",
                     genesis_fetch("61111-0002"))
   dat <- parse_genesis(raw,
                        value_var   = "PREIS1",

@@ -5,9 +5,9 @@
                                           big_mark = ".") {
   source("src/bootstrap.R")
 
-  ger_raw <- with_cache(paste0("genesis_51000-0002_", DATA_START_YEAR),
+  ger_raw <- with_cache("genesis_51000-0002",
                         genesis_fetch("51000-0002"))
-  hh_raw <- with_cache(paste0("genesis_51000-0031_", DATA_START_YEAR),
+  hh_raw <- with_cache("genesis_51000-0031",
                         genesis_fetch("51000-0031"))
 
 

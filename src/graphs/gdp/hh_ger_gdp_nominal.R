@@ -8,10 +8,10 @@
 
 source("src/bootstrap.R")
   
-  ger_raw <- with_cache(paste0("genesis_81000-0001_", DATA_START_YEAR),
+  ger_raw <- with_cache("genesis_81000-0001",
                     genesis_fetch("81000-0001"))
   
-  hh_raw <- with_cache(paste0("genesis_82111-0010_", DATA_START_YEAR),
+  hh_raw <- with_cache("genesis_82111-0010",
                        genesis_fetch("82111-0010"))
   
   ger_dat <- parse_genesis(

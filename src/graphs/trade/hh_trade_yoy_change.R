@@ -3,14 +3,14 @@
 
 .hh_trade_yoy <- function(direction, y_axis, caption, labels, decimal_mark, big_mark, y_limits) {
   series_pair <- c(direction, paste0(direction, "NoAir"))
-  dat <- with_cache(paste0("genesis_hh_trade_monthly_", HH_AIRCRAFT_ARCHIVE_START_YEAR),
-                    fetch_hh_trade_monthly(HH_AIRCRAFT_ARCHIVE_START_YEAR)) |>
+  dat <- with_cache(paste0("genesis_hh_trade_monthly_", HH_AIRCRAFT_ARCHIVE_START_MONTH),
+                    fetch_hh_trade_monthly(HH_AIRCRAFT_ARCHIVE_START_MONTH)) |>
     dplyr::filter(series %in% series_pair) |>
     dplyr::arrange(series, date) |>
     dplyr::group_by(series) |>
     dplyr::mutate(value = (value / dplyr::lag(value, 12) - 1) * 100) |>
     dplyr::ungroup() |>
-    dplyr::filter(!is.na(value), date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(!is.na(value), date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   plot_timeseries_multi(dat, y_axis = y_axis, caption = caption, labels = labels,
                          decimal_mark = decimal_mark, big_mark = big_mark, x_breaks = "2 years",
                          y_limits = y_limits)

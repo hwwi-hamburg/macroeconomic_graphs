@@ -4,12 +4,12 @@
 
 .ger_vgr_trade_bar <- function(value_var, filter_code, series_name, y_axis, caption,
                                  decimal_mark) {
-  raw <- with_cache(paste0("genesis_81000-0027_", DATA_START_YEAR),
+  raw <- with_cache("genesis_81000-0027",
                     genesis_fetch("81000-0027"))
   dat <- parse_genesis(raw, value_var = value_var,
                         class_filters = list("2_variable_attribute_code" = filter_code),
                         series_name = series_name, geo = "DEU") |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   plot_bar(dat, y_axis = y_axis, caption = caption,
             decimal_mark = decimal_mark, colors = c(alpha(blue, 0.9))) +
     ggplot2::theme(legend.position = "none")

@@ -1,6 +1,11 @@
 # ── Data ──────────────────────────────────────────────────────────────────────
-DATA_START_YEAR <- 2000   # earliest year to fetch for all time series
-HH_AIRCRAFT_ARCHIVE_START_YEAR <- 2000  # stable cache key for retired EGW883 history
+DATA_START_MONTH <- "2000-01"   # earliest year-month ("YYYY-MM") to fetch for all time series
+HH_AIRCRAFT_ARCHIVE_START_MONTH <- "2000-01"  # stable cache key for retired EGW883 history
+
+# GENESIS/WDI start/end params are year-only. DATA_START_MONTH (and any
+# start_month passed around) is always "YYYY-MM" or a bare year — this pulls
+# the year back out for APIs that only understand years.
+start_month_year <- function(start_month) as.integer(substr(as.character(start_month), 1, 4))
 
 # World Bank aggregate regions used by both regional GDP graph modules. Keep
 # these in shared configuration because graph discovery sources each module in

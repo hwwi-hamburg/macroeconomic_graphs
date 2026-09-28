@@ -4,7 +4,7 @@
 # If parse fails: unique(raw[["1_variable_attribute_code"]])
 ger_unemployed_west_east <- function(y_axis, caption, labels = NULL,
                                       decimal_mark = ",", big_mark = ".") {
-  raw <- with_cache(paste0("genesis_13211-0001_", DATA_START_YEAR),
+  raw <- with_cache("genesis_13211-0001",
                     genesis_fetch("13211-0001"))
   west <- parse_genesis(raw,
                          value_var     = "ERW006",
@@ -12,14 +12,14 @@ ger_unemployed_west_east <- function(y_axis, caption, labels = NULL,
                          series_name   = "West",
                          geo           = "DEU-W",
                          scale         = 1 / 1e6) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   east <- parse_genesis(raw,
                          value_var     = "ERW006",
                          class_filters = list("1_variable_attribute_code" = "DN"),
                          series_name   = "East",
                          geo           = "DEU-E",
                          scale         = 1 / 1e6) |>
-    dplyr::filter(date >= as.Date(paste0(DATA_START_YEAR, "-01-01")))
+    dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   dat <- dplyr::bind_rows(west, east)
   plot_timeseries_multi(dat, y_axis = y_axis, caption = caption,
                          labels = labels,

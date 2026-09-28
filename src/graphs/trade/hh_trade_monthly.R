@@ -5,8 +5,8 @@
                             decimal_mark, big_mark, y_limits,
                             start_date = NULL, x_breaks = "2 years") {
   series_pair <- c(direction, paste0(direction, "NoAir"))
-  dat <- with_cache(paste0("genesis_hh_trade_monthly_", HH_AIRCRAFT_ARCHIVE_START_YEAR),
-                    fetch_hh_trade_monthly(HH_AIRCRAFT_ARCHIVE_START_YEAR)) |>
+  dat <- with_cache(paste0("genesis_hh_trade_monthly_", HH_AIRCRAFT_ARCHIVE_START_MONTH),
+                    fetch_hh_trade_monthly(HH_AIRCRAFT_ARCHIVE_START_MONTH)) |>
     dplyr::filter(series %in% series_pair) |>
     dplyr::mutate(series = factor(series, levels = series_pair))
   if (!is.null(start_date))

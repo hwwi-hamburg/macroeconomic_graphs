@@ -5,25 +5,25 @@
   NA_character_
 }
 
-.filter_frame_from_year <- function(dat, start_year) {
+.filter_frame_from_month <- function(dat, start_month) {
   if (!is.data.frame(dat) || !"date" %in% names(dat)) return(dat)
   if (!inherits(dat$date, c("Date", "POSIXct", "POSIXt"))) return(dat)
 
-  cutoff <- as.Date(sprintf("%d-01-01", start_year))
+  cutoff <- as.Date(paste0(start_month, "-01"))
   keep <- is.na(dat$date) | as.Date(dat$date) >= cutoff
   dat[keep, , drop = FALSE]
 }
 
-# Enforce --start-year at the final rendering boundary. Most graph modules
+# Enforce --start-month at the final rendering boundary. Most graph modules
 # already filter their source data, but this also covers older modules with a
 # hard-coded historical start and custom plots that keep data on their layers.
-.apply_render_start_year <- function(plot) {
-  start_year <- getOption("hwwi.start.year")
-  if (is.null(start_year) || !inherits(plot, "ggplot")) return(plot)
+.apply_render_start_month <- function(plot) {
+  start_month <- getOption("hwwi.start.month")
+  if (is.null(start_month) || !inherits(plot, "ggplot")) return(plot)
 
-  plot$data <- .filter_frame_from_year(plot$data, start_year)
+  plot$data <- .filter_frame_from_month(plot$data, start_month)
   for (i in seq_along(plot$layers)) {
-    plot$layers[[i]]$data <- .filter_frame_from_year(plot$layers[[i]]$data, start_year)
+    plot$layers[[i]]$data <- .filter_frame_from_month(plot$layers[[i]]$data, start_month)
   }
   plot
 }
@@ -43,7 +43,7 @@ render_graph <- function(plot, title, out_dir, format = OUT_FORMAT,
   output_override <- getOption("hwwi.output.dir")
   if (!is.null(output_override)) out_dir <- output_override
 
-  plot <- .apply_render_start_year(plot)
+  plot <- .apply_render_start_month(plot)
 
   dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
   path <- file.path(out_dir, paste0(title, ".", format))

@@ -44,21 +44,18 @@
 
 ger_govt_bond_yields <- function(y_axis, caption, decimal_mark = ",",
                                   country_names = NULL) {
-  start <- as.Date(paste0(DATA_START_YEAR, "-01-01"))
+  start <- as.Date(paste0(DATA_START_MONTH, "-01"))
 
-  raw_json <- with_cache(paste0("estat_ltgby_", DATA_START_YEAR), {
-    url <- paste0(
-      "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ei_mfir_m",
-      "?format=JSON&indic=MF-LTGBY-RT&sinceTimePeriod=", DATA_START_YEAR, "-01&lang=EN"
-    )
-    r <- tryCatch(
-      httr2::request(url) |> httr2::req_timeout(60) |> httr2::req_perform() |>
-        httr2::resp_body_string(),
-      error = function(e) NULL
-    )
-    if (is.null(r)) stop("Could not fetch Eurostat government bond yields")
-    r
-  })
+  url <- paste0(
+    "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ei_mfir_m",
+    "?format=JSON&indic=MF-LTGBY-RT&lang=EN"
+  )
+  raw_json <- tryCatch(
+    httr2::request(url) |> httr2::req_timeout(60) |> httr2::req_perform() |>
+      httr2::resp_body_string(),
+    error = function(e) NULL
+  )
+  if (is.null(raw_json)) stop("Could not fetch Eurostat government bond yields")
 
   dat <- .parse_estat_json(raw_json)
   dat$date  <- as.Date(paste0(dat$time, "-01"))

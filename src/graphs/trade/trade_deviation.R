@@ -22,12 +22,11 @@
                       positive_label = positive_label, negative_label = negative_label)
 }
 
-.deviation_country_bar <- function(state_key, state_label, direction, caption, year,
+.deviation_country_bar <- function(state_key, direction, caption, year,
                                     positive_label, negative_label, decimal_mark) {
   yr  <- if (is.null(year)) as.integer(format(Sys.Date(), "%Y")) - 1 else as.integer(year)
-  dat <- with_cache(paste0("genesis_", state_label, "_", direction, "_dev_country_", yr),
-                    fetch_trade_share_deviation_by_country(yr, regional_key = state_key,
-                                                            direction = direction))
+  dat <- fetch_trade_share_deviation_by_country(yr, regional_key = state_key,
+                                                 direction = direction)
   dat <- dat[!is.na(dat$value), ]
   dat$series <- countrycode::countrycode(dat$geo, "iso3c", "country.name", warn = FALSE)
   dat <- dat[!is.na(dat$series), ]
@@ -41,12 +40,11 @@
                       positive_label = positive_label, negative_label = negative_label)
 }
 
-.deviation_country_choropleth <- function(state_key, state_label, direction,
+.deviation_country_choropleth <- function(state_key, direction,
                                            caption, year, legend_title) {
   yr  <- if (is.null(year)) as.integer(format(Sys.Date(), "%Y")) - 1 else as.integer(year)
-  dat <- with_cache(paste0("genesis_", state_label, "_", direction, "_dev_country_", yr),
-                    fetch_trade_share_deviation_by_country(yr, regional_key = state_key,
-                                                            direction = direction))
+  dat <- fetch_trade_share_deviation_by_country(yr, regional_key = state_key,
+                                                 direction = direction)
   plot_choropleth_world_div(dat, fill_col = "value", legend_title = legend_title,
                              caption = caption)
 }
@@ -96,28 +94,28 @@ hh_export_deviation_country <- function(caption, year = NULL,
                                           positive_label = "HH > Deutschland",
                                           negative_label = "HH < Deutschland",
                                           decimal_mark = ",")
-  .deviation_country_bar("02", "hh", "export", caption, year,
+  .deviation_country_bar("02", "export", caption, year,
                           positive_label, negative_label, decimal_mark)
 
 hh_import_deviation_country <- function(caption, year = NULL,
                                           positive_label = "HH > Deutschland",
                                           negative_label = "HH < Deutschland",
                                           decimal_mark = ",")
-  .deviation_country_bar("02", "hh", "import", caption, year,
+  .deviation_country_bar("02", "import", caption, year,
                           positive_label, negative_label, decimal_mark)
 
 ls_export_deviation_country <- function(caption, year = NULL,
                                           positive_label = "LS > Deutschland",
                                           negative_label = "LS < Deutschland",
                                           decimal_mark = ",")
-  .deviation_country_bar("03", "ls", "export", caption, year,
+  .deviation_country_bar("03", "export", caption, year,
                           positive_label, negative_label, decimal_mark)
 
 ls_import_deviation_country <- function(caption, year = NULL,
                                           positive_label = "LS > Deutschland",
                                           negative_label = "LS < Deutschland",
                                           decimal_mark = ",")
-  .deviation_country_bar("03", "ls", "import", caption, year,
+  .deviation_country_bar("03", "import", caption, year,
                           positive_label, negative_label, decimal_mark)
 
 # Top-5 / bottom-5 country variants (same computation, explicit year default).
@@ -125,43 +123,43 @@ trade_hh_export_topbottom_country <- function(caption, year = "2025",
                                                 positive_label = "HH > Deutschland",
                                                 negative_label = "HH < Deutschland",
                                                 decimal_mark = ",")
-  .deviation_country_bar("02", "hh", "export", caption, year,
+  .deviation_country_bar("02", "export", caption, year,
                           positive_label, negative_label, decimal_mark)
 
 trade_hh_import_topbottom_country <- function(caption, year = "2025",
                                                 positive_label = "HH > Deutschland",
                                                 negative_label = "HH < Deutschland",
                                                 decimal_mark = ",")
-  .deviation_country_bar("02", "hh", "import", caption, year,
+  .deviation_country_bar("02", "import", caption, year,
                           positive_label, negative_label, decimal_mark)
 
 trade_ls_export_topbottom_country <- function(caption, year = "2025",
                                                 positive_label = "LS > Deutschland",
                                                 negative_label = "LS < Deutschland",
                                                 decimal_mark = ",")
-  .deviation_country_bar("03", "ls", "export", caption, year,
+  .deviation_country_bar("03", "export", caption, year,
                           positive_label, negative_label, decimal_mark)
 
 trade_ls_import_topbottom_country <- function(caption, year = "2025",
                                                 positive_label = "LS > Deutschland",
                                                 negative_label = "LS < Deutschland",
                                                 decimal_mark = ",")
-  .deviation_country_bar("03", "ls", "import", caption, year,
+  .deviation_country_bar("03", "import", caption, year,
                           positive_label, negative_label, decimal_mark)
 
 # ── country deviation choropleths ──────────────────────────────────────────────
 
 hh_export_deviation_choropleth <- function(legend_title, caption, year = NULL)
-  .deviation_country_choropleth("02", "hh", "export", caption, year, legend_title)
+  .deviation_country_choropleth("02", "export", caption, year, legend_title)
 
 hh_import_deviation_choropleth <- function(legend_title, caption, year = NULL)
-  .deviation_country_choropleth("02", "hh", "import", caption, year, legend_title)
+  .deviation_country_choropleth("02", "import", caption, year, legend_title)
 
 ls_export_deviation_choropleth <- function(legend_title, caption, year = NULL)
-  .deviation_country_choropleth("03", "ls", "export", caption, year, legend_title)
+  .deviation_country_choropleth("03", "export", caption, year, legend_title)
 
 ls_import_deviation_choropleth <- function(legend_title, caption, year = NULL)
-  .deviation_country_choropleth("03", "ls", "import", caption, year, legend_title)
+  .deviation_country_choropleth("03", "import", caption, year, legend_title)
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.

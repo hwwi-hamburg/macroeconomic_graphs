@@ -1,29 +1,43 @@
 #!/usr/bin/env Rscript
 # Run from project root: Rscript src/cli.R
 # Optional flags:
-#   --start-year=YYYY       override the earliest year fetched
+#   --start-year=YYYY      override the earliest year fetched
+#   --start-month=YYYY-MM  override the earliest year-month fetched
 #   --output-folder=NAME   save selected graphs in out/custom/NAME/
 #   --language=de|en       render only German or only English labels
 
 .cli_args <- commandArgs(trailingOnly = TRUE)
 
 .start_year_flag <- grep("^--start-year=", .cli_args, value = TRUE)
+.start_month_flag <- grep("^--start-month=", .cli_args, value = TRUE)
 .output_folder_flag <- grep("^--output-folder=", .cli_args, value = TRUE)
 .language_flag <- grep("^--language=", .cli_args, value = TRUE)
 .list_graphs_flag <- any(tolower(.cli_args) == "--list-graphs")
 
-if (length(.start_year_flag) > 1L || length(.output_folder_flag) > 1L ||
-    length(.language_flag) > 1L || sum(tolower(.cli_args) == "--list-graphs") > 1L) {
+if (length(.start_year_flag) > 1L || length(.start_month_flag) > 1L ||
+    length(.output_folder_flag) > 1L || length(.language_flag) > 1L ||
+    sum(tolower(.cli_args) == "--list-graphs") > 1L) {
   stop("Each CLI option may be specified only once", call. = FALSE)
 }
+if (length(.start_year_flag) > 0 && length(.start_month_flag) > 0) {
+  stop("Use either --start-year or --start-month, not both", call. = FALSE)
+}
 
-.custom_start_year <- if (length(.start_year_flag) > 0) {
-  suppressWarnings(as.integer(sub("^--start-year=", "", .start_year_flag[1])))
+.custom_start_month <- if (length(.start_year_flag) > 0) {
+  raw <- sub("^--start-year=", "", .start_year_flag[1])
+  if (grepl("^[0-9]{4}$", raw)) paste0(raw, "-01") else NA_character_
+} else if (length(.start_month_flag) > 0) {
+  raw <- sub("^--start-month=", "", .start_month_flag[1])
+  if (grepl("^[0-9]{4}-(0[1-9]|1[0-2])$", raw)) raw else NA_character_
 } else {
   NULL
 }
-if (!is.null(.custom_start_year) && is.na(.custom_start_year)) {
-  stop("Invalid --start-year value: ", .start_year_flag[1])
+if (!is.null(.custom_start_month) && is.na(.custom_start_month)) {
+  if (length(.start_year_flag) > 0) {
+    stop("Invalid --start-year value: ", .start_year_flag[1], " (expected YYYY)")
+  } else {
+    stop("Invalid --start-month value: ", .start_month_flag[1], " (expected YYYY-MM)")
+  }
 }
 
 .output_folder <- if (length(.output_folder_flag)) {
@@ -52,7 +66,7 @@ if (!is.null(.language) && !.language %in% names(.language_aliases)) {
 if (!is.null(.language)) .language <- unname(.language_aliases[[.language]])
 
 .cli_args <- .cli_args[
-  !grepl("^--(start-year|output-folder|language)=", .cli_args)
+  !grepl("^--(start-year|start-month|output-folder|language)=", .cli_args)
 ]
 
 source("src/bootstrap.R")
@@ -61,16 +75,16 @@ source("src/bootstrap.R")
 .custom_out_dir <- file.path(.base_out_dir, "custom")
 .run_out_dir <- .base_out_dir
 
-if (!is.null(.custom_start_year)) {
-  DATA_START_YEAR <- .custom_start_year
-  options(hwwi.start.year = .custom_start_year)
+if (!is.null(.custom_start_month)) {
+  DATA_START_MONTH <- .custom_start_month
+  options(hwwi.start.month = .custom_start_month)
 
   .run_out_dir <- file.path(
     .custom_out_dir,
-    paste0("custom start ", .custom_start_year)
+    paste0("custom start ", .custom_start_month)
   )
 
-  cat("Custom start year:", .custom_start_year, "\n")
+  cat("Custom start month:", .custom_start_month, "\n")
 }
 
 # An explicit folder takes precedence when both flags are provided.
@@ -83,7 +97,7 @@ dir.create(.run_out_dir, recursive = TRUE, showWarnings = FALSE)
 OUT_DIR <- .run_out_dir
 options(hwwi.output.dir = .run_out_dir)
 
-if (!is.null(.custom_start_year) || !is.null(.output_folder) || .list_graphs_flag) {
+if (!is.null(.custom_start_month) || !is.null(.output_folder) || .list_graphs_flag) {
   cat("Output folder:", .run_out_dir, "\n")
 }
 
@@ -164,7 +178,8 @@ if (.list_graphs_flag) {
   if (show_cli_options) {
     cat("\n")
     cat("  Optional command-line flags (restart with these before selecting):\n")
-    cat("    --start-year=YYYY       Set the earliest data year\n")
+    cat("    --start-year=YYYY      Set the earliest data year\n")
+    cat("    --start-month=YYYY-MM  Set the earliest data year-month\n")
     cat("    --output-folder=NAME   Save files in out/custom/NAME/\n")
     cat("    --language=de|en       Render German or English labels only\n")
     cat("    --list-graphs          Write all available graph IDs and labels to txt\n")
@@ -214,6 +229,7 @@ if (.list_graphs_flag) {
 #      Rscript src/cli.R gdp
 #      Rscript src/cli.R 1,3,5-7
 #      Rscript src/cli.R --start-year=1995 gdp
+#      Rscript src/cli.R --start-month=1995-06 gdp
 #      Rscript src/cli.R --output-folder=report --language=en gdp
 #      Rscript src/cli.R --list-graphs
 .cli_args <- .cli_args[!tolower(.cli_args) %in% "render"]
