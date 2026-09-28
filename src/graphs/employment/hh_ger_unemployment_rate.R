@@ -50,7 +50,7 @@
     category = "Employment",
     label = "Hamburg and Germany unemployment rate",
     render = function() {
-      GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+      DE <- file.path(OUT_DIR, "employment graphs/German labeling")
       EN <- file.path(OUT_DIR, "employment graphs/English labeling")
 
       render_graph(
@@ -63,7 +63,7 @@
           big_mark = "."
         ),
         "HH GER unemployment rate",
-        GER
+        DE
       )
       render_graph(
         .hh_ger_unemployment_annual(

@@ -102,7 +102,7 @@
       category = "GDP",
       label = "Hamburg and Germany Gross value added by sectors (year on year growth)",
       render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(.hh_ger_gva_sectors_yoy_growth(source = "| A: Land- u. Forstwirtschaft, Fischerei \n, 
                                                                | B-E: Prod. Gewerbe (ohne Bau) \n,
@@ -111,7 +111,7 @@
                                                                \n\n Datenquelle: Statistisches Bundesamt", 
                                                                 label_ger = "Deutschland", label_hh = "Hamburg",
                                                               decimal_mark = ",", big_mark = "."),
-                                      "HH GER gross value added by sectors (year on year growth)", GER)
+                                      "HH GER gross value added by sectors (year on year growth)", DE)
         render_graph(.hh_ger_gva_sectors_yoy_growth(source = "| A: Agriculture, forestry, fishing \n, 
                                                                | B-E: Manufacturing (excl. construction) \n,
                                                                | F: Construction \n,

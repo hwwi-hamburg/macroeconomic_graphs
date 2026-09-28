@@ -62,12 +62,12 @@ commodity_imports_hamburg <- function(y_axis, source, labels = NULL,
 .graph_specs <- list(
 list(id = "trade_commodity_imports_hamburg", category = "Trade", label = "Hamburg Monthly Imports by Commodity Group",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(commodity_imports_hamburg("Einfuhren (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
             labels = c(EGW669 = "Mineralölerzeugnisse", EGW518 = "Erdöl u. Erdgas",
-                EGW522 = "Kupfererze", EGW646 = "Kupfer u. Kupferlegierungen"), decimal_mark = ",", big_mark = "."), "Hamburg Commodity Imports monthly_ger",
-            GER)
+                EGW522 = "Kupfererze", EGW646 = "Kupfer u. Kupferlegierungen"), decimal_mark = ",", big_mark = "."), "Hamburg Commodity Imports monthly_de",
+            DE)
         render_graph(commodity_imports_hamburg("Imports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             labels = c(EGW669 = "Mineral oil products", EGW518 = "Petroleum oil and petroleum gases",
                 EGW522 = "Copper ores", EGW646 = "Copper and copper alloys, incl. waste, scrap"), decimal_mark = ".",
@@ -75,12 +75,12 @@ list(id = "trade_commodity_imports_hamburg", category = "Trade", label = "Hambur
     }),
 list(id = "trade_commodity_imports_germany", category = "Trade", label = "Germany Monthly Imports by Commodity Group",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(commodity_imports_germany("Einfuhren (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
             labels = c(EGW669 = "Mineralölerzeugnisse", EGW518 = "Erdöl u. Erdgas",
-                EGW522 = "Kupfererze", EGW646 = "Kupfer u. Kupferlegierungen"), decimal_mark = ",", big_mark = "."), "Germany Commodity Imports monthly_ger",
-            GER)
+                EGW522 = "Kupfererze", EGW646 = "Kupfer u. Kupferlegierungen"), decimal_mark = ",", big_mark = "."), "Germany Commodity Imports monthly_de",
+            DE)
         render_graph(commodity_imports_germany("Imports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             labels = c(EGW669 = "Mineral oil products", EGW518 = "Petroleum oil and petroleum gases",
                 EGW522 = "Copper ores", EGW646 = "Copper and copper alloys, incl. waste, scrap"), decimal_mark = ".",

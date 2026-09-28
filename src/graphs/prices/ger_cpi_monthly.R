@@ -14,10 +14,10 @@ ger_cpi <- function(y_axis, source, y_limits = c(40, 130)) {
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
   list(id = "ger_cpi_monthly", category = "Prices", label = "Germany Consumer Price Index Monthly", render = function() {
-    GER <- file.path(OUT_DIR, "prices graphs/German labeling")
+    DE <- file.path(OUT_DIR, "prices graphs/German labeling")
     EN <- file.path(OUT_DIR, "prices graphs/English labeling")
     render_graph(ger_cpi("Verbraucherpreisindex (2020=100)", "Quelle: Statistisches Bundesamt (Destatis) (2026)."),
-                 "GER Consumer Price Index Monthly_ger", GER)
+                 "GER Consumer Price Index Monthly_de", DE)
     render_graph(ger_cpi("Consumer Price Index (2020=100)", "Source: Statistisches Bundesamt (Destatis) (2026)."),
                  "GER Consumer Price Index Monthly_en", EN)
   })

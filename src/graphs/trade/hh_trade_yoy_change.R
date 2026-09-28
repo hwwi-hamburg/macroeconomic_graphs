@@ -29,22 +29,22 @@ hh_import_yoy_change <- function(y_axis, source, labels,
 .graph_specs <- list(
 list(id = "trade_hh_export_yoy_change", category = "Trade", label = "Hamburg Monthly Exports: Year-on-Year Change",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(hh_export_yoy_change("Veränderung gg. Vorjahr (in %)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            labels = c("Gesamtexporte", "Exporte ohne Luft- und Raumfahrzeuge")), "Hamburg Monthly Exports YoY Change_ger",
-            GER)
+            labels = c("Gesamtexporte", "Exporte ohne Luft- und Raumfahrzeuge")), "Hamburg Monthly Exports YoY Change_de",
+            DE)
         render_graph(hh_export_yoy_change("Change vs. prev. year (in %)", "Data source: Federal statistical office (Destatis)",
             labels = c("Total Exports", "Exports excl. Aircraft"), decimal_mark = ".", big_mark = ","), "Hamburg Monthly Exports YoY Change_en",
             EN)
     }),
 list(id = "trade_hh_import_yoy_change", category = "Trade", label = "Hamburg Monthly Imports: Year-on-Year Change",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(hh_import_yoy_change("Veränderung gg. Vorjahr (in %)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            labels = c("Gesamteinfuhren", "Einfuhren ohne Luft- und Raumfahrzeuge")), "Hamburg Monthly Imports YoY Change_ger",
-            GER)
+            labels = c("Gesamteinfuhren", "Einfuhren ohne Luft- und Raumfahrzeuge")), "Hamburg Monthly Imports YoY Change_de",
+            DE)
         render_graph(hh_import_yoy_change("Change vs. prev. year (in %)", "Data source: Federal statistical office (Destatis)",
             labels = c("Total Imports", "Imports excl. Aircraft"), decimal_mark = ".", big_mark = ","), "Hamburg Monthly Imports YoY Change_en",
             EN)

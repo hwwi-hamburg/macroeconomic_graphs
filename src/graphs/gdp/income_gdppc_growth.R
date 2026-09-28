@@ -16,43 +16,43 @@ gdp_low_income_growth    <- function(y_axis, source, decimal_mark = ".") .wdi_gd
 .graph_specs <- list(
 list(id = "high_income_gdppc_growth", category = "GDP", label = "High Income GDP Per Capita Growth (WDI)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(gdp_high_income_growth("BIP pro Kopf Wachstum (in %) – Hocheinkommensländer",
-            "Datenquelle: Nationale Statistik der Weltbank und OECD", decimal_mark = ","), "HIC GDP p.c. real annual Growth_ger",
-            GER)
+            "Datenquelle: Nationale Statistik der Weltbank und OECD", decimal_mark = ","), "HIC GDP p.c. real annual Growth_de",
+            DE)
         render_graph(gdp_high_income_growth("GDP Per Capita Growth (in %) – High Income", "Data Source: World Bank National Accounts Data, and OECD National Accounts Data Files"),
             "HIC GDP p.c. real annual Growth_en", EN)
     }),
 list(id = "upper_middle_gdppc_growth", category = "GDP", label = "Upper Middle Income GDP Per Capita Growth (WDI)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(gdp_upper_middle_growth("BIP pro Kopf Wachstum (in %) – Obere Mitteleinkommensländer",
-            "Datenquelle: Nationale Statistik der Weltbank und OECD", decimal_mark = ","), "UMC GDP p.c. real annual Growth_ger",
-            GER)
+            "Datenquelle: Nationale Statistik der Weltbank und OECD", decimal_mark = ","), "UMC GDP p.c. real annual Growth_de",
+            DE)
         render_graph(gdp_upper_middle_growth("GDP Per Capita Growth (in %) – Upper Middle Income",
             "Data Source: World Bank National Accounts Data, and OECD National Accounts Data Files"),
             "UMC GDP p.c. real annual Growth_en", EN)
     }),
 list(id = "lower_middle_gdppc_growth", category = "GDP", label = "Lower Middle Income GDP Per Capita Growth (WDI)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(gdp_lower_middle_growth("BIP pro Kopf Wachstum (in %) – Untere Mitteleinkommensländer",
-            "Datenquelle: Nationale Statistik der Weltbank und OECD", decimal_mark = ","), "LMC GDP p.c. real annual Growth_ger",
-            GER)
+            "Datenquelle: Nationale Statistik der Weltbank und OECD", decimal_mark = ","), "LMC GDP p.c. real annual Growth_de",
+            DE)
         render_graph(gdp_lower_middle_growth("GDP Per Capita Growth (in %) – Lower Middle Income",
             "Data Source: World Bank National Accounts Data, and OECD National Accounts Data Files"),
             "LMC GDP p.c. real annual Growth_en", EN)
     }),
 list(id = "low_income_gdppc_growth", category = "GDP", label = "Low Income GDP Per Capita Growth (WDI)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(gdp_low_income_growth("BIP pro Kopf Wachstum (in %) – Niedrigeinkommensländer",
-            "Datenquelle: Nationale Statistik der Weltbank und OECD", decimal_mark = ","), "LIC GDP p.c. real annual Growth_ger",
-            GER)
+            "Datenquelle: Nationale Statistik der Weltbank und OECD", decimal_mark = ","), "LIC GDP p.c. real annual Growth_de",
+            DE)
         render_graph(gdp_low_income_growth("GDP Per Capita Growth (in %) – Low Income", "Data Source: World Bank National Accounts Data, and OECD National Accounts Data Files"),
             "LIC GDP p.c. real annual Growth_en", EN)
     })

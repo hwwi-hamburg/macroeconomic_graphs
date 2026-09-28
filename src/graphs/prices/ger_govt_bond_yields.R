@@ -99,7 +99,7 @@ ger_govt_bond_yields <- function(y_axis, source, decimal_mark = ",",
 .graph_specs <- list(
 list(id = "ger_govt_bond_yields", category = "Prices", label = "Long-Term Government Bond Yields: Top/Bottom 5 EU Countries (Eurostat)",
     render = function() {
-        GER <- file.path(OUT_DIR, "prices graphs/German labeling")
+        DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")
         cn_ger <- c(AT = "Österreich", BE = "Belgien", BG = "Bulgarien", CY = "Zypern", CZ = "Tschechien",
             DE = "Deutschland", DK = "Dänemark", EA = "EU", EE = "Estland", EL = "Griechenland", ES = "Spanien",
@@ -112,8 +112,8 @@ list(id = "ger_govt_bond_yields", category = "Prices", label = "Long-Term Govern
             LV = "Latvia", MT = "Malta", NL = "Netherlands", PL = "Poland", PT = "Portugal", RO = "Romania",
             SE = "Sweden", SI = "Slovenia", SK = "Slovakia", UK = "United Kingdom")
         render_graph(ger_govt_bond_yields(y_axis = "Rendite (%)", source = "Datenquelle: Eurostat",
-            decimal_mark = ",", country_names = cn_ger), "Long term returns of top bottom 5 government bonds_ger",
-            GER)
+            decimal_mark = ",", country_names = cn_ger), "Long term returns of top bottom 5 government bonds_de",
+            DE)
         render_graph(ger_govt_bond_yields(y_axis = "Yield (%)", source = "Data source: Eurostat", decimal_mark = ".",
             country_names = cn_en), "Long term returns of top bottom 5 government bonds_en", EN)
     })

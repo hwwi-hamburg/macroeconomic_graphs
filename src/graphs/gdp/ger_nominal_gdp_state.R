@@ -30,10 +30,10 @@ ger_nominal_gdp_state <- function(y_axis, source, decimal_mark = ",", big_mark =
 .graph_specs <- list(
 list(id = "ger_nominal_gdp_state", category = "GDP", label = "Germany Nominal GDP by State - Bar Chart (Destatis)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(ger_nominal_gdp_state("Nominales BIP (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            decimal_mark = ",", big_mark = "."), "GER BIP nominal by state_ger", GER, height = 7)
+            decimal_mark = ",", big_mark = "."), "GER BIP nominal by state_de", DE, height = 7)
         render_graph(ger_nominal_gdp_state("Nominal GDP (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = ".", big_mark = ","), "GER BIP nominal by state_en", EN, height = 7)
     })

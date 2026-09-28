@@ -73,52 +73,52 @@ trade_import_germany_pie <- function(source, big_mark = ".", decimal_mark = ",")
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_export_germany_pie", category = "Trade", label = "Germany Export Structure (pie)", render = function() {
-    GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+    DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     yr <- as.integer(format(Sys.Date(), "%Y")) - 1
     render_graph(trade_export_germany_pie("Datenquelle: Statistisches Bundesamt (Destatis)"), paste0("Germany's Export Structure in ",
-        yr, " pie_ger"), GER, width = 9, height = 7, dpi = 400)
+        yr, " pie_de"), DE, width = 9, height = 7, dpi = 400)
     render_graph(trade_export_germany_pie("Data source: Federal statistical office (Destatis)", big_mark = ",",
         decimal_mark = "."), paste0("Germany's Export Structure in ", yr, " pie_en"), EN, width = 9,
         height = 7, dpi = 400)
 }),
 list(id = "trade_import_germany_pie", category = "Trade", label = "Germany Import Structure (pie)", render = function() {
-    GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+    DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     yr <- as.integer(format(Sys.Date(), "%Y")) - 1
     render_graph(trade_import_germany_pie("Datenquelle: Statistisches Bundesamt (Destatis)"), paste0("Germany's Import Structure in ",
-        yr, " pie_ger"), GER, width = 9, height = 7, dpi = 400)
+        yr, " pie_de"), DE, width = 9, height = 7, dpi = 400)
     render_graph(trade_import_germany_pie("Data source: Federal statistical office (Destatis)", big_mark = ",",
         decimal_mark = "."), paste0("Germany's Import Structure in ", yr, " pie_en"), EN, width = 9,
         height = 7, dpi = 400)
 }),
 list(id = "trade_export_hamburg_pie", category = "Trade", label = "Hamburg Export Structure (pie)", render = function() {
-    GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+    DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     yr <- as.integer(format(Sys.Date(), "%Y")) - 1
     render_graph(trade_export_hamburg_pie("Datenquelle: Statistisches Bundesamt (Destatis)"), paste0("Hamburg's Export Structure in ",
-        yr, " pie_ger"), GER, width = 9, height = 5.5, dpi = 400)
+        yr, " pie_de"), DE, width = 9, height = 5.5, dpi = 400)
     render_graph(trade_export_hamburg_pie("Data source: Federal statistical office (Destatis)", big_mark = ",",
         decimal_mark = "."), paste0("Hamburg's Export Structure in ", yr, " pie_en"), EN, width = 9,
         height = 5.5, dpi = 400)
 }),
 list(id = "trade_import_hamburg_pie", category = "Trade", label = "Hamburg Import Structure (pie)", render = function() {
-    GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+    DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     yr <- as.integer(format(Sys.Date(), "%Y")) - 1
     render_graph(trade_import_hamburg_pie("Datenquelle: Statistisches Bundesamt (Destatis)"), paste0("Hamburg's Import Structure in ",
-        yr, " pie_ger"), GER, width = 9, height = 5.5, dpi = 400)
+        yr, " pie_de"), DE, width = 9, height = 5.5, dpi = 400)
     render_graph(trade_import_hamburg_pie("Data source: Federal statistical office (Destatis)", big_mark = ",",
         decimal_mark = "."), paste0("Hamburg's Import Structure in ", yr, " pie_en"), EN, width = 9,
         height = 5.5, dpi = 400)
 }),
 list(id = "trade_export_lowersaxony_pie", category = "Trade", label = "Lower Saxony Export Structure (pie)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.integer(format(Sys.Date(), "%Y")) - 1
         render_graph(trade_export_lowersaxony_pie("Datenquelle: Statistisches Bundesamt (Destatis)"),
-            paste0("Lower Saxony's Export Structure in ", yr, " pie_ger"), GER, width = 9, height = 5.5,
+            paste0("Lower Saxony's Export Structure in ", yr, " pie_de"), DE, width = 9, height = 5.5,
             dpi = 400)
         render_graph(trade_export_lowersaxony_pie("Data source: Federal statistical office (Destatis)",
             big_mark = ",", decimal_mark = "."), paste0("Lower Saxony's Export Structure in ", yr, " pie_en"),
@@ -126,11 +126,11 @@ list(id = "trade_export_lowersaxony_pie", category = "Trade", label = "Lower Sax
     }),
 list(id = "trade_import_lowersaxony_pie", category = "Trade", label = "Lower Saxony Import Structure (pie)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.integer(format(Sys.Date(), "%Y")) - 1
         render_graph(trade_import_lowersaxony_pie("Datenquelle: Statistisches Bundesamt (Destatis)"),
-            paste0("Lower Saxony's Import Structure in ", yr, " pie_ger"), GER, width = 9, height = 5.5,
+            paste0("Lower Saxony's Import Structure in ", yr, " pie_de"), DE, width = 9, height = 5.5,
             dpi = 400)
         render_graph(trade_import_lowersaxony_pie("Data source: Federal statistical office (Destatis)",
             big_mark = ",", decimal_mark = "."), paste0("Lower Saxony's Import Structure in ", yr, " pie_en"),

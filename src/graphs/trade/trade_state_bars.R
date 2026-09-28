@@ -80,55 +80,55 @@ trade_import_germany <- function(y_axis, source, decimal_mark = ",", y_limits = 
 .graph_specs <- list(
 list(id = "trade_export_hamburg", category = "Trade", label = "Hamburg Exports (total/excl. aircraft)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_export_hamburg("Exporte (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
             labels = c("Gesamtexporte", "Exporte ohne Luft- und Raumfahrzeuge"), decimal_mark = ","),
-            "Export Hamburg_ger", GER)
+            "Export Hamburg_de", DE)
         render_graph(trade_export_hamburg("Exports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             labels = c("Total Exports", "Exports excl. Aircraft"), decimal_mark = "."), "Export Hamburg_en",
             EN)
     }),
 list(id = "trade_import_hamburg", category = "Trade", label = "Hamburg Imports (total/excl. aircraft)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_import_hamburg("Importe (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
             labels = c("Gesamtimporte", "Importe ohne Luft- und Raumfahrzeuge"), decimal_mark = ","),
-            "Import Hamburg_ger", GER)
+            "Import Hamburg_de", DE)
         render_graph(trade_import_hamburg("Imports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             labels = c("Total Imports", "Imports excl. Aircraft"), decimal_mark = "."), "Import Hamburg_en",
             EN)
     }),
 list(id = "trade_export_germany", category = "Trade", label = "Germany Total Exports (annual)", render = function() {
-    GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+    DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     render_graph(trade_export_germany("Ausfuhren (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-        decimal_mark = ","), "Export Germany_ger", GER)
+        decimal_mark = ","), "Export Germany_de", DE)
     render_graph(trade_export_germany("Exports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "Export Germany_en", EN)
 }),
 list(id = "trade_import_germany", category = "Trade", label = "Germany Total Imports (annual)", render = function() {
-    GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+    DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     render_graph(trade_import_germany("Einfuhren (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-        decimal_mark = ","), "Import Germany_ger", GER)
+        decimal_mark = ","), "Import Germany_de", DE)
     render_graph(trade_import_germany("Imports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "Import Germany_en", EN)
 }),
 list(id = "trade_export_lowersaxony", category = "Trade", label = "Lower Saxony Exports (total)", render = function() {
-    GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+    DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     render_graph(trade_export_lowersaxony("Exporte (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-        decimal_mark = ","), "Export Lower Saxony_ger", GER)
+        decimal_mark = ","), "Export Lower Saxony_de", DE)
     render_graph(trade_export_lowersaxony("Exports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "Export Lower Saxony_en", EN)
 }),
 list(id = "trade_import_lowersaxony", category = "Trade", label = "Lower Saxony Imports (total)", render = function() {
-    GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+    DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     render_graph(trade_import_lowersaxony("Importe (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-        decimal_mark = ","), "Import Lower Saxony_ger", GER)
+        decimal_mark = ","), "Import Lower Saxony_de", DE)
     render_graph(trade_import_lowersaxony("Imports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "Import Lower Saxony_en", EN)
 })

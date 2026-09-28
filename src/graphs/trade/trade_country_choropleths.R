@@ -43,65 +43,65 @@ trade_import_germany_country <- function(legend_title, source, year = "2025") {
 .graph_specs <- list(
 list(id = "trade_export_hamburg_country", category = "Trade", label = "Hamburg Exports by Country (choropleth)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_export_hamburg_country("Exporte Hamburgs nach Ländern (in Mio. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            year = yr), paste0("Hamburg Export by Country ", yr, "_ger"), GER)
+            year = yr), paste0("Hamburg Export by Country ", yr, "_de"), DE)
         render_graph(trade_export_hamburg_country("Hamburg Exports by Country (in Mio. EUR)", "Data source: Federal statistical office (Destatis)",
             year = yr), paste0("Hamburg Export by Country ", yr, "_en"), EN)
     }),
 list(id = "trade_import_hamburg_country", category = "Trade", label = "Hamburg Imports by Country (choropleth)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_import_hamburg_country("Importe Hamburgs nach Ländern (in Mio. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            year = yr), paste0("Hamburg Import by Country ", yr, "_ger"), GER)
+            year = yr), paste0("Hamburg Import by Country ", yr, "_de"), DE)
         render_graph(trade_import_hamburg_country("Hamburg Imports by Country (in Mio. EUR)", "Data source: Federal statistical office (Destatis)",
             year = yr), paste0("Hamburg Import by Country ", yr, "_en"), EN)
     }),
 list(id = "trade_export_lowersaxony_country", category = "Trade", label = "Lower Saxony Exports by Country (choropleth)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_export_lowersaxony_country("Exporte Niedersachsens nach Ländern (in Mio. EUR)",
             "Datenquelle: Statistisches Bundesamt (Destatis)", year = yr), paste0("Lower Saxony Export by Country ",
-            yr, "_ger"), GER)
+            yr, "_de"), DE)
         render_graph(trade_export_lowersaxony_country("Lower Saxony Exports by Country (in Mio. EUR)",
             "Data source: Federal statistical office (Destatis)", year = yr), paste0("Lower Saxony Export by Country ",
             yr, "_en"), EN)
     }),
 list(id = "trade_import_lowersaxony_country", category = "Trade", label = "Lower Saxony Imports by Country (choropleth)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_import_lowersaxony_country("Importe Niedersachsens nach Ländern (in Mio. EUR)",
             "Datenquelle: Statistisches Bundesamt (Destatis)", year = yr), paste0("Lower Saxony Import by Country ",
-            yr, "_ger"), GER)
+            yr, "_de"), DE)
         render_graph(trade_import_lowersaxony_country("Lower Saxony Imports by Country (in Mio. EUR)",
             "Data source: Federal statistical office (Destatis)", year = yr), paste0("Lower Saxony Import by Country ",
             yr, "_en"), EN)
     }),
 list(id = "trade_export_germany_country", category = "Trade", label = "Germany Exports by Country (choropleth)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_export_germany_country("Ausfuhren nach Ländern (in Mio. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            year = yr), paste0("Germany Export by Country ", yr, "_ger"), GER)
+            year = yr), paste0("Germany Export by Country ", yr, "_de"), DE)
         render_graph(trade_export_germany_country("Germany Exports by Country (in Mio. EUR)", "Data source: Federal statistical office (Destatis)",
             year = yr), paste0("Germany Export by Country ", yr, "_en"), EN)
     }),
 list(id = "trade_import_germany_country", category = "Trade", label = "Germany Imports by Country (choropleth)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_import_germany_country("Einfuhren nach Ländern (in Mio. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            year = yr), paste0("Germany Import by Country ", yr, "_ger"), GER)
+            year = yr), paste0("Germany Import by Country ", yr, "_de"), DE)
         render_graph(trade_import_germany_country("Germany Imports by Country (in Mio. EUR)", "Data source: Federal statistical office (Destatis)",
             year = yr), paste0("Germany Import by Country ", yr, "_en"), EN)
     })

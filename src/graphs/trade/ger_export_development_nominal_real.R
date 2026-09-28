@@ -32,22 +32,22 @@ ger_import_development_nominal_real <- function(y_axis, source, labels = NULL,
 .graph_specs <- list(
 list(id = "trade_ger_export_nominal_real", category = "Trade", label = "Germany Export Development: Nominal vs Real",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(ger_export_development_nominal_real("Ausfuhren (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
             labels = c(Nominal = "Nominale Ausfuhren", Real = "Reale Ausfuhren (VGR)"), decimal_mark = ","),
-            "GER Export Development - Nominal vs Real_ger", GER)
+            "GER Export Development - Nominal vs Real_de", DE)
         render_graph(ger_export_development_nominal_real("Exports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             labels = c(Nominal = "Nominal exports", Real = "Real exports (VGR)"), decimal_mark = "."),
             "GER Export Development - Nominal vs Real_en", EN)
     }),
 list(id = "trade_ger_import_nominal_real", category = "Trade", label = "Germany Import Development: Nominal vs Real",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(ger_import_development_nominal_real("Einfuhren (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
             labels = c(Nominal = "Nominale Einfuhren", Real = "Reale Einfuhren (VGR)"), decimal_mark = ","),
-            "GER Import Development - Nominal vs Real_ger", GER)
+            "GER Import Development - Nominal vs Real_de", DE)
         render_graph(ger_import_development_nominal_real("Imports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             labels = c(Nominal = "Nominal imports", Real = "Real imports (VGR)"), decimal_mark = "."),
             "GER Import Development - Nominal vs Real_en", EN)

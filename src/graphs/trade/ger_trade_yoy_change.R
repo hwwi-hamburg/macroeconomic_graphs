@@ -41,19 +41,19 @@ ger_import_yoy_change <- function(y_axis, source, decimal_mark = ",")
 .graph_specs <- list(
 list(id = "trade_ger_export_yoy_change", category = "Trade", label = "Germany Monthly Exports: Year-on-Year Change",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(ger_export_yoy_change("Veränderung gg. Vorjahresmonat (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-            "Germany Monthly Exports YoY Change_ger", GER)
+            "Germany Monthly Exports YoY Change_de", DE)
         render_graph(ger_export_yoy_change("Change vs. same month prev. year (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = "."), "Germany Monthly Exports YoY Change_en", EN)
     }),
 list(id = "trade_ger_import_yoy_change", category = "Trade", label = "Germany Monthly Imports: Year-on-Year Change",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(ger_import_yoy_change("Veränderung gg. Vorjahresmonat (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-            "Germany Monthly Imports YoY Change_ger", GER)
+            "Germany Monthly Imports YoY Change_de", DE)
         render_graph(ger_import_yoy_change("Change vs. same month prev. year (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = "."), "Germany Monthly Imports YoY Change_en", EN)
     })

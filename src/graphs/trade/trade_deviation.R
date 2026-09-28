@@ -166,104 +166,104 @@ ls_import_deviation_choropleth <- function(legend_title, source, year = NULL)
 .graph_specs <- list(
 list(id = "trade_hh_export_deviation_group", category = "Trade", label = "Hamburg vs Germany: Export Structure by Commodity Group",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_hh_export_deviation_group(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             positive_label = "HH überrepräsentiert", negative_label = "HH unterrepräsentiert", decimal_mark = ","),
-            "HH vs GER Export Structure Deviation by Group_ger", GER, height = 10)
+            "HH vs GER Export Structure Deviation by Group_de", DE, height = 10)
         render_graph(trade_hh_export_deviation_group(source = "Data source: Federal statistical office (Destatis)",
             positive_label = "HH over-represented", negative_label = "HH under-represented", decimal_mark = "."),
             "HH vs GER Export Structure Deviation by Group_en", EN, height = 10)
     }),
 list(id = "trade_hh_import_deviation_group", category = "Trade", label = "Hamburg vs Germany: Import Structure by Commodity Group",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_hh_import_deviation_group(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             positive_label = "HH überrepräsentiert", negative_label = "HH unterrepräsentiert", decimal_mark = ","),
-            "HH vs GER Import Structure Deviation by Group_ger", GER, height = 10)
+            "HH vs GER Import Structure Deviation by Group_de", DE, height = 10)
         render_graph(trade_hh_import_deviation_group(source = "Data source: Federal statistical office (Destatis)",
             positive_label = "HH over-represented", negative_label = "HH under-represented", decimal_mark = "."),
             "HH vs GER Import Structure Deviation by Group_en", EN, height = 10)
     }),
 list(id = "trade_ls_export_deviation_group", category = "Trade", label = "Lower Saxony vs Germany: Export Structure by Commodity Group",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_ls_export_deviation_group(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             positive_label = "LS überrepräsentiert", negative_label = "LS unterrepräsentiert", decimal_mark = ","),
-            "LS vs GER Export Structure Deviation by Group_ger", GER, height = 10)
+            "LS vs GER Export Structure Deviation by Group_de", DE, height = 10)
         render_graph(trade_ls_export_deviation_group(source = "Data source: Federal statistical office (Destatis)",
             positive_label = "LS over-represented", negative_label = "LS under-represented", decimal_mark = "."),
             "LS vs GER Export Structure Deviation by Group_en", EN, height = 10)
     }),
 list(id = "trade_ls_import_deviation_group", category = "Trade", label = "Lower Saxony vs Germany: Import Structure by Commodity Group",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_ls_import_deviation_group(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             positive_label = "LS überrepräsentiert", negative_label = "LS unterrepräsentiert", decimal_mark = ","),
-            "LS vs GER Import Structure Deviation by Group_ger", GER, height = 10)
+            "LS vs GER Import Structure Deviation by Group_de", DE, height = 10)
         render_graph(trade_ls_import_deviation_group(source = "Data source: Federal statistical office (Destatis)",
             positive_label = "LS over-represented", negative_label = "LS under-represented", decimal_mark = "."),
             "LS vs GER Import Structure Deviation by Group_en", EN, height = 10)
     }),
 list(id = "trade_hh_export_topbottom_country", category = "Trade", label = "Hamburg Top Export Partners (pp deviation vs Germany)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_hh_export_topbottom_country(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "HH überrepräsentiert", negative_label = "HH unterrepräsentiert",
-            decimal_mark = ","), paste0("Hamburg Top Export Partners ", yr, "_ger"), GER, height = 7)
+            decimal_mark = ","), paste0("Hamburg Top Export Partners ", yr, "_de"), DE, height = 7)
         render_graph(trade_hh_export_topbottom_country(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "HH over-represented", negative_label = "HH under-represented",
             decimal_mark = "."), paste0("Hamburg Top Export Partners ", yr, "_en"), EN, height = 7)
     }),
 list(id = "trade_hh_import_topbottom_country", category = "Trade", label = "Hamburg Top Import Partners (pp deviation vs Germany)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_hh_import_topbottom_country(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "HH überrepräsentiert", negative_label = "HH unterrepräsentiert",
-            decimal_mark = ","), paste0("Hamburg Top Import Partners ", yr, "_ger"), GER, height = 7)
+            decimal_mark = ","), paste0("Hamburg Top Import Partners ", yr, "_de"), DE, height = 7)
         render_graph(trade_hh_import_topbottom_country(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "HH over-represented", negative_label = "HH under-represented",
             decimal_mark = "."), paste0("Hamburg Top Import Partners ", yr, "_en"), EN, height = 7)
     }),
 list(id = "trade_ls_export_topbottom_country", category = "Trade", label = "Lower Saxony Top Export Partners (pp deviation vs Germany)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_ls_export_topbottom_country(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "LS überrepräsentiert", negative_label = "LS unterrepräsentiert",
-            decimal_mark = ","), paste0("Lower Saxony Top Export Partners ", yr, "_ger"), GER, height = 7)
+            decimal_mark = ","), paste0("Lower Saxony Top Export Partners ", yr, "_de"), DE, height = 7)
         render_graph(trade_ls_export_topbottom_country(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "LS over-represented", negative_label = "LS under-represented",
             decimal_mark = "."), paste0("Lower Saxony Top Export Partners ", yr, "_en"), EN, height = 7)
     }),
 list(id = "trade_ls_import_topbottom_country", category = "Trade", label = "Lower Saxony Top Import Partners (pp deviation vs Germany)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(trade_ls_import_topbottom_country(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "LS überrepräsentiert", negative_label = "LS unterrepräsentiert",
-            decimal_mark = ","), paste0("Lower Saxony Top Import Partners ", yr, "_ger"), GER, height = 7)
+            decimal_mark = ","), paste0("Lower Saxony Top Import Partners ", yr, "_de"), DE, height = 7)
         render_graph(trade_ls_import_topbottom_country(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "LS over-represented", negative_label = "LS under-represented",
             decimal_mark = "."), paste0("Lower Saxony Top Import Partners ", yr, "_en"), EN, height = 7)
     }),
 list(id = "trade_hh_export_deviation_country_map", category = "Trade", label = "HH Export - Deviations from German Average (by category)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(hh_export_deviation_country_map(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "HH überrepräsentiert", negative_label = "HH unterrepräsentiert",
-            decimal_mark = ","), paste0("HH Export - Deviations from German Average ", yr, "_ger"), GER,
+            decimal_mark = ","), paste0("HH Export - Deviations from German Average ", yr, "_de"), DE,
             height = 7)
         render_graph(hh_export_deviation_country_map(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "HH over-represented", negative_label = "HH under-represented",
@@ -272,12 +272,12 @@ list(id = "trade_hh_export_deviation_country_map", category = "Trade", label = "
     }),
 list(id = "trade_hh_import_deviation_country_map", category = "Trade", label = "HH Import - Deviations from German Average (by category)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(hh_import_deviation_country_map(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "HH überrepräsentiert", negative_label = "HH unterrepräsentiert",
-            decimal_mark = ","), paste0("HH Import - Deviations from German Average ", yr, "_ger"), GER,
+            decimal_mark = ","), paste0("HH Import - Deviations from German Average ", yr, "_de"), DE,
             height = 7)
         render_graph(hh_import_deviation_country_map(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "HH over-represented", negative_label = "HH under-represented",
@@ -286,13 +286,13 @@ list(id = "trade_hh_import_deviation_country_map", category = "Trade", label = "
     }),
 list(id = "trade_hh_export_deviation_country", category = "Trade", label = "HH Export - Deviations from German Average by Country",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(hh_export_deviation_country(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "HH überrepräsentiert", negative_label = "HH unterrepräsentiert",
             decimal_mark = ","), paste0("HH Export - Deviations from German Average by Country ", yr,
-            "_ger"), GER, height = 7)
+            "_de"), DE, height = 7)
         render_graph(hh_export_deviation_country(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "HH over-represented", negative_label = "HH under-represented",
             decimal_mark = "."), paste0("HH Export - Deviations from German Average by Country ", yr,
@@ -300,13 +300,13 @@ list(id = "trade_hh_export_deviation_country", category = "Trade", label = "HH E
     }),
 list(id = "trade_hh_import_deviation_country", category = "Trade", label = "HH Import - Deviations from German Average by Country",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(hh_import_deviation_country(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "HH überrepräsentiert", negative_label = "HH unterrepräsentiert",
             decimal_mark = ","), paste0("HH Import - Deviations from German Average by Country ", yr,
-            "_ger"), GER, height = 7)
+            "_de"), DE, height = 7)
         render_graph(hh_import_deviation_country(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "HH over-represented", negative_label = "HH under-represented",
             decimal_mark = "."), paste0("HH Import - Deviations from German Average by Country ", yr,
@@ -314,31 +314,31 @@ list(id = "trade_hh_import_deviation_country", category = "Trade", label = "HH I
     }),
 list(id = "trade_hh_export_comparison_country_2025", category = "Trade", label = "Hamburg vs Germany Export Share Comparison by Country in 2025",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(hh_export_deviation_choropleth("Exportanteil HH minus Deutschland (in Pp.)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            year = 2025), "Hamburg vs Germany Export Share Comparison by Country in 2025_ger", GER)
+            year = 2025), "Hamburg vs Germany Export Share Comparison by Country in 2025_de", DE)
         render_graph(hh_export_deviation_choropleth("HH export share minus Germany (in pp.)", "Data source: Federal statistical office (Destatis)",
             year = 2025), "Hamburg vs Germany Export Share Comparison by Country in 2025_en", EN)
     }),
 list(id = "trade_hh_import_comparison_country_2025", category = "Trade", label = "Hamburg vs Germany Import Share Comparison by Country in 2025",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(hh_import_deviation_choropleth("Importanteil HH minus Deutschland (in Pp.)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            year = 2025), "Hamburg vs Germany Import Share Comparison by Country in 2025_ger", GER)
+            year = 2025), "Hamburg vs Germany Import Share Comparison by Country in 2025_de", DE)
         render_graph(hh_import_deviation_choropleth("HH import share minus Germany (in pp.)", "Data source: Federal statistical office (Destatis)",
             year = 2025), "Hamburg vs Germany Import Share Comparison by Country in 2025_en", EN)
     }),
 list(id = "trade_ls_export_deviation_country", category = "Trade", label = "Lower Saxony Export - Deviations from German Average by Country",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(ls_export_deviation_country(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "LS überrepräsentiert", negative_label = "LS unterrepräsentiert",
             decimal_mark = ","), paste0("LS Export - Deviations from German Average by Country ", yr,
-            "_ger"), GER, height = 7)
+            "_de"), DE, height = 7)
         render_graph(ls_export_deviation_country(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "LS over-represented", negative_label = "LS under-represented",
             decimal_mark = "."), paste0("LS Export - Deviations from German Average by Country ", yr,
@@ -346,13 +346,13 @@ list(id = "trade_ls_export_deviation_country", category = "Trade", label = "Lowe
     }),
 list(id = "trade_ls_import_deviation_country", category = "Trade", label = "Lower Saxony Import - Deviations from German Average by Country",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         yr <- as.character(as.integer(format(Sys.Date(), "%Y")) - 1)
         render_graph(ls_import_deviation_country(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             year = yr, positive_label = "LS überrepräsentiert", negative_label = "LS unterrepräsentiert",
             decimal_mark = ","), paste0("LS Import - Deviations from German Average by Country ", yr,
-            "_ger"), GER, height = 7)
+            "_de"), DE, height = 7)
         render_graph(ls_import_deviation_country(source = "Data source: Federal statistical office (Destatis)",
             year = yr, positive_label = "LS over-represented", negative_label = "LS under-represented",
             decimal_mark = "."), paste0("LS Import - Deviations from German Average by Country ", yr,
@@ -360,19 +360,19 @@ list(id = "trade_ls_import_deviation_country", category = "Trade", label = "Lowe
     }),
 list(id = "trade_ls_export_comparison_country_2025", category = "Trade", label = "Lower Saxony vs Germany Export Share Comparison by Country in 2025",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(ls_export_deviation_choropleth("Exportanteil LS minus Deutschland (in Pp.)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            year = 2025), "Lower Saxony vs Germany Export Share Comparison by Country in 2025_ger", GER)
+            year = 2025), "Lower Saxony vs Germany Export Share Comparison by Country in 2025_de", DE)
         render_graph(ls_export_deviation_choropleth("LS export share minus Germany (in pp.)", "Data source: Federal statistical office (Destatis)",
             year = 2025), "Lower Saxony vs Germany Export Share Comparison by Country in 2025_en", EN)
     }),
 list(id = "trade_ls_import_comparison_country_2025", category = "Trade", label = "Lower Saxony vs Germany Import Share Comparison by Country in 2025",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(ls_import_deviation_choropleth("Importanteil LS minus Deutschland (in Pp.)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            year = 2025), "Lower Saxony vs Germany Import Share Comparison by Country in 2025_ger", GER)
+            year = 2025), "Lower Saxony vs Germany Import Share Comparison by Country in 2025_de", DE)
         render_graph(ls_import_deviation_choropleth("LS import share minus Germany (in pp.)", "Data source: Federal statistical office (Destatis)",
             year = 2025), "Lower Saxony vs Germany Import Share Comparison by Country in 2025_en", EN)
     })

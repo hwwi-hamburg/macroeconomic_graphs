@@ -116,7 +116,7 @@ extensions_found <- tolower(tools::file_ext(files))
 info <- file.info(files)
 
 language <- ifelse(
-  grepl("(^|/)(German labeling)(/|$)|_ger$", relative_files, ignore.case = TRUE),
+  grepl("(^|/)(German labeling)(/|$)|_de$", relative_files, ignore.case = TRUE),
   "German",
   ifelse(
     grepl("(^|/)(English labeling)(/|$)|_en$", relative_files, ignore.case = TRUE),

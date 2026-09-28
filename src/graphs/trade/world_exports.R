@@ -12,10 +12,10 @@ trade_world_exports <- function(y_axis, source, decimal_mark = ".", big_mark = "
 .graph_specs <- list(
 list(id = "trade_world_exports", category = "Trade", label = "World Exports of Goods and Services (WDI)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_world_exports("Weltexporte (in Mrd. 2015 US$)", "Datenquelle: Nationale Statistik der Weltbank und OECD",
-            decimal_mark = ",", big_mark = "."), "W Exports of Goods and Services real_ger", GER)
+            decimal_mark = ",", big_mark = "."), "W Exports of Goods and Services real_de", DE)
         render_graph(trade_world_exports("World Exports (in Billion 2015 US$)", "Data Source: World Bank National Accounts Data, and OECD National Accounts Data Files",
             big_mark = ","), "W Exports of Goods and Services real_en", EN)
     })

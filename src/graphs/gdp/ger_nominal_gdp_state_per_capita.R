@@ -52,19 +52,19 @@ ger_nominal_gdp_state_per_capita_map <- function(legend_title, source,
 .graph_specs <- list(
 list(id = "ger_nominal_gdp_state_per_capita", category = "GDP", label = "Germany Nominal GDP per Capita by State (StatLA)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(ger_nominal_gdp_state_per_capita("Nominales BIP pro Einwohner (in EUR)", "Datenquelle: Statistische Ämter des Bundes und der Länder",
-            decimal_mark = ",", big_mark = "."), "GER Nominal GDP by State per Capita_ger", GER, height = 7)
+            decimal_mark = ",", big_mark = "."), "GER Nominal GDP by State per Capita_de", DE, height = 7)
         render_graph(ger_nominal_gdp_state_per_capita("Nominal GDP per Capita (in EUR)", "Data source: Federal and State Statistical Offices",
             decimal_mark = ".", big_mark = ","), "GER Nominal GDP by State per Capita_en", EN, height = 7)
     }),
 list(id = "ger_nominal_gdp_state_per_capita_map", category = "GDP", label = "Germany Nominal GDP per Capita by State - Choropleth (StatLA)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(ger_nominal_gdp_state_per_capita_map("Nominales BIP pro Einwohner (in EUR)", "Datenquelle: Statistische Ämter des Bundes und der Länder"),
-            "GER Nominal GDP by State per Capita Map_ger", GER)
+            "GER Nominal GDP by State per Capita Map_de", DE)
         render_graph(ger_nominal_gdp_state_per_capita_map("Nominal GDP per Capita (in EUR)", "Data source: Federal and State Statistical Offices"),
             "GER Nominal GDP by State per Capita Map_en", EN)
     })

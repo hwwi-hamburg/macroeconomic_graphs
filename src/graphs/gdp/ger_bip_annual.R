@@ -32,38 +32,38 @@ ger_nominal_gdp <- function(y_axis, source, decimal_mark = ",", big_mark = ".")
 .graph_specs <- list(
 list(id = "ger_bip_annual_growth", category = "GDP", label = "Germany Annual GDP Growth (Destatis)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(ger_bip_annual_growth("Kettenindex (2020=100) \n Veränderung in %", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-            "GER BIP annual growth - chain index_ger", GER)
+            "GER BIP annual growth - chain index_de", DE)
         render_graph(ger_bip_annual_growth("Chain index (2020=100) \n Change in %", "Data source: Federal statistical office (Destatis)",
             decimal_mark = "."), "GER BIP annual growth - chain index_en", EN)
     }),
 list(id = "ger_bip_annual_development", category = "GDP", label = "Germany Annual GDP Level - Chain Index (Destatis)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(ger_bip_annual_development("Kettenindex (2020=100)", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-            "GER BIP annual level - chain index_ger", GER)
+            "GER BIP annual level - chain index_de", DE)
         render_graph(ger_bip_annual_development("Chain Index (2020=100)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = "."), "GER BIP annual level - chain index_en", EN)
     }),
 list(id = "ger_bip_annual_volume", category = "GDP", label = "Germany Annual GDP - Chain-linked Volume (Mrd EUR, Destatis)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(ger_bip_annual_volume("Verkettete Volumenangaben (Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            decimal_mark = ",", big_mark = "."), "GER BIP annual - chain-linked volume data (bn EUR)_ger",
-            GER)
+            decimal_mark = ",", big_mark = "."), "GER BIP annual - chain-linked volume data (bn EUR)_de",
+            DE)
         render_graph(ger_bip_annual_volume("Chain-linked volume data (bn EUR)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = ".", big_mark = ","), "GER BIP annual - chain-linked volume data (bn EUR)_en",
             EN)
     }),
 list(id = "ger_nominal_gdp", category = "GDP", label = "Germany Nominal GDP (Destatis)", render = function() {
-    GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+    DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
     EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
     render_graph(ger_nominal_gdp("Nominales BIP (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-        decimal_mark = ",", big_mark = "."), "GER BIP nominal annual_ger", GER)
+        decimal_mark = ",", big_mark = "."), "GER BIP nominal annual_de", DE)
     render_graph(ger_nominal_gdp("Nominal GDP (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = ".", big_mark = ","), "GER BIP nominal annual_en", EN)
 })

@@ -78,7 +78,7 @@ ger_bip_annual_growth <- function(y_axis, source, decimal_mark = ",") {
           "Kettenindex (2020=100)\nVeränderung in %",
           "Datenquelle: Statistisches Bundesamt (Destatis)"
         ),
-        "GER BIP annual growth - chain index_ger",
+        "GER BIP annual growth - chain index_de",
         file.path(OUT_DIR, "GDP graphs/German labeling")
       )
     }
@@ -779,11 +779,11 @@ At the bottom of the graph file, add an entry to `.graph_specs`. Its `render()` 
   id = "my_new_graph", category = "GDP",
   label = "My New Graph — short human-readable label for the menu",
   render = function() {
-    GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
-    EN  <- file.path(OUT_DIR, "GDP graphs/English labeling")
+    DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
+    EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
     render_graph(
       my_new_graph("Y-Achsen-Beschriftung", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-      "My New Graph title_ger", GER)
+      "My New Graph title_de", DE)
     render_graph(
       my_new_graph("Y-axis label", "Data source: Federal statistical office (Destatis)",
                     decimal_mark = ".", big_mark = ","),
@@ -801,7 +801,7 @@ Conventions to match the existing entries:
 - `id`: unique, snake_case, stable (used for logging and error messages — don't rename once graphs are in production use)
 - `category`: one of `"GDP"`, `"Employment"`, `"Prices"`, `"Trade"` (drives the menu grouping and the `run_*.R` batch filters)
 - In render: 
-  - `GER`: output path of the German labeling version
+  - `DE`: output path of the German labeling version
   - `EN`: output path of the English labeling version
 
 ## 8. Test it

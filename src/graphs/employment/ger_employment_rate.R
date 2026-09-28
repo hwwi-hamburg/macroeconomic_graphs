@@ -45,10 +45,10 @@ ger_employment_rate <- function(y_axis, source, decimal_mark = ",") {
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_employment_rate", category = "Employment", label = "Germany Employment Rate", render = function() {
-    GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+    DE <- file.path(OUT_DIR, "employment graphs/German labeling")
     EN <- file.path(OUT_DIR, "employment graphs/English labeling")
     render_graph(ger_employment_rate("Erwerbsquote (in %)", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-        "GER employment rate_ger", GER)
+        "GER employment rate_de", DE)
     render_graph(ger_employment_rate("Employment Rate (in %)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "GER employment rate_en", EN)
 })

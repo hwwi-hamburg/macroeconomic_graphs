@@ -57,12 +57,12 @@ source("src/bootstrap.R")
     category = "GDP",
     label = "Hamburg and Germany nominal GDP",
     render = function() {
-      GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+      DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
       EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
       render_graph(.hh_ger_bip_annual_nominal(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
                                            label_ger = "Bruttoinlandsprodukt Deutschland", label_hh = "Bruttoinlandsprodukt Hamburg", y_axis_left = "Bruttoinlandsprodukt (in Mio. €)",
                                            y_axis_right = "Bruttoinlandsprodukt (in Mio. €)", decimal_mark = ",", big_mark = "."), "GER HH gdp",
-                   GER)
+                   DE)
       render_graph(.hh_ger_bip_annual_nominal(source = "Data source: Federal statistical office (Destatis)",
                                            label_ger = "GDP Germany", label_hh = "GDP Hamburg", y_axis_left = "GDP (in million)",
                                            y_axis_right = "GDP Germany (in million)", decimal_mark = ".", big_mark = ","), "GER HH gdp",

@@ -42,12 +42,12 @@ ger_employed_unemployed <- function(source,
 .graph_specs <- list(
 list(id = "ger_employed_unemployed", category = "Employment", label = "Germany Employed and Unemployed Persons",
     render = function() {
-        GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+        DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
         render_graph(ger_employed_unemployed(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             label_employed = "Erwerbstätige", label_unemployed = "Erwerbslose", y_axis_left = "Erwerbstätige (in Mio.)",
-            y_axis_right = "Erwerbslose (in Mio.)", decimal_mark = ",", big_mark = "."), "GER employed unemployed_ger",
-            GER)
+            y_axis_right = "Erwerbslose (in Mio.)", decimal_mark = ",", big_mark = "."), "GER employed unemployed_de",
+            DE)
         render_graph(ger_employed_unemployed(source = "Data source: Federal statistical office (Destatis)",
             label_employed = "Employed", label_unemployed = "Unemployed", y_axis_left = "Employed (in million)",
             y_axis_right = "Unemployed (in million)", decimal_mark = ".", big_mark = ","), "GER employed unemployed_en",

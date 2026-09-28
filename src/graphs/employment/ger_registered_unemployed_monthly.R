@@ -28,10 +28,10 @@ ger_registered_unemployed_monthly <- function(y_axis, source,
 .graph_specs <- list(
 list(id = "ger_registered_unemployed_monthly", category = "Employment", label = "Germany Registered Unemployed (monthly, total)",
     render = function() {
-        GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+        DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
         render_graph(ger_registered_unemployed_monthly("Arbeitslose (in Mio.)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            decimal_mark = ",", big_mark = "."), "GER registered unemployed monthly_ger", GER)
+            decimal_mark = ",", big_mark = "."), "GER registered unemployed monthly_de", DE)
         render_graph(ger_registered_unemployed_monthly("Registered Unemployed (in million)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = ".", big_mark = ","), "GER registered unemployed monthly_en", EN)
     })

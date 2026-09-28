@@ -40,10 +40,10 @@ ger_unemployment_seasonal <- function(y_axis, source, decimal_mark = ",", big_ma
 .graph_specs <- list(
 list(id = "ger_unemployment_seasonal", category = "Employment", label = "Germany Unemployment Rate, Quarterly Seasonally Adjusted",
     render = function() {
-        GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+        DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
         render_graph(ger_unemployment_seasonal("Erwerbslosenquote in %, saisonbereinigt", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            decimal_mark = ","), "GER unemployed persons quarterly seasonally adjusted_ger", GER)
+            decimal_mark = ","), "GER unemployed persons quarterly seasonally adjusted_de", DE)
         render_graph(ger_unemployment_seasonal("Unemployment rate in %, seasonally adjusted", "Data source: Federal statistical office (Destatis)",
             decimal_mark = "."), "GER unemployed persons quarterly seasonally adjusted_en", EN)
     })

@@ -32,11 +32,11 @@ ger_unemployment_civilian <- function(y_axis, source,
 .graph_specs <- list(
 list(id = "ger_unemployment_civilian", category = "Employment", label = "Germany Unemployment Rate: Civilian and Registered (annual)",
     render = function() {
-        GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+        DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
         render_graph(ger_unemployment_civilian(y_axis = "Arbeitslosenquote in %", source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             label_all = "Arbeitslosenquote aller ziv. Erwerbspersonen", label_dep = "Arbeitslosenquote abh. ziv. Erwerbspersonen",
-            decimal_mark = ","), "GER unemployment rate civilian and registered_ger", GER)
+            decimal_mark = ","), "GER unemployment rate civilian and registered_de", DE)
         render_graph(ger_unemployment_civilian(y_axis = "Unemployment rate in %", source = "Data source: Federal statistical office (Destatis)",
             label_all = "Unemployment as percent of civilian labour force", label_dep = "Rate of registered unemployed",
             decimal_mark = "."), "GER unemployment rate civilian and registered_en", EN)

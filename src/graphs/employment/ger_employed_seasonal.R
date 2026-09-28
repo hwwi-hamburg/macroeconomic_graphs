@@ -23,11 +23,11 @@ ger_employed_seasonal <- function(y_axis, source, decimal_mark = ",", big_mark =
 .graph_specs <- list(
 list(id = "ger_employed_seasonal", category = "Employment", label = "Germany Employed Persons, Quarterly Seasonally Adjusted",
     render = function() {
-        GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+        DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
         render_graph(ger_employed_seasonal("Anzahl Erwerbstätige (in Tsd.), saisonbereinigt", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            decimal_mark = ",", big_mark = "."), "GER employed persons quarterly seasonally adjusted_ger",
-            GER)
+            decimal_mark = ",", big_mark = "."), "GER employed persons quarterly seasonally adjusted_de",
+            DE)
         render_graph(ger_employed_seasonal("Number of Employed Persons (in 1000), seasonally adjusted",
             "Data source: Federal statistical office (Destatis)", decimal_mark = ".", big_mark = ","),
             "GER employed persons quarterly seasonally adjusted_en", EN)

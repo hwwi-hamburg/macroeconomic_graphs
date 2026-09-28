@@ -30,7 +30,7 @@ ger_bip_annual_growth <- function(y_axis, source, decimal_mark = ",")
           "Kettenindex (2020=100)\nVeränderung in %",
           "Datenquelle: Statistisches Bundesamt (Destatis)"
         ),
-        "GER BIP annual growth - chain index_ger",
+        "GER BIP annual growth - chain index_de",
         file.path(OUT_DIR, "GDP graphs/German labeling")
       )
     }

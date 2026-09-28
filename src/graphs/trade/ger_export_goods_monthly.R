@@ -17,10 +17,10 @@ ger_export_goods_monthly <- function(y_axis, source, decimal_mark = ",", big_mar
 .graph_specs <- list(
 list(id = "ger_export_goods_monthly", category = "Trade", label = "Germany Monthly Goods Exports - Level (Mrd EUR)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(ger_export_goods_monthly("Güterausfuhren (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            decimal_mark = ",", big_mark = "."), "GER Export goods monthly level_ger", GER)
+            decimal_mark = ",", big_mark = "."), "GER Export goods monthly level_de", DE)
         render_graph(ger_export_goods_monthly("Goods Exports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = ".", big_mark = ","), "GER Export goods monthly level_en", EN)
     })

@@ -41,12 +41,12 @@
       category = "Employment",
       label = "Hamburg unemployment rate monthly",
       render = function() {
-        GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+        DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
         render_graph(.hh_unemployment_monthly(source = "Datenquelle: Statistisches Bundesamt",
                                               label_ger = "Deutschland", y_axis = "Arbeitslosenquote",
                                               decimal_mark = ",", big_mark = "."),
-                     "HH unemployment rate monthly", GER)
+                     "HH unemployment rate monthly", DE)
         render_graph(.hh_unemployment_monthly(source = "Data source: Federal statistical office (Destatis)",
                                               label_ger = "Germany", y_axis = "Unemployment rate", decimal_mark = ".",
                                               big_mark = ","),

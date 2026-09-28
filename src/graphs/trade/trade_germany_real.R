@@ -38,62 +38,62 @@ trade_import_germany_real_services <- function(y_axis, source, decimal_mark = ",
 .graph_specs <- list(
 list(id = "trade_export_germany_real", category = "Trade", label = "Germany Real Exports (VGR national accounts)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_export_germany_real("Reale Ausfuhren (Kettenindex 2020=100)", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-            "Export Germany real VGR_ger", GER)
+            "Export Germany real VGR_de", DE)
         render_graph(trade_export_germany_real("Real Exports (Chain Index 2020=100)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = "."), "Export Germany real VGR_en", EN)
     }),
 list(id = "trade_import_germany_real", category = "Trade", label = "Germany Real Imports (VGR national accounts)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_import_germany_real("Reale Einfuhren (Kettenindex 2020=100)", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-            "Import Germany real VGR_ger", GER)
+            "Import Germany real VGR_de", DE)
         render_graph(trade_import_germany_real("Real Imports (Chain Index 2020=100)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = "."), "Import Germany real VGR_en", EN)
     }),
 list(id = "trade_export_germany_real_goods", category = "Trade", label = "Germany Real Exports of Goods (VGR)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_export_germany_real_goods("Ausfuhren Güter (in Mrd. EUR, preisbereinigt)",
-            "Datenquelle: Statistisches Bundesamt (Destatis)", decimal_mark = ","), "Export Goods Germany real VGR_ger",
-            GER)
+            "Datenquelle: Statistisches Bundesamt (Destatis)", decimal_mark = ","), "Export Goods Germany real VGR_de",
+            DE)
         render_graph(trade_export_germany_real_goods("Exports of Goods (in Billion EUR, price-adjusted)",
             "Data source: Federal statistical office (Destatis)", decimal_mark = "."), "Export Goods Germany real VGR_en",
             EN)
     }),
 list(id = "trade_export_germany_real_services", category = "Trade", label = "Germany Real Exports of Services (VGR)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_export_germany_real_services("Ausfuhren Dienstleistungen (in Mrd. EUR, preisbereinigt)",
-            "Datenquelle: Statistisches Bundesamt (Destatis)", decimal_mark = ","), "Export Services Germany real VGR_ger",
-            GER)
+            "Datenquelle: Statistisches Bundesamt (Destatis)", decimal_mark = ","), "Export Services Germany real VGR_de",
+            DE)
         render_graph(trade_export_germany_real_services("Exports of Services (in Billion EUR, price-adjusted)",
             "Data source: Federal statistical office (Destatis)", decimal_mark = "."), "Export Services Germany real VGR_en",
             EN)
     }),
 list(id = "trade_import_germany_real_goods", category = "Trade", label = "Germany Real Imports of Goods (VGR)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_import_germany_real_goods("Einfuhren Güter (in Mrd. EUR, preisbereinigt)",
-            "Datenquelle: Statistisches Bundesamt (Destatis)", decimal_mark = ","), "Import Goods Germany real VGR_ger",
-            GER)
+            "Datenquelle: Statistisches Bundesamt (Destatis)", decimal_mark = ","), "Import Goods Germany real VGR_de",
+            DE)
         render_graph(trade_import_germany_real_goods("Imports of Goods (in Billion EUR, price-adjusted)",
             "Data source: Federal statistical office (Destatis)", decimal_mark = "."), "Import Goods Germany real VGR_en",
             EN)
     }),
 list(id = "trade_import_germany_real_services", category = "Trade", label = "Germany Real Imports of Services (VGR)",
     render = function() {
-        GER <- file.path(OUT_DIR, "trade graphs/German labeling")
+        DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
         render_graph(trade_import_germany_real_services("Einfuhren Dienstleistungen (in Mrd. EUR, preisbereinigt)",
-            "Datenquelle: Statistisches Bundesamt (Destatis)", decimal_mark = ","), "Import Services Germany real VGR_ger",
-            GER)
+            "Datenquelle: Statistisches Bundesamt (Destatis)", decimal_mark = ","), "Import Services Germany real VGR_de",
+            DE)
         render_graph(trade_import_germany_real_services("Imports of Services (in Billion EUR, price-adjusted)",
             "Data source: Federal statistical office (Destatis)", decimal_mark = "."), "Import Services Germany real VGR_en",
             EN)
