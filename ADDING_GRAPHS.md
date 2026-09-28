@@ -755,7 +755,16 @@ Brand colors (`blue`, `rubin`, `dark_blue`, `dark_rubin`, `light_blue`, `grey`, 
 
 An example can be found [here](src/graphs/gdp/ger_nominal_gdp_state_per_capita.R).
 
-## 6. Write the graph spec function
+## 6. Overwrite the plot specification
+You can add your own settings to the plot specification by adding a `+` to the end of the plot builder call and appending any additional `ggplot2` layers. For example, to add a vertical line at a specific date:
+
+```r
+plot_timeseries(dat, y_axis = y_axis, source = source,
+                decimal_mark = decimal_mark, big_mark = big_mark) +
+  geom_vline(xintercept = as.numeric(as.Date("2023-01-01")), color = "red", linetype = "dashed")
+```
+
+## 7. Write the graph spec function
 
 The final graph is written as a function. 
 Add a function under `src/graphs/<category>/` (`gdp/`, `employment/`, `prices/`, or `trade/` — reuse an existing file if your graph is a close relative of what's already there, e.g. shares a cached raw fetch). The function should take `y_axis`/`source` (or whatever labels the plot needs) plus `decimal_mark`/`big_mark` as arguments, defaulting to German formatting (`decimal_mark = ","`, `big_mark = "."`) since that's the primary audience — the English call overrides them:
@@ -773,7 +782,7 @@ my_new_graph <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
 
 If a chart needs multiple raw fetches or several closely-related variants (e.g. level/growth/volume from the same table), follow the pattern in [src/graphs/gdp/ger_bip_annual.R](src/graphs/gdp/ger_bip_annual.R): a shared private `.helper()` that both fetches and filters, called by several thin public wrapper functions.
 
-## 7. Add the graph module metadata
+## 8. Add the graph module metadata
 
 At the bottom of the graph file, add an entry to `.graph_specs`. Its `render()` calls your function twice—German first and English second—and writes into the category's two output folders:
 
@@ -807,7 +816,7 @@ Conventions to match the existing entries:
   - `DE`: output path of the German labeling version
   - `EN`: output path of the English labeling version
 
-## 8. Test it
+## 9. Test it
 
 The file is directly executable, so the fastest end-to-end check is:
 
