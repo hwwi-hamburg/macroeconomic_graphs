@@ -1,4 +1,5 @@
-fetch_bundesbank_series <- function(dataset, key) {
+fetch_bundesbank_series <- function(dataset, key, series = key,
+                                     unit = NA_character_, geo = NA_character_) {
   url <- sprintf(
     "https://api.statistiken.bundesbank.de/rest/data/%s/%s?detail=dataonly",
     dataset, key
@@ -18,6 +19,7 @@ fetch_bundesbank_series <- function(dataset, key) {
   )
   tibble::tibble(month = dates, value = values) |>
     dplyr::filter(!is.na(value)) |>
-    dplyr::mutate(date = as.Date(paste0(month, "-01"))) |>
-    dplyr::select(date, value)
+    dplyr::mutate(date = as.Date(paste0(month, "-01")),
+                  series = series, unit = unit, geo = geo) |>
+    dplyr::select(date, value, series, unit, geo)
 }
