@@ -211,7 +211,7 @@ Returns `tibble(date, value, series, unit, geo)`.
 #### `fetch_bundesbank_series()`
 
 ```r
-fetch_bundesbank_series(dataset, key)
+fetch_bundesbank_series(dataset, key, series = key, unit = NA_character_, geo = NA_character_)
 ```
 
 Downloads one series directly from the Bundesbank SDMX REST API.
@@ -220,11 +220,14 @@ Parameters:
 
 - `dataset`: Bundesbank SDMX dataset identifier.
 - `key`: Series key within the dataset.
+- `series`: Constant value written to the output `series` column. Defaults to `key`; pass a human-readable label if the series will be combined with others under a `series`-based plot builder such as `plot_timeseries_multi()`.
+- `unit`: Constant value written to the output `unit` column.
+- `geo`: Constant value written to the output `geo` column. Bundesbank series aren't always Germany-specific (e.g. ECB-wide rates), so this isn't defaulted to `"DEU"`.
 
 Example: You can find Bundesbank time series on the [website](https://statistiken.bundesbank.de/statistiken-de/suche). 
 The time series "Harmonisierter Verbraucherpreisindex / Deutschland / Ursprungswerte / Insgesamt / % gegen Vorjahr" has the time series code `BBDP1.​M.​DE.​N.​HVPI.​C.​A00000.​VGJ.​LV`. The first part BBDP1 is the dataset, and the rest is the series key.
 
-Returns `tibble(date, value)`. Add `series`, `unit`, and `geo` columns if the selected plot builder requires them.
+Returns `tibble(date, value, series, unit, geo)`.
 
 ### Excel
 #### `fetch_excel()`
