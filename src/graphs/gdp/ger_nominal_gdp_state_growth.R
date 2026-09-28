@@ -38,9 +38,9 @@
 #' Companion chart to ger_nominal_gdp_state() / ger_nominal_gdp_state_per_capita():
 #' those show levels for the latest year; this shows each state's YoY nominal
 #' growth rate for the same year, as horizontal ranking bars.
-ger_nominal_gdp_state_growth <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
+ger_nominal_gdp_state_growth <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
   dat <- .ger_gdp_state_growth_helper()
-  plot_bar_ranking(dat, caption = caption, x_axis = y_axis,
+  plot_bar_ranking(dat, source = source, x_axis = y_axis,
                     decimal_mark = decimal_mark, big_mark = big_mark)
 }
 
@@ -49,10 +49,10 @@ ger_nominal_gdp_state_growth <- function(y_axis, caption, decimal_mark = ",", bi
 .graph_specs <- list(
 list(id = "ger_nominal_gdp_state_growth", category = "GDP", label = "Germany nominal GDP growth by state (YoY %, ranking)",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(ger_nominal_gdp_state_growth("Veränderung ggü. Vorjahr in %", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-            "GER nominal GDP growth by state_ger", GER)
+            "GER nominal GDP growth by state_de", DE)
         render_graph(ger_nominal_gdp_state_growth("YoY change in %", "Data source: Federal statistical office (Destatis)",
                     decimal_mark = ".", big_mark = ","), "GER nominal GDP growth by state_en", EN)
     })

@@ -25,7 +25,7 @@
     dplyr::arrange(date)
 }
 
-ger_interest_rate_hpi_dax <- function(caption,
+ger_interest_rate_hpi_dax <- function(source,
                                        label_band   = "Zinsband",
                                        label_ecb    = "Hauptrefinanzierungssatz der EZB",
                                        label_hpi    = "Häuserpreisindex",
@@ -88,13 +88,13 @@ ger_interest_rate_hpi_dax <- function(caption,
                           limits = c(start, max(dax$date, na.rm = TRUE)),
                           expand = c(0, 0)) +
     ggplot2::scale_y_continuous(
-      name     = y_axis_left,
+      name     = wrap_axis_label(y_axis_left),
       labels   = function(x) format(x, decimal.mark = decimal_mark, scientific = FALSE),
-      sec.axis = ggplot2::sec_axis(~ . * scale_factor, name = y_axis_right,
+      sec.axis = ggplot2::sec_axis(~ . * scale_factor, name = wrap_axis_label(y_axis_right),
                                     labels = function(x) format(x, decimal.mark = decimal_mark,
                                                                  scientific = FALSE))
     ) +
-    ggplot2::labs(x = "", caption = caption) +
+    ggplot2::labs(x = "", caption = source) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom") +
     ggplot2::guides(
@@ -108,14 +108,14 @@ ger_interest_rate_hpi_dax <- function(caption,
 .graph_specs <- list(
 list(id = "ger_interest_rate_hpi_dax", category = "Prices", label = "Development of Interest Rates, House Price Index and DAX",
     render = function() {
-        GER <- file.path(OUT_DIR, "prices graphs/German labeling")
+        DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")
-        render_graph(ger_interest_rate_hpi_dax(caption = "Datenquelle: Destatis, Deutsche Bundesbank, Yahoo Finance",
+        render_graph(ger_interest_rate_hpi_dax(source = "Datenquelle: Destatis, Deutsche Bundesbank, Yahoo Finance",
             label_band = "Zinsband", label_ecb = "Hauptrefinanzierungssatz der EZB", label_hpi = "Häuserpreisindex",
             label_dax = "DAX", y_axis_left = "Zinssatz in %", y_axis_right = "Indexwert (Start = 100)",
-            decimal_mark = ","), "Development of interest rates, german house-price-index and dax index_ger",
-            GER)
-        render_graph(ger_interest_rate_hpi_dax(caption = "Data source: Destatis, German Federal Bank, Yahoo Finance",
+            decimal_mark = ","), "Development of interest rates, german house-price-index and dax index_de",
+            DE)
+        render_graph(ger_interest_rate_hpi_dax(source = "Data source: Destatis, German Federal Bank, Yahoo Finance",
             label_band = "Interest rate band", label_ecb = "ECB interest rate for main refinancing operations",
             label_hpi = "House price index", label_dax = "DAX", y_axis_left = "Interest rate in %", y_axis_right = "Index value (Start = 100)",
             decimal_mark = "."), "Development of interest rates, german house-price-index and dax index_en",

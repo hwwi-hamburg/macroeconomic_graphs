@@ -17,7 +17,7 @@ arbeitslosigkeit <- parse_genesis(
 plot_timeseries(
   arbeitslosigkeit,
   y_axis = "Arbeitslose (in Mio.)",
-  caption = "Datenquelle: Statistisches Bundesamt (Destatis)",
+  source = "Datenquelle: Statistisches Bundesamt (Destatis)",
   decimal_mark = ",",
   big_mark = ".",
   x_breaks = "2 years"

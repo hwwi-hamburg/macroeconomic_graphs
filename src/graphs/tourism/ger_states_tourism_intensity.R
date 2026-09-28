@@ -1,4 +1,4 @@
-.ger_states_tourism_intensity <- function(caption,
+.ger_states_tourism_intensity <- function(source,
                                           label_states = "Bundesländer",
                                           label_ger = "Deutschland",
                                           y_axis = "Tourismusintensität",
@@ -86,7 +86,7 @@
   
   plot_bar_ranking(
     dat,
-    caption,
+    source,
     x_axis = "",
     decimal_mark = ",",
     big_mark = ".",
@@ -102,13 +102,13 @@
       category = "Tourism",
       label = "Germany and States Tourism intensity (nights per 1000 inhabitants)",
       render = function() {
-        GER <- file.path(OUT_DIR, "tourism graphs/German labeling")
+        DE <- file.path(OUT_DIR, "tourism graphs/German labeling")
         EN <- file.path(OUT_DIR, "tourism graphs/English labeling")
-        render_graph(.ger_states_tourism_intensity(caption = "Datenquelle: Statistisches Bundesamt",
+        render_graph(.ger_states_tourism_intensity(source = "Datenquelle: Statistisches Bundesamt",
                                                    label_ger = "Deutschland", label_states = "Bundesländer",
                                                    decimal_mark = ",", big_mark = "."),
-                     "GER and States tourism intensity (nights per 1,000 inhabitants)", GER)
-        render_graph(.ger_states_tourism_intensity(caption = "Data source: Federal statistical office (Destatis)",
+                     "GER and States tourism intensity (nights per 1,000 inhabitants)", DE)
+        render_graph(.ger_states_tourism_intensity(source = "Data source: Federal statistical office (Destatis)",
                                                    label_ger = "Germany", label_states = "States",
                                                    decimal_mark = ".", big_mark = ","),
                      "GER and States tourism intensity (nights per 1,000 inhabitants)", EN)

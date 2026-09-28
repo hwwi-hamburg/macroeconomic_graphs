@@ -51,6 +51,15 @@ hwwi_palette_rb      <- c(dark_blue, blue, light_blue, grey, rubin, dark_rubin)
 
 #------------------------------ HWWI Theme -------------------------------------
 
+# Axis titles are rotated 90 degrees by ggplot2 (y-axis) and can run the full
+# height of the plot, sometimes taller than the plot itself. Wrapping long
+# titles onto multiple lines keeps each line short, trading a little extra
+# margin width for a much shorter (and less easily clipped) title.
+wrap_axis_label <- function(label, width = 30) {
+  if (is.null(label) || is.na(label)) return(label)
+  stringr::str_wrap(label, width = width)
+}
+
 theme_hwwi <- function(base_size = 12, base_family = "Verdana", grid = c("h", "hv"), no_axes = FALSE) {
   grid <- match.arg(grid)
   ggplot2::theme_minimal(base_size = base_size, base_family = base_family) +

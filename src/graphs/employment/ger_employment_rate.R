@@ -2,7 +2,7 @@
 # Computed as: annual-average Erwerbspersonen (13321-0006, KONZEPTW, original)
 #              divided by Bevölkerungsstand (12411-0001, Dec-31 reference).
 # Replaces retired table 81000-0011 (ERW088 no longer published directly).
-ger_employment_rate <- function(y_axis, caption, decimal_mark = ",") {
+ger_employment_rate <- function(y_axis, source, decimal_mark = ",") {
   raw_ep  <- with_cache("genesis_13321-0006",
                          genesis_fetch("13321-0006"))
   raw_pop <- with_cache("genesis_12411-0001",
@@ -38,17 +38,17 @@ ger_employment_rate <- function(y_axis, caption, decimal_mark = ",") {
     geo    = "DEU"
   )
 
-  plot_timeseries(dat, y_axis = y_axis, caption = caption, decimal_mark = decimal_mark)
+  plot_timeseries(dat, y_axis = y_axis, source = source, decimal_mark = decimal_mark)
 }
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_employment_rate", category = "Employment", label = "Germany Employment Rate", render = function() {
-    GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+    DE <- file.path(OUT_DIR, "employment graphs/German labeling")
     EN <- file.path(OUT_DIR, "employment graphs/English labeling")
     render_graph(ger_employment_rate("Erwerbsquote (in %)", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-        "GER employment rate_ger", GER)
+        "GER employment rate_de", DE)
     render_graph(ger_employment_rate("Employment Rate (in %)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "GER employment rate_en", EN)
 })

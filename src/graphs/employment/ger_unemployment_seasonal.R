@@ -1,7 +1,7 @@
 # Quarterly ILO unemployment rate (%), seasonally adjusted (X13 JDemetra+).
 # Computed as (Erwerbspersonen - Erwerbstätige) / Erwerbspersonen * 100.
 # Tables: 13321-0006 (Erwerbspersonen), 13321-0002 (Erwerbstätige), Wohnortkonzept, X13JDSB.
-ger_unemployment_seasonal <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
+ger_unemployment_seasonal <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
   raw_ep <- with_cache("genesis_13321-0006",
                         genesis_fetch("13321-0006"))
   raw_et <- with_cache("genesis_13321-0002",
@@ -30,7 +30,7 @@ ger_unemployment_seasonal <- function(y_axis, caption, decimal_mark = ",", big_m
                      unit   = "%",
                      geo    = "DEU") |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                   decimal_mark = decimal_mark, big_mark = big_mark,
                   x_breaks = "2 years")
 }
@@ -40,10 +40,10 @@ ger_unemployment_seasonal <- function(y_axis, caption, decimal_mark = ",", big_m
 .graph_specs <- list(
 list(id = "ger_unemployment_seasonal", category = "Employment", label = "Germany Unemployment Rate, Quarterly Seasonally Adjusted",
     render = function() {
-        GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+        DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
         render_graph(ger_unemployment_seasonal("Erwerbslosenquote in %, saisonbereinigt", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            decimal_mark = ","), "GER unemployed persons quarterly seasonally adjusted_ger", GER)
+            decimal_mark = ","), "GER unemployed persons quarterly seasonally adjusted_de", DE)
         render_graph(ger_unemployment_seasonal("Unemployment rate in %, seasonally adjusted", "Data source: Federal statistical office (Destatis)",
             decimal_mark = "."), "GER unemployed persons quarterly seasonally adjusted_en", EN)
     })

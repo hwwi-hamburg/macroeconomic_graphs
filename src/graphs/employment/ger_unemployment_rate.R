@@ -1,4 +1,4 @@
-ger_unemployment_rate <- function(y_axis, caption, decimal_mark = ",") {
+ger_unemployment_rate <- function(y_axis, source, decimal_mark = ",") {
   raw <- with_cache("genesis_13211-0002",
                     genesis_fetch("13211-0002"))
   dat <- parse_genesis(raw,
@@ -7,7 +7,7 @@ ger_unemployment_rate <- function(y_axis, caption, decimal_mark = ",") {
                         series_name   = "unemployment_rate",
                         geo           = "DEU") |>
     dplyr::arrange(date)
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                   decimal_mark = decimal_mark, x_breaks = "2 years")
 }
 
@@ -15,10 +15,10 @@ ger_unemployment_rate <- function(y_axis, caption, decimal_mark = ",") {
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_unemployment_rate", category = "Employment", label = "Germany Unemployment Rate", render = function() {
-    GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+    DE <- file.path(OUT_DIR, "employment graphs/German labeling")
     EN <- file.path(OUT_DIR, "employment graphs/English labeling")
     render_graph(ger_unemployment_rate("Arbeitslosenquote (in %)", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-        "GER unemployment rate_ger", GER)
+        "GER unemployment rate_de", DE)
     render_graph(ger_unemployment_rate("Unemployment Rate (in %)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "GER unemployment rate_en", EN)
 })

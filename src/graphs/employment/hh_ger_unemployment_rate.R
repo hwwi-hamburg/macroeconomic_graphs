@@ -1,4 +1,4 @@
-.hh_ger_unemployment_annual <- function(caption,
+.hh_ger_unemployment_annual <- function(source,
                                         label_ger = "Deutschland",
                                         label_hh = "Hamburg",
                                         y_axis = "Arbeitslosenquote",
@@ -32,7 +32,7 @@
   plot_timeseries_multi(
     dat = dat,
     y_axis = y_axis,
-    caption = caption,
+    source = source,
     labels = c(label_hh, label_ger),
     decimal_mark = decimal_mark,
     big_mark = big_mark,
@@ -50,12 +50,12 @@
     category = "Employment",
     label = "Hamburg and Germany unemployment rate",
     render = function() {
-      GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+      DE <- file.path(OUT_DIR, "employment graphs/German labeling")
       EN <- file.path(OUT_DIR, "employment graphs/English labeling")
 
       render_graph(
         .hh_ger_unemployment_annual(
-          caption = "Datenquelle: Statistisches Bundesamt",
+          source = "Datenquelle: Statistisches Bundesamt",
           label_ger = "Deutschland",
           label_hh = "Hamburg",
           y_axis = "Arbeitslosenquote",
@@ -63,11 +63,11 @@
           big_mark = "."
         ),
         "HH GER unemployment rate",
-        GER
+        DE
       )
       render_graph(
         .hh_ger_unemployment_annual(
-          caption = "Data source: Federal statistical office (Destatis)",
+          source = "Data source: Federal statistical office (Destatis)",
           label_ger = "Germany",
           label_hh = "Hamburg",
           y_axis = "Unemployment rate",

@@ -1,5 +1,5 @@
 
-.hh_ger_gva_sectors_yoy_growth <- function(caption,
+.hh_ger_gva_sectors_yoy_growth <- function(source,
                         label_ger = "Deutschland",
                         label_hh = "Hamburg",
                         y_axis = "Bruttowertschöpfung",
@@ -66,8 +66,8 @@
     scale_fill_manual(
       name=NULL,
       values = c(
-        "Hamburg" = hwwi_rubin,
-        "Deutschland" = hwwi_blue
+        "Hamburg" = rubin,
+        "Deutschland" = blue
       )
     ) +
     scale_y_continuous(
@@ -79,9 +79,9 @@
       subtitle = NULL,
       x=NULL,
       y=NULL,
-      caption = caption
+      caption = source
     ) +
-    hwwi_theme() +
+    theme_hwwi() +
     theme(
       axis.title.x = element_text(size = 16),
       axis.title.y = element_text(size = 16),
@@ -102,17 +102,17 @@
       category = "GDP",
       label = "Hamburg and Germany Gross value added by sectors (year on year growth)",
       render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
-        render_graph(.hh_ger_gva_sectors_yoy_growth(caption = "| A: Land- u. Forstwirtschaft, Fischerei \n, 
+        render_graph(.hh_ger_gva_sectors_yoy_growth(source = "| A: Land- u. Forstwirtschaft, Fischerei \n, 
                                                                | B-E: Prod. Gewerbe (ohne Bau) \n,
                                                                | F: Baugewerbe \n,
                                                                | G-T: Dienstleistungsbereiche,
                                                                \n\n Datenquelle: Statistisches Bundesamt", 
                                                                 label_ger = "Deutschland", label_hh = "Hamburg",
                                                               decimal_mark = ",", big_mark = "."),
-                                      "HH GER gross value added by sectors (year on year growth)", GER)
-        render_graph(.hh_ger_gva_sectors_yoy_growth(caption = "| A: Agriculture, forestry, fishing \n, 
+                                      "HH GER gross value added by sectors (year on year growth)", DE)
+        render_graph(.hh_ger_gva_sectors_yoy_growth(source = "| A: Agriculture, forestry, fishing \n, 
                                                                | B-E: Manufacturing (excl. construction) \n,
                                                                | F: Construction \n,
                                                                | G-T: Service sectors,

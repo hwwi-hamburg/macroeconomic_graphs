@@ -1,4 +1,4 @@
-ger_inflation_rate <- function(y_axis, caption, row_indicator = 2,  y_limits = c(-2.5, 10)) {
+ger_inflation_rate <- function(y_axis, source, row_indicator = 2,  y_limits = c(-2.5, 10)) {
   raw <- with_cache("genesis_61111-0002",
                     genesis_fetch("61111-0002"))
   dat <- parse_genesis(raw,
@@ -9,7 +9,7 @@ ger_inflation_rate <- function(y_axis, caption, row_indicator = 2,  y_limits = c
                        dropmissing = FALSE,
                        zero_values = "-")
   dat <- select_monthly_value(dat, row_indicator = row_indicator)
-  plot_timeseries(dat, y_axis = y_axis, caption = caption, y_limits = y_limits)
+  plot_timeseries(dat, y_axis = y_axis, source = source, y_limits = y_limits)
 }
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
@@ -17,10 +17,10 @@ ger_inflation_rate <- function(y_axis, caption, row_indicator = 2,  y_limits = c
 .graph_specs <- list(
 list(id = "ger_inflation_rate", category = "Prices", label = "Germany Inflation Rate (monthly YoY)",
     render = function() {
-        GER <- file.path(OUT_DIR, "prices graphs/German labeling")
+        DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")
         render_graph(ger_inflation_rate("Inflationsrate (Veränderung gg. Vj., in %)", "Quelle: Statistisches Bundesamt (Destatis) (2026)."),
-            "GER inflation rate monthly_ger", GER)
+            "GER inflation rate monthly_de", DE)
         render_graph(ger_inflation_rate("Inflation Rate (change vs. prev. year, in %)", "Source: Statistisches Bundesamt (Destatis) (2026).",
             decimal_mark = "."), "GER inflation rate monthly_en", EN)
     })

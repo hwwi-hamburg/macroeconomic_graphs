@@ -1,4 +1,4 @@
-gdp_world_by_region_growth <- function(y_axis, caption, labels = NULL,
+gdp_world_by_region_growth <- function(y_axis, source, labels = NULL,
                                         decimal_mark = ".", n_years = 3) {
   dat <- with_cache("wdi_NY.GDP.PCAP.KD.ZG_regions",
                     fetch_wdi("NY.GDP.PCAP.KD.ZG", country = REGION_CODES))
@@ -49,7 +49,7 @@ gdp_world_by_region_growth <- function(y_axis, caption, labels = NULL,
       breaks = seq(y_min, y_max, by = 1),
       labels = function(x) paste0(format(x, decimal.mark = decimal_mark, scientific = FALSE), "%")
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = caption) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), caption = source) +
     theme_hwwi() +
     ggplot2::theme(
       legend.position = "bottom",
@@ -66,12 +66,12 @@ gdp_world_by_region_growth <- function(y_axis, caption, labels = NULL,
 .graph_specs <- list(
 list(id = "world_gdp_by_region_growth", category = "GDP", label = "World GDP Per Capita Growth by Region",
     render = function() {
-        GER <- file.path(OUT_DIR, "GDP graphs/German labeling")
+        DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
         render_graph(gdp_world_by_region_growth("BIP pro Kopf Wachstum (in %)", "Datenquelle: Nationale Statistik der Weltbank und OECD",
             labels = c("Ostasien und Pazifik", "Europa & Zentralasien", "Lateinamerika & Karibik", "Naher Osten & Nordafrika",
-                "Nordamerika", "Südasien", "Sub-Sahara Afrika"), decimal_mark = ","), "W GDP p.c. real annual Growth World Regions_ger",
-            GER)
+                "Nordamerika", "Südasien", "Sub-Sahara Afrika"), decimal_mark = ","), "W GDP p.c. real annual Growth World Regions_de",
+            DE)
         render_graph(gdp_world_by_region_growth("GDP Per Capita Growth (in %)", "Data Source: World Bank National Accounts Data, and OECD National Accounts Data Files",
             labels = c("East Asia & Pacific", "Europe & Central Asia", "Latin America & Caribbean", "Middle East & North Africa",
                 "North America", "South Asia", "Sub-Saharan Africa")), "W GDP p.c. real annual Growth World Regions_en",

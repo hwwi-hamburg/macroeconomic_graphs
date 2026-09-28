@@ -1,4 +1,4 @@
-plot_timeseries <- function(dat, y_axis, caption,
+plot_timeseries <- function(dat, y_axis, source,
                              decimal_mark = ".", big_mark = ",",
                              color = blue, x_breaks = "5 years",
                              y_limits = NULL, y_breaks = ggplot2::waiver(),
@@ -13,7 +13,7 @@ plot_timeseries <- function(dat, y_axis, caption,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = angle, hjust = 0.5))
 }
@@ -21,7 +21,7 @@ plot_timeseries <- function(dat, y_axis, caption,
 # Grouped bar chart with a date x-axis. Uses position="identity" so bars overlap:
 # the first factor level is drawn behind, the second on top. Caller should set
 # factor levels so the larger-value series comes first (drawn behind the shorter).
-plot_bar_date <- function(dat, y_axis, caption, labels = NULL,
+plot_bar_date <- function(dat, y_axis, source, labels = NULL,
                            decimal_mark = ".", big_mark = ",",
                            colors = c(scales::alpha(blue, 0.6), rubin),
                            x_breaks = "2 years", y_limits = NULL,
@@ -36,14 +36,14 @@ plot_bar_date <- function(dat, y_axis, caption, labels = NULL,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, fill = "",
-                  caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), fill = "",
+                  caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom",
                    axis.text.x = ggplot2::element_text(angle = angle, hjust = 0.5))
 }
 
-plot_timeseries_multi <- function(dat, y_axis, caption, labels = NULL,
+plot_timeseries_multi <- function(dat, y_axis, source, labels = NULL,
                                    decimal_mark = ".", big_mark = ",",
                                    colors = hwwi_palette, x_breaks = "5 years",
                                    y_limits = NULL, linewidth = 1.8, angle = 0,
@@ -58,7 +58,7 @@ plot_timeseries_multi <- function(dat, y_axis, caption, labels = NULL,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, color = "", caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = "", y = wrap_axis_label(y_axis), color = "", caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom", 
   axis.text.x = ggplot2::element_text(angle = angle, hjust = 0.5))

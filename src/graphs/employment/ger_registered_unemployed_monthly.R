@@ -1,7 +1,7 @@
 # Monthly registered unemployed (Arbeitslose, Germany total, in Mio.), seasonally adjusted.
 # GENESIS 13211-0002 (monthly). ERW006 = Arbeitslose; X-13ARIMA-SEATS SA via {seasonal}.
 # Shares the 13211-0002 cache with ger_unemployment_rate.
-ger_registered_unemployed_monthly <- function(y_axis, caption,
+ger_registered_unemployed_monthly <- function(y_axis, source,
                                                decimal_mark = ",", big_mark = ".") {
   raw <- with_cache("genesis_13211-0002",
                     genesis_fetch("13211-0002"))
@@ -18,7 +18,7 @@ ger_registered_unemployed_monthly <- function(y_axis, caption,
                                      as.integer(format(dat$date[1], "%m"))),
                        frequency = 12)
   dat$value <- as.numeric(seasonal::final(seasonal::seas(ts_obj)))
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                   decimal_mark = decimal_mark, big_mark = big_mark,
                   x_breaks = "2 years")
 }
@@ -28,10 +28,10 @@ ger_registered_unemployed_monthly <- function(y_axis, caption,
 .graph_specs <- list(
 list(id = "ger_registered_unemployed_monthly", category = "Employment", label = "Germany Registered Unemployed (monthly, total)",
     render = function() {
-        GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+        DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
         render_graph(ger_registered_unemployed_monthly("Arbeitslose (in Mio.)", "Datenquelle: Statistisches Bundesamt (Destatis)",
-            decimal_mark = ",", big_mark = "."), "GER registered unemployed monthly_ger", GER)
+            decimal_mark = ",", big_mark = "."), "GER registered unemployed monthly_de", DE)
         render_graph(ger_registered_unemployed_monthly("Registered Unemployed (in million)", "Data source: Federal statistical office (Destatis)",
             decimal_mark = ".", big_mark = ","), "GER registered unemployed monthly_en", EN)
     })

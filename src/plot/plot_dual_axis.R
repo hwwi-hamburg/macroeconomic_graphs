@@ -1,4 +1,4 @@
-plot_dual_axis <- function(dat, caption,
+plot_dual_axis <- function(dat, source,
                             y_axis_left, y_axis_right,
                             series_left, series_right,
                             decimal_mark = ".", big_mark = ",",
@@ -41,18 +41,18 @@ plot_dual_axis <- function(dat, caption,
     ) +
     ggplot2::scale_x_date(date_breaks = x_breaks, date_labels = "%Y") +
     ggplot2::scale_y_continuous(
-      name   = y_axis_left,
+      name   = wrap_axis_label(y_axis_left),
       limits = c(L_lo, left_max),
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE),
       sec.axis = ggplot2::sec_axis(
         transform = ~ (. - b) / a,
-        name = y_axis_right,
+        name = wrap_axis_label(y_axis_right),
         labels = function(x) format(x, big.mark = big_mark,
                                      decimal.mark = decimal_mark, scientific = FALSE)
       )
     ) +
-    ggplot2::labs(x = "", caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = "", caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(
       legend.position  = "bottom",

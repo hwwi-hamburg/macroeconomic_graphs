@@ -1,4 +1,4 @@
-plot_bar_ranking <- function(dat, caption, x_axis = "",
+plot_bar_ranking <- function(dat, source, x_axis = "",
                               decimal_mark = ".", big_mark = ",",
                               color = blue, year = NULL) {
   dat$geo <- factor(dat$geo, levels = rev(unique(dat$geo)))
@@ -8,6 +8,6 @@ plot_bar_ranking <- function(dat, caption, x_axis = "",
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = x_axis, y = "", caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = x_axis, y = "", caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi()
 }

@@ -29,20 +29,20 @@
 }
 
 #' Real wage index level (rebased, base year = DATA_START_MONTH), Germany
-ger_real_wage_index <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
+ger_real_wage_index <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
   dat <- .ger_real_wage_level_helper() |>
     trim_start_month(DATA_START_MONTH)
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                    decimal_mark = decimal_mark, big_mark = big_mark)
 }
 
 #' Real wage growth (YoY %), Germany
-ger_real_wage_growth <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
+ger_real_wage_growth <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
   dat <- .ger_real_wage_level_helper() |>
     yoy_growth(value_col = "value") |>
     trim_start_month(DATA_START_MONTH) |>
     dplyr::filter(!is.na(value))
-  plot_bar_growth(dat, y_axis = y_axis, caption = caption,
+  plot_bar_growth(dat, y_axis = y_axis, source = source,
                    decimal_mark = decimal_mark)
 }
 
@@ -50,18 +50,18 @@ ger_real_wage_growth <- function(y_axis, caption, decimal_mark = ",", big_mark =
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_real_wage_growth", category = "Prices", label = "GER real wage growth (YoY %)", render = function() {
-    GER <- file.path(OUT_DIR, "Prices graphs/German labeling")
+    DE <- file.path(OUT_DIR, "Prices graphs/German labeling")
     EN <- file.path(OUT_DIR, "Prices graphs/English labeling")
     render_graph(ger_real_wage_growth("Veränderung ggü. Vorjahr in %", "Datenquelle: Statistisches Bundesamt (Destatis)"),
-        "GER real wage growth_ger", GER)
+        "GER real wage growth_de", DE)
     render_graph(ger_real_wage_growth("YoY change in %", "Data source: Federal statistical office (Destatis)",
         decimal_mark = ".", big_mark = ","), "GER real wage growth_en", EN)
 }),
 list(id = "ger_real_wage_index", category = "Prices", label = "GER real wage index (level)", render = function() {
-    GER <- file.path(OUT_DIR, "Prices graphs/German labeling")
+    DE <- file.path(OUT_DIR, "Prices graphs/German labeling")
     EN <- file.path(OUT_DIR, "Prices graphs/English labeling")
-    render_graph(ger_real_wage_index("Index", "Datenquelle: Statistisches Bundesamt (Destatis)"), "GER real wage index_ger",
-        GER)
+    render_graph(ger_real_wage_index("Index", "Datenquelle: Statistisches Bundesamt (Destatis)"), "GER real wage index_de",
+        DE)
     render_graph(ger_real_wage_index("Index", "Data source: Federal statistical office (Destatis)", decimal_mark = ".",
         big_mark = ","), "GER real wage index_en", EN)
 })

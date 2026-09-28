@@ -27,7 +27,7 @@
   )
 }
 
-ger_interest_rate_cpi <- function(caption,
+ger_interest_rate_cpi <- function(source,
                                    label_rate       = "EZB-Einlagenzins",
                                    label_inflation  = "Inflationsrate",
                                    y_axis           = "Zins- und Inflationsrate (in %)",
@@ -43,7 +43,7 @@ ger_interest_rate_cpi <- function(caption,
   plot_timeseries_multi(
     dat,
     y_axis = y_axis,
-    caption = caption,
+    source = source,
     colors = c(blue, rubin),
     decimal_mark = decimal_mark,
     big_mark = big_mark,
@@ -56,13 +56,13 @@ ger_interest_rate_cpi <- function(caption,
 .graph_specs <- list(
 list(id = "ger_interest_rate_cpi", category = "Prices", label = "Germany: ECB Deposit Rate and Inflation Rate",
     render = function() {
-        GER <- file.path(OUT_DIR, "prices graphs/German labeling")
+        DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")
-        render_graph(ger_interest_rate_cpi(caption = "Datenquelle: EZB / FRED, Statistisches Bundesamt (Destatis)",
+        render_graph(ger_interest_rate_cpi(source = "Datenquelle: EZB / FRED, Statistisches Bundesamt (Destatis)",
             label_rate = "EZB-Einlagenzins", label_inflation = "Inflationsrate",
-            y_axis = "Zins- und Inflationsrate (in %)", decimal_mark = ","), "GER ECB rate and inflation_ger",
-            GER)
-        render_graph(ger_interest_rate_cpi(caption = "Data source: ECB / FRED, Federal statistical office (Destatis)",
+            y_axis = "Zins- und Inflationsrate (in %)", decimal_mark = ","), "GER ECB rate and inflation_de",
+            DE)
+        render_graph(ger_interest_rate_cpi(source = "Data source: ECB / FRED, Federal statistical office (Destatis)",
             label_rate = "ECB deposit rate", label_inflation = "Inflation rate",
             y_axis = "Interest and inflation rate (in %)", decimal_mark = ".", big_mark = ","), "GER ECB rate and inflation_en",
             EN)
