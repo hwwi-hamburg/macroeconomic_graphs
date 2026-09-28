@@ -2,7 +2,7 @@
 # Table 13211-0001 (annual). Geographic codes in 1_variable_attribute_code:
 #   DF = Früheres Bundesgebiet (West), DN = Neue Länder (East).
 # If parse fails: unique(raw[["1_variable_attribute_code"]])
-ger_unemployed_west_east <- function(y_axis, caption, labels = NULL,
+ger_unemployed_west_east <- function(y_axis, source, labels = NULL,
                                       decimal_mark = ",", big_mark = ".") {
   raw <- with_cache("genesis_13211-0001",
                     genesis_fetch("13211-0001"))
@@ -21,7 +21,7 @@ ger_unemployed_west_east <- function(y_axis, caption, labels = NULL,
                          scale         = 1 / 1e6) |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   dat <- dplyr::bind_rows(west, east)
-  plot_timeseries_multi(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries_multi(dat, y_axis = y_axis, source = source,
                          labels = labels,
                          colors = c(rubin, blue),
                          decimal_mark = decimal_mark, big_mark = big_mark,

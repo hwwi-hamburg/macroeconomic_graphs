@@ -4,7 +4,7 @@
 # newer vintage becomes available).
 .GDP_STATE_PER_CAPITA_CSV <- file.path("data", "wirtschaftsleistung-bundeslaender-2024.csv")
 
-# The caption year always reflects this file's actual vintage, not today's
+# The source year always reflects this file's actual vintage, not today's
 # date, since the data doesn't move with time the way a live fetch would.
 .gdp_state_per_capita_year <- function(csv_path = .GDP_STATE_PER_CAPITA_CSV) {
   as.integer(sub(".*-([0-9]{4})\\.csv$", "\\1", basename(csv_path)))
@@ -20,7 +20,7 @@
   dat[!is.na(dat$value) & !is.na(dat$geo), ]
 }
 
-ger_nominal_gdp_state_per_capita <- function(y_axis, caption,
+ger_nominal_gdp_state_per_capita <- function(y_axis, source,
                                               decimal_mark = ",", big_mark = ".",
                                               year = .gdp_state_per_capita_year()) {
   dat    <- .read_gdp_state_per_capita()
@@ -34,16 +34,16 @@ ger_nominal_gdp_state_per_capita <- function(y_axis, caption,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = paste0(caption, " ", year)) +
+    ggplot2::labs(x = "", y = y_axis, caption = paste0(source, " ", year)) +
     theme_hwwi() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1))
 }
 
-ger_nominal_gdp_state_per_capita_map <- function(legend_title, caption,
+ger_nominal_gdp_state_per_capita_map <- function(legend_title, source,
                                                   year = .gdp_state_per_capita_year()) {
   dat <- .read_gdp_state_per_capita()
   plot_choropleth_ger(dat, fill_col = "value",
-                      legend_title = legend_title, caption = caption,
+                      legend_title = legend_title, source = source,
                       low = "white", high = rubin, year = year)
 }
 

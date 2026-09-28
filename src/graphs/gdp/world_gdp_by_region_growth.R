@@ -1,4 +1,4 @@
-gdp_world_by_region_growth <- function(y_axis, caption, labels = NULL,
+gdp_world_by_region_growth <- function(y_axis, source, labels = NULL,
                                         decimal_mark = ".", n_years = 3) {
   dat <- with_cache("wdi_NY.GDP.PCAP.KD.ZG_regions",
                     fetch_wdi("NY.GDP.PCAP.KD.ZG", country = REGION_CODES))
@@ -49,7 +49,7 @@ gdp_world_by_region_growth <- function(y_axis, caption, labels = NULL,
       breaks = seq(y_min, y_max, by = 1),
       labels = function(x) paste0(format(x, decimal.mark = decimal_mark, scientific = FALSE), "%")
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = caption) +
+    ggplot2::labs(x = "", y = y_axis, caption = source) +
     theme_hwwi() +
     ggplot2::theme(
       legend.position = "bottom",

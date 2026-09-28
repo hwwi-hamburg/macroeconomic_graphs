@@ -3,7 +3,7 @@
 #   ERW113 = Arbeitslosenquote abhängiger ziviler Erwerbspersonen (dependent civilian)
 # If variable codes are wrong, inspect:
 #   unique(with_cache("genesis_13211-0001_raw", genesis_fetch("13211-0001"))$value_variable_code)
-ger_unemployment_civilian <- function(y_axis, caption,
+ger_unemployment_civilian <- function(y_axis, source,
                                        label_all, label_dep,
                                        decimal_mark = ",") {
   raw <- with_cache("genesis_13211-0001",
@@ -21,7 +21,7 @@ ger_unemployment_civilian <- function(y_axis, caption,
                               geo           = "DEU") |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   dat <- dplyr::bind_rows(rate_all, rate_dep)
-  plot_timeseries_multi(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries_multi(dat, y_axis = y_axis, source = source,
                          colors = c(rubin, blue),
                          decimal_mark = decimal_mark,
                          x_breaks = "2 years")
@@ -34,10 +34,10 @@ list(id = "ger_unemployment_civilian", category = "Employment", label = "Germany
     render = function() {
         GER <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
-        render_graph(ger_unemployment_civilian(y_axis = "Arbeitslosenquote in %", caption = "Datenquelle: Statistisches Bundesamt (Destatis)",
+        render_graph(ger_unemployment_civilian(y_axis = "Arbeitslosenquote in %", source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             label_all = "Arbeitslosenquote aller ziv. Erwerbspersonen", label_dep = "Arbeitslosenquote abh. ziv. Erwerbspersonen",
             decimal_mark = ","), "GER unemployment rate civilian and registered_ger", GER)
-        render_graph(ger_unemployment_civilian(y_axis = "Unemployment rate in %", caption = "Data source: Federal statistical office (Destatis)",
+        render_graph(ger_unemployment_civilian(y_axis = "Unemployment rate in %", source = "Data source: Federal statistical office (Destatis)",
             label_all = "Unemployment as percent of civilian labour force", label_dep = "Rate of registered unemployed",
             decimal_mark = "."), "GER unemployment rate civilian and registered_en", EN)
     })

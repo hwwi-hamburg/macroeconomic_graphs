@@ -1,4 +1,4 @@
-.hh_ger_cpi_monthly <- function(caption,
+.hh_ger_cpi_monthly <- function(source,
                                 label_ger = "Deutschland",
                                 label_hh = "Hamburg",
                                 y_axis = "Verbraucherpreisindex (2020=100)",
@@ -38,7 +38,7 @@
   plot_timeseries_multi(
     dat = dat,
     y_axis = y_axis,
-    caption = "Datenquelle: Statistisches Bundesamt",
+    source = "Datenquelle: Statistisches Bundesamt",
     labels = NULL,
     decimal_mark = ",",
     big_mark = ".",
@@ -61,11 +61,11 @@
       render = function() {
         GER <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")
-        render_graph(.hh_ger_cpi_monthly(caption = "Datenquelle: Statistisches Bundesamt",
+        render_graph(.hh_ger_cpi_monthly(source = "Datenquelle: Statistisches Bundesamt",
                                          label_ger = "Deutschland", label_hh = "Hamburg",
                                          y_axis = "Verbraucherpreisindex", decimal_mark = ",", big_mark = "."),
                      "HH GER Consumer Price Index monthly", GER)
-        render_graph(.hh_ger_cpi_monthly(caption = "Data source: Federal statistical office (Destatis)",
+        render_graph(.hh_ger_cpi_monthly(source = "Data source: Federal statistical office (Destatis)",
                                          label_ger = "Germany", label_hh = "Hamburg",
                                          y_axis = "Consumer Price Index", decimal_mark = ".", big_mark = ","),
                      "HH GER Consumer Price Index", EN)

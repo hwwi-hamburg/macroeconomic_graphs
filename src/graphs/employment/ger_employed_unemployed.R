@@ -2,7 +2,7 @@
 # Sources: Erwerbstätige from 81000-0015 (ETR/VGR, Inlandskonzept);
 #          Arbeitslose from 13211-0001 (BA registered, Insgesamt).
 # The complete 1991 archives are reused; displayed history follows DATA_START_MONTH.
-ger_employed_unemployed <- function(caption,
+ger_employed_unemployed <- function(source,
                                      label_employed   = "Erwerbstätige",
                                      label_unemployed = "Arbeitslose",
                                      y_axis_left      = "Erwerbstätige (in Mio.)",
@@ -27,7 +27,7 @@ ger_employed_unemployed <- function(caption,
                                scale         = 1 / 1e6) |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   dat <- dplyr::bind_rows(employed, unemployed)
-  plot_dual_axis(dat, caption = caption,
+  plot_dual_axis(dat, source = source,
                   y_axis_left  = y_axis_left,
                   y_axis_right = y_axis_right,
                   series_left  = label_employed,
@@ -44,11 +44,11 @@ list(id = "ger_employed_unemployed", category = "Employment", label = "Germany E
     render = function() {
         GER <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
-        render_graph(ger_employed_unemployed(caption = "Datenquelle: Statistisches Bundesamt (Destatis)",
+        render_graph(ger_employed_unemployed(source = "Datenquelle: Statistisches Bundesamt (Destatis)",
             label_employed = "Erwerbstätige", label_unemployed = "Erwerbslose", y_axis_left = "Erwerbstätige (in Mio.)",
             y_axis_right = "Erwerbslose (in Mio.)", decimal_mark = ",", big_mark = "."), "GER employed unemployed_ger",
             GER)
-        render_graph(ger_employed_unemployed(caption = "Data source: Federal statistical office (Destatis)",
+        render_graph(ger_employed_unemployed(source = "Data source: Federal statistical office (Destatis)",
             label_employed = "Employed", label_unemployed = "Unemployed", y_axis_left = "Employed (in million)",
             y_axis_right = "Unemployed (in million)", decimal_mark = ".", big_mark = ","), "GER employed unemployed_en",
             EN)

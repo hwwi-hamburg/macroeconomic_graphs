@@ -1,4 +1,4 @@
-plot_bar_deviation <- function(dat, caption,
+plot_bar_deviation <- function(dat, source,
                                 x_axis          = "",
                                 decimal_mark    = ".",
                                 big_mark        = ",",
@@ -24,7 +24,7 @@ plot_bar_deviation <- function(dat, caption,
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = x_axis, y = "", caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = x_axis, y = "", caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom")
 }

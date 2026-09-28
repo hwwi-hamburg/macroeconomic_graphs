@@ -42,7 +42,7 @@
   as.data.frame(cols, stringsAsFactors = FALSE)
 }
 
-ger_govt_bond_yields <- function(y_axis, caption, decimal_mark = ",",
+ger_govt_bond_yields <- function(y_axis, source, decimal_mark = ",",
                                   country_names = NULL) {
   start <- as.Date(paste0(DATA_START_MONTH, "-01"))
 
@@ -88,7 +88,7 @@ ger_govt_bond_yields <- function(y_axis, caption, decimal_mark = ",",
     ggplot2::scale_y_continuous(
       labels = function(x) format(x, decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = caption) +
+    ggplot2::labs(x = "", y = y_axis, caption = source) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom") +
     ggplot2::guides(color = ggplot2::guide_legend(nrow = 3))
@@ -111,10 +111,10 @@ list(id = "ger_govt_bond_yields", category = "Prices", label = "Long-Term Govern
             HR = "Croatia", HU = "Hungary", IE = "Ireland", IT = "Italy", LT = "Lithuania", LU = "Luxembourg",
             LV = "Latvia", MT = "Malta", NL = "Netherlands", PL = "Poland", PT = "Portugal", RO = "Romania",
             SE = "Sweden", SI = "Slovenia", SK = "Slovakia", UK = "United Kingdom")
-        render_graph(ger_govt_bond_yields(y_axis = "Rendite (%)", caption = "Datenquelle: Eurostat",
+        render_graph(ger_govt_bond_yields(y_axis = "Rendite (%)", source = "Datenquelle: Eurostat",
             decimal_mark = ",", country_names = cn_ger), "Long term returns of top bottom 5 government bonds_ger",
             GER)
-        render_graph(ger_govt_bond_yields(y_axis = "Yield (%)", caption = "Data source: Eurostat", decimal_mark = ".",
+        render_graph(ger_govt_bond_yields(y_axis = "Yield (%)", source = "Data source: Eurostat", decimal_mark = ".",
             country_names = cn_en), "Long term returns of top bottom 5 government bonds_en", EN)
     })
 )

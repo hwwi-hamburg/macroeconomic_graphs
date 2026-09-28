@@ -1,7 +1,7 @@
 # Nominal vs real export/import development (annual bar, two series).
 # Nominal from GENESIS 51000-0001; real from 81000-0027.
 
-.ger_trade_nominal_real_bar <- function(nom_var, real_var, y_axis, caption, labels, decimal_mark) {
+.ger_trade_nominal_real_bar <- function(nom_var, real_var, y_axis, source, labels, decimal_mark) {
   raw_nom <- with_cache("genesis_51000-0001",
                          genesis_fetch("51000-0001"))
   nom <- parse_genesis(raw_nom, value_var = nom_var,
@@ -15,17 +15,17 @@
 
   dat <- dplyr::bind_rows(nom, real) |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
-  plot_bar(dat, y_axis = y_axis, caption = caption, labels = labels,
+  plot_bar(dat, y_axis = y_axis, source = source, labels = labels,
             decimal_mark = decimal_mark)
 }
 
-ger_export_development_nominal_real <- function(y_axis, caption, labels = NULL,
+ger_export_development_nominal_real <- function(y_axis, source, labels = NULL,
                                                    decimal_mark = ",")
-  .ger_trade_nominal_real_bar("WERTA", "EXP001", y_axis, caption, labels, decimal_mark)
+  .ger_trade_nominal_real_bar("WERTA", "EXP001", y_axis, source, labels, decimal_mark)
 
-ger_import_development_nominal_real <- function(y_axis, caption, labels = NULL,
+ger_import_development_nominal_real <- function(y_axis, source, labels = NULL,
                                                    decimal_mark = ",")
-  .ger_trade_nominal_real_bar("WERTE", "IMP001", y_axis, caption, labels, decimal_mark)
+  .ger_trade_nominal_real_bar("WERTE", "IMP001", y_axis, source, labels, decimal_mark)
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.

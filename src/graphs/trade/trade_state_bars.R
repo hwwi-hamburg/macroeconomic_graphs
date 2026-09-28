@@ -21,56 +21,56 @@
     )
 }
 
-trade_export_hamburg <- function(y_axis, caption, labels,
+trade_export_hamburg <- function(y_axis, source, labels,
                                   decimal_mark = ",", y_limits = c(0, 90)) {
   dat <- .hh_trade_annual_aircraft() |>
     dplyr::filter(series %in% c("Export", "ExportNoAir"))
-  plot_bar(dat, y_axis = y_axis, caption = caption, labels = labels,
+  plot_bar(dat, y_axis = y_axis, source = source, labels = labels,
             decimal_mark = decimal_mark, y_limits = y_limits)
 }
 
-trade_import_hamburg <- function(y_axis, caption, labels,
+trade_import_hamburg <- function(y_axis, source, labels,
                                   decimal_mark = ",", y_limits = NULL) {
   dat <- .hh_trade_annual_aircraft() |>
     dplyr::filter(series %in% c("Import", "ImportNoAir"))
-  plot_bar(dat, y_axis = y_axis, caption = caption, labels = labels,
+  plot_bar(dat, y_axis = y_axis, source = source, labels = labels,
             decimal_mark = decimal_mark, y_limits = y_limits)
 }
 
-trade_export_lowersaxony <- function(y_axis, caption, decimal_mark = ",", y_limits = NULL) {
+trade_export_lowersaxony <- function(y_axis, source, decimal_mark = ",", y_limits = NULL) {
   dat <- with_cache("genesis_ls_trade_gp19", fetch_ls_trade()) |>
     dplyr::filter(series == "Export")
-  plot_bar(dat, y_axis = y_axis, caption = caption,
+  plot_bar(dat, y_axis = y_axis, source = source,
             decimal_mark = decimal_mark, y_limits = y_limits)
 }
 
-trade_import_lowersaxony <- function(y_axis, caption, decimal_mark = ",", y_limits = NULL) {
+trade_import_lowersaxony <- function(y_axis, source, decimal_mark = ",", y_limits = NULL) {
   dat <- with_cache("genesis_ls_trade_gp19", fetch_ls_trade()) |>
     dplyr::filter(series == "Import")
-  plot_bar(dat, y_axis = y_axis, caption = caption,
+  plot_bar(dat, y_axis = y_axis, source = source,
             decimal_mark = decimal_mark, y_limits = y_limits)
 }
 
-trade_export_germany <- function(y_axis, caption, decimal_mark = ",", y_limits = NULL) {
+trade_export_germany <- function(y_axis, source, decimal_mark = ",", y_limits = NULL) {
   raw <- with_cache("genesis_51000-0001",
                     genesis_fetch("51000-0001"))
   dat <- parse_genesis(raw, value_var = "WERTA",
                         series_name = "Export", unit = "Mrd. EUR", geo = "DEU",
                         scale = 1 / 1e6) |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
-  plot_bar(dat, y_axis = y_axis, caption = caption,
+  plot_bar(dat, y_axis = y_axis, source = source,
             decimal_mark = decimal_mark, y_limits = y_limits,
             colors = c(alpha(blue, 0.9)))
 }
 
-trade_import_germany <- function(y_axis, caption, decimal_mark = ",", y_limits = NULL) {
+trade_import_germany <- function(y_axis, source, decimal_mark = ",", y_limits = NULL) {
   raw <- with_cache("genesis_51000-0001",
                     genesis_fetch("51000-0001"))
   dat <- parse_genesis(raw, value_var = "WERTE",
                         series_name = "Import", unit = "Mrd. EUR", geo = "DEU",
                         scale = 1 / 1e6) |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
-  plot_bar(dat, y_axis = y_axis, caption = caption,
+  plot_bar(dat, y_axis = y_axis, source = source,
             decimal_mark = decimal_mark, y_limits = y_limits,
             colors = c(alpha(rubin, 0.9)))
 }

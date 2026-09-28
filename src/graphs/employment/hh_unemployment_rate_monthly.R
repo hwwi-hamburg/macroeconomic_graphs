@@ -1,4 +1,4 @@
-.hh_unemployment_monthly <- function(caption,
+.hh_unemployment_monthly <- function(source,
                                          label_ger = "Deutschland",
                                          label_hh = "Hamburg",
                                          y_axis = "Arbeitslosenquote",
@@ -23,7 +23,7 @@
   plot_timeseries(
     hh_dat,
     y_axis,
-    caption = "Datenquelle: Statistisches Bundesamt",
+    source = "Datenquelle: Statistisches Bundesamt",
     decimal_mark = ".",
     big_mark = ",",
     color = hwwi_blue,
@@ -43,11 +43,11 @@
       render = function() {
         GER <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")
-        render_graph(.hh_unemployment_monthly(caption = "Datenquelle: Statistisches Bundesamt",
+        render_graph(.hh_unemployment_monthly(source = "Datenquelle: Statistisches Bundesamt",
                                               label_ger = "Deutschland", y_axis = "Arbeitslosenquote",
                                               decimal_mark = ",", big_mark = "."),
                      "HH unemployment rate monthly", GER)
-        render_graph(.hh_unemployment_monthly(caption = "Data source: Federal statistical office (Destatis)",
+        render_graph(.hh_unemployment_monthly(source = "Data source: Federal statistical office (Destatis)",
                                               label_ger = "Germany", y_axis = "Unemployment rate", decimal_mark = ".",
                                               big_mark = ","),
                      "HH unemployment rate monthly", EN)

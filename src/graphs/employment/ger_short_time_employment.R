@@ -1,7 +1,7 @@
 # Dual-axis: short-time workers (Kurzarbeiter, left) and unemployment rate (right).
 # Table 13211-0002. ERW064 = Kurzarbeiter (Anzahl → scale 1/1000 → Tsd.),
 # ERW112 = Arbeitslosenquote (%). Both filtered to 2_variable_attribute_label = "Insgesamt".
-ger_short_time_employment <- function(caption,
+ger_short_time_employment <- function(source,
                                        label_kurzarbeit  = "Kurzarbeiter",
                                        label_unemployment = "Arbeitslosenquote",
                                        y_axis_left       = "Kurzarbeiter (in Tsd.)",
@@ -25,7 +25,7 @@ ger_short_time_employment <- function(caption,
     dplyr::arrange(date) |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   dat <- dplyr::bind_rows(kurzarbeit, unemployment)
-  plot_dual_axis(dat, caption = caption,
+  plot_dual_axis(dat, source = source,
                   y_axis_left  = y_axis_left,
                   y_axis_right = y_axis_right,
                   series_left  = label_kurzarbeit,

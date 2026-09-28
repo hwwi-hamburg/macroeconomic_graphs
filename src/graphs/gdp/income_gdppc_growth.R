@@ -1,15 +1,15 @@
-.wdi_gdppc_growth <- function(country, y_axis, caption, decimal_mark = ".") {
+.wdi_gdppc_growth <- function(country, y_axis, source, decimal_mark = ".") {
   dat <- with_cache(paste0("wdi_NY.GDP.PCAP.KD.ZG_", country),
                     fetch_wdi("NY.GDP.PCAP.KD.ZG", country = country)) |>
     dplyr::filter(!is.na(value)) |>
     dplyr::arrange(date)
-  plot_bar_growth(dat, y_axis = y_axis, caption = caption, decimal_mark = decimal_mark)
+  plot_bar_growth(dat, y_axis = y_axis, source = source, decimal_mark = decimal_mark)
 }
 
-gdp_high_income_growth   <- function(y_axis, caption, decimal_mark = ".") .wdi_gdppc_growth("HIC", y_axis, caption, decimal_mark)
-gdp_upper_middle_growth  <- function(y_axis, caption, decimal_mark = ".") .wdi_gdppc_growth("UMC", y_axis, caption, decimal_mark)
-gdp_lower_middle_growth  <- function(y_axis, caption, decimal_mark = ".") .wdi_gdppc_growth("LMC", y_axis, caption, decimal_mark)
-gdp_low_income_growth    <- function(y_axis, caption, decimal_mark = ".") .wdi_gdppc_growth("LIC", y_axis, caption, decimal_mark)
+gdp_high_income_growth   <- function(y_axis, source, decimal_mark = ".") .wdi_gdppc_growth("HIC", y_axis, source, decimal_mark)
+gdp_upper_middle_growth  <- function(y_axis, source, decimal_mark = ".") .wdi_gdppc_growth("UMC", y_axis, source, decimal_mark)
+gdp_lower_middle_growth  <- function(y_axis, source, decimal_mark = ".") .wdi_gdppc_growth("LMC", y_axis, source, decimal_mark)
+gdp_low_income_growth    <- function(y_axis, source, decimal_mark = ".") .wdi_gdppc_growth("LIC", y_axis, source, decimal_mark)
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.

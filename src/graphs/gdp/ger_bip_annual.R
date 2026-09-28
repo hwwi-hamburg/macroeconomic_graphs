@@ -2,7 +2,7 @@
 # VGRPKM = chain index (2020=100); VGRPVK = chain-linked volumes (Mrd. EUR);
 # VGRJPM = nominal current prices (Mrd. EUR).
 
-.ger_bip_annual <- function(value_var, filter_code, series_name, y_axis, caption,
+.ger_bip_annual <- function(value_var, filter_code, series_name, y_axis, source,
                               decimal_mark, big_mark = ",") {
   raw <- with_cache("genesis_81000-0001",
                     genesis_fetch("81000-0001"))
@@ -11,21 +11,21 @@
                         class_filters = list("2_variable_attribute_code" = filter_code),
                         series_name   = series_name,
                         geo           = "DEU")
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                   decimal_mark = decimal_mark, big_mark = big_mark)
 }
 
-ger_bip_annual_development <- function(y_axis, caption, decimal_mark = ",")
-  .ger_bip_annual("VGR014", "VGRPKM", "gdp_level_annual", y_axis, caption, decimal_mark)
+ger_bip_annual_development <- function(y_axis, source, decimal_mark = ",")
+  .ger_bip_annual("VGR014", "VGRPKM", "gdp_level_annual", y_axis, source, decimal_mark)
 
-ger_bip_annual_growth <- function(y_axis, caption, decimal_mark = ",")
-  .ger_bip_annual("BIP005", "VGRPKM", "gdp_growth_annual", y_axis, caption, decimal_mark)
+ger_bip_annual_growth <- function(y_axis, source, decimal_mark = ",")
+  .ger_bip_annual("BIP005", "VGRPKM", "gdp_growth_annual", y_axis, source, decimal_mark)
 
-ger_bip_annual_volume <- function(y_axis, caption, decimal_mark = ",", big_mark = ".")
-  .ger_bip_annual("VGR014", "VGRPVK", "gdp_annual_volume", y_axis, caption, decimal_mark, big_mark)
+ger_bip_annual_volume <- function(y_axis, source, decimal_mark = ",", big_mark = ".")
+  .ger_bip_annual("VGR014", "VGRPVK", "gdp_annual_volume", y_axis, source, decimal_mark, big_mark)
 
-ger_nominal_gdp <- function(y_axis, caption, decimal_mark = ",", big_mark = ".")
-  .ger_bip_annual("VGR014", "VGRJPM", "gdp_nominal_annual", y_axis, caption, decimal_mark, big_mark)
+ger_nominal_gdp <- function(y_axis, source, decimal_mark = ",", big_mark = ".")
+  .ger_bip_annual("VGR014", "VGRJPM", "gdp_nominal_annual", y_axis, source, decimal_mark, big_mark)
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.

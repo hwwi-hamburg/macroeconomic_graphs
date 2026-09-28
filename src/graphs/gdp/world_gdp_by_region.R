@@ -1,4 +1,4 @@
-gdp_world_by_region <- function(y_axis, caption, labels,
+gdp_world_by_region <- function(y_axis, source, labels,
                                   decimal_mark = ".", big_mark = ",") {
   dat <- with_cache("wdi_NY.GDP.PCAP.PP.KD_regions",
                     fetch_wdi("NY.GDP.PCAP.PP.KD", country = REGION_CODES))
@@ -6,7 +6,7 @@ gdp_world_by_region <- function(y_axis, caption, labels,
   dat <- dat |>
     dplyr::filter(!is.na(value)) |>
     dplyr::mutate(series = dplyr::coalesce(region_labels[geo], series))
-  plot_timeseries_multi(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries_multi(dat, y_axis = y_axis, source = source,
                         colors = c(light_blue, blue, dark_blue,
                                    rubin, dark_rubin, grey, dark_grey),
                         decimal_mark = decimal_mark, big_mark = big_mark)

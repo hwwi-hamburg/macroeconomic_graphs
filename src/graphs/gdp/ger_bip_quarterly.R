@@ -3,7 +3,7 @@
 # VGRPKM = chain index (2020=100); VGRPVK = chain-linked volumes (Mrd. EUR).
 
 .ger_bip_quarterly <- function(value_var, sa_code, filter_code, series_name,
-                                 y_axis, caption, decimal_mark, big_mark = ",") {
+                                 y_axis, source, decimal_mark, big_mark = ",") {
   raw <- with_cache("genesis_81000-0002",
                     genesis_fetch("81000-0002"))
   dat <- parse_genesis(raw,
@@ -14,26 +14,26 @@
                         series_name   = series_name,
                         geo           = "DEU") |>
     trim_start_month(DATA_START_MONTH)
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                   decimal_mark = decimal_mark, big_mark = big_mark,
                   x_breaks = "2 years")
 }
 
-ger_bip_quarterly_development <- function(y_axis, caption, decimal_mark = ",")
+ger_bip_quarterly_development <- function(y_axis, source, decimal_mark = ",")
   .ger_bip_quarterly("VGR014", "X13JDKSB", "VGRPKM", "gdp_quarterly_level",
-                       y_axis, caption, decimal_mark)
+                       y_axis, source, decimal_mark)
 
-ger_bip_quarterly_growth <- function(y_axis, caption, decimal_mark = ",")
+ger_bip_quarterly_growth <- function(y_axis, source, decimal_mark = ",")
   .ger_bip_quarterly("BIP005", "X13JDKSB", "VGRPKM", "gdp_quarterly_growth",
-                       y_axis, caption, decimal_mark)
+                       y_axis, source, decimal_mark)
 
-ger_bip_quarterly_volume <- function(y_axis, caption, decimal_mark = ",", big_mark = ".")
+ger_bip_quarterly_volume <- function(y_axis, source, decimal_mark = ",", big_mark = ".")
   .ger_bip_quarterly("VGR014", "X13JDKSB", "VGRPVK", "gdp_quarterly_volume",
-                       y_axis, caption, decimal_mark, big_mark)
+                       y_axis, source, decimal_mark, big_mark)
 
-ger_bip_quarterly_volume_orig <- function(y_axis, caption, decimal_mark = ",", big_mark = ".")
+ger_bip_quarterly_volume_orig <- function(y_axis, source, decimal_mark = ",", big_mark = ".")
   .ger_bip_quarterly("VGR014", "WERTORG", "VGRPVK", "gdp_quarterly_volume_orig",
-                       y_axis, caption, decimal_mark, big_mark)
+                       y_axis, source, decimal_mark, big_mark)
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.

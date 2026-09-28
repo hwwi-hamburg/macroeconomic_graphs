@@ -38,9 +38,9 @@
 #' Companion chart to ger_nominal_gdp_state() / ger_nominal_gdp_state_per_capita():
 #' those show levels for the latest year; this shows each state's YoY nominal
 #' growth rate for the same year, as horizontal ranking bars.
-ger_nominal_gdp_state_growth <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
+ger_nominal_gdp_state_growth <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
   dat <- .ger_gdp_state_growth_helper()
-  plot_bar_ranking(dat, caption = caption, x_axis = y_axis,
+  plot_bar_ranking(dat, source = source, x_axis = y_axis,
                     decimal_mark = decimal_mark, big_mark = big_mark)
 }
 

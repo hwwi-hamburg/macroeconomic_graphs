@@ -1,4 +1,4 @@
-ger_unemployment_rate <- function(y_axis, caption, decimal_mark = ",") {
+ger_unemployment_rate <- function(y_axis, source, decimal_mark = ",") {
   raw <- with_cache("genesis_13211-0002",
                     genesis_fetch("13211-0002"))
   dat <- parse_genesis(raw,
@@ -7,7 +7,7 @@ ger_unemployment_rate <- function(y_axis, caption, decimal_mark = ",") {
                         series_name   = "unemployment_rate",
                         geo           = "DEU") |>
     dplyr::arrange(date)
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                   decimal_mark = decimal_mark, x_breaks = "2 years")
 }
 

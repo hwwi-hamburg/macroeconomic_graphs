@@ -48,7 +48,7 @@ Just have a look at the code to get an idea of the structure of a graph file.
 
 ```r
 # Wrap the plot logic in a function
-ger_bip_annual_growth <- function(y_axis, caption, decimal_mark = ",") {
+ger_bip_annual_growth <- function(y_axis, source, decimal_mark = ",") {
   # 1. Fetch the raw data (always the entire available history — see Step 3)
   raw <- with_cache("genesis_81000-0001", genesis_fetch("81000-0001"))
 
@@ -62,7 +62,7 @@ ger_bip_annual_growth <- function(y_axis, caption, decimal_mark = ",") {
   )
 
   # 3. Build the chart with a plot helper
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                   decimal_mark = decimal_mark, big_mark = ".")
 }
 
@@ -348,13 +348,13 @@ When a graph needs lagged growth calculations, compute the lag on the full fetch
 
 ## 5. Pick a plot builder
 
-All builders are located in `src/plot/` and append the current year to `caption`. Most apply `theme_hwwi()` automatically; `plot_pie()` uses `ggplot2::theme_void()` with its own caption and margin styling.
+All builders are located in `src/plot/` and append the current year to `source`. Most apply `theme_hwwi()` automatically; `plot_pie()` uses `ggplot2::theme_void()` with its own caption and margin styling.
 
 #### `plot_timeseries()`
 
 ```r
 plot_timeseries(
-  dat, y_axis, caption,
+  dat, y_axis, source,
   decimal_mark = ".", big_mark = ",",
   color = blue, x_breaks = "5 years",
   y_limits = NULL, y_breaks = ggplot2::waiver(), linewidth = 1.8
@@ -374,7 +374,7 @@ Parameters:
 
 - `dat`: Data frame containing `date` and `value`.
 - `y_axis`: Y-axis title.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `decimal_mark`: Decimal separator used in value labels.
 - `big_mark`: Thousands separator used in value labels.
 - `color`: Line color.
@@ -389,7 +389,7 @@ An example can be found [here](src/graphs/employment/ger_employed_seasonal.R).
 
 ```r
 plot_timeseries_multi(
-  dat, y_axis, caption, labels = NULL,
+  dat, y_axis, source, labels = NULL,
   decimal_mark = ".", big_mark = ",",
   colors = hwwi_palette, x_breaks = "5 years",
   y_limits = NULL, linewidth = 1.8
@@ -412,7 +412,7 @@ Parameters:
 
 - `dat`: Data frame containing `date`, `value`, and `series`.
 - `y_axis`: Y-axis title.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `labels`: Optional legend labels in series order.
 - `decimal_mark`: Decimal separator used in value labels.
 - `big_mark`: Thousands separator used in value labels.
@@ -427,7 +427,7 @@ An example can be found [here](src/graphs/employment/ger_unemployed_west_east.R)
 
 ```r
 plot_bar_date(
-  dat, y_axis, caption, labels = NULL,
+  dat, y_axis, source, labels = NULL,
   decimal_mark = ".", big_mark = ",",
   colors = c(scales::alpha(blue, 0.6), rubin),
   x_breaks = "2 years", y_limits = NULL
@@ -448,7 +448,7 @@ Parameters:
 
 - `dat`: Data frame containing `date`, `value`, and `series`.
 - `y_axis`: Y-axis title.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `labels`: Optional legend labels in series order.
 - `decimal_mark`: Decimal separator used in value labels.
 - `big_mark`: Thousands separator used in value labels.
@@ -462,7 +462,7 @@ An example can be found [here](src/graphs/trade/hh_trade_monthly.R).
 
 ```r
 plot_bar_growth(
-  dat, y_axis, caption,
+  dat, y_axis, source,
   decimal_mark = ".", color = blue, x_breaks = "2 years"
 )
 ```
@@ -480,7 +480,7 @@ Parameters:
 
 - `dat`: Data frame containing `date` and percentage `value`.
 - `y_axis`: Y-axis title.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `decimal_mark`: Decimal separator used in percentage labels.
 - `color`: Bar color.
 - `x_breaks`: Date-break interval.
@@ -491,7 +491,7 @@ An example can be found [here](src/graphs/gdp/income_gdppc_growth.R).
 
 ```r
 plot_bar(
-  dat, y_axis, caption, labels = NULL,
+  dat, y_axis, source, labels = NULL,
   decimal_mark = ".",
   colors = c(alpha(blue, 0.9), alpha(rubin, 0.9)),
   y_limits = NULL, position = "dodge"
@@ -512,7 +512,7 @@ Parameters:
 
 - `dat`: Data frame containing `date`, `value`, and `series`.
 - `y_axis`: Y-axis title.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `labels`: Optional legend labels in group order.
 - `decimal_mark`: Decimal separator used in value labels.
 - `colors`: Fill colors in group order.
@@ -525,7 +525,7 @@ An example can be found [here](src/graphs/trade/ger_export_development_nominal_r
 
 ```r
 plot_bar_deviation(
-  dat, caption,
+  dat, source,
   x_axis = "",
   decimal_mark = ".", big_mark = ",",
   positive_label = "Above average", negative_label = "Below average",
@@ -545,7 +545,7 @@ The standard `date`, `unit`, and `geo` fields are not used by this helper.
 Parameters:
 
 - `dat`: Standard data tibble containing `series` and `value`.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `x_axis`: Numeric-axis title.
 - `decimal_mark`: Decimal separator used in value labels.
 - `big_mark`: Thousands separator used in value labels.
@@ -559,7 +559,7 @@ An example can be found [here](src/graphs/trade/trade_deviation.R).
 
 ```r
 plot_bar_ranking(
-  dat, caption,
+  dat, source,
   x_axis = "",
   decimal_mark = ".", big_mark = ",", color = blue
 )
@@ -577,7 +577,7 @@ The standard `date`, `series`, and `unit` fields are not used by this helper.
 Parameters:
 
 - `dat`: Standard data tibble containing `geo` and `value`, ordered as the bars should appear in the ranking.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `x_axis`: Numeric-axis title.
 - `decimal_mark`: Decimal separator used in value labels.
 - `big_mark`: Thousands separator used in value labels.
@@ -589,7 +589,7 @@ An example can be found [here](src/graphs/gdp/ger_nominal_gdp_state_growth.R).
 
 ```r
 plot_dual_axis(
-  dat, caption,
+  dat, source,
   y_axis_left, y_axis_right, series_left, series_right,
   decimal_mark = ".", big_mark = ",",
   colors = c(blue, rubin), x_breaks = "5 years",
@@ -610,7 +610,7 @@ The standard `unit` and `geo` fields are not required. Axis units are supplied t
 Parameters:
 
 - `dat`: Data frame containing `date`, `value`, and `series`.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `y_axis_left`: Left-axis title.
 - `y_axis_right`: Right-axis title.
 - `series_left`: Value in `series` assigned to the left axis.
@@ -628,7 +628,7 @@ An example can be found [here](src/graphs/employment/ger_employed_unemployed.R).
 
 ```r
 plot_pie(
-  dat, caption = "", big_mark = ".", decimal_mark = ",", colors = NULL,
+  dat, source = "", big_mark = ".", decimal_mark = ",", colors = NULL,
   n_inside = 1, inside_x = 1.8, text_size = 3.1,
   start_angle = pi / 5, x_limit = 5.2,
   plot_margin = ggplot2::margin(-70, 200, -20, -20)
@@ -647,7 +647,7 @@ The standard `date`, `unit`, and `geo` fields are not used by this helper.
 Parameters:
 
 - `dat`: Standard data tibble containing `series` and `value`.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `big_mark`: Thousands separator used in value labels.
 - `decimal_mark`: Decimal separator used in percentage labels.
 - `colors`: Optional vector of slice colors; the HWWI palette is generated when omitted.
@@ -664,7 +664,7 @@ An example can be found [here](src/graphs/trade/trade_state_pies.R).
 
 ```r
 plot_choropleth_world(
-  dat, fill_col = "value", legend_title = "", caption = "",
+  dat, fill_col = "value", legend_title = "", source = "",
   low = "white", high = blue,
   xlim = c(-179, 179), ylim = c(-56, 85)
 )
@@ -684,7 +684,7 @@ Parameters:
 - `dat`: Data frame whose `geo` column contains ISO3C country codes.
 - `fill_col`: Name of the numeric fill column.
 - `legend_title`: Fill-legend title.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `low`: Color used at the low end of the scale.
 - `high`: Color used at the high end of the scale.
 - `xlim`: Longitude limits.
@@ -696,7 +696,7 @@ Examples can be found [here](src/graphs/trade/trade_country_choropleths.R).
 
 ```r
 plot_choropleth_world_div(
-  dat, fill_col = "value", legend_title = "", caption = "",
+  dat, fill_col = "value", legend_title = "", source = "",
   xlim = c(-179, 179), ylim = c(-56, 85)
 )
 ```
@@ -715,7 +715,7 @@ Parameters:
 - `dat`: Data frame whose `geo` column contains ISO3C country codes.
 - `fill_col`: Name of the numeric fill column.
 - `legend_title`: Fill-legend title.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `xlim`: Longitude limits.
 - `ylim`: Latitude limits.
 
@@ -725,7 +725,7 @@ An example can be found [here](src/graphs/trade/trade_deviation.R).
 
 ```r
 plot_choropleth_ger(
-  dat, fill_col = "value", legend_title = "", caption = "",
+  dat, fill_col = "value", legend_title = "", source = "",
   low = rubin, high = dark_rubin
 )
 ```
@@ -744,7 +744,7 @@ Parameters:
 - `dat`: Data frame whose `geo` column contains state names matching the map data.
 - `fill_col`: Name of the numeric fill column.
 - `legend_title`: Fill-legend title.
-- `caption`: Source caption.
+- `source`: Source caption.
 - `low`: Color used at the low end of the scale.
 - `high`: Color used at the high end of the scale.
 
@@ -755,15 +755,15 @@ An example can be found [here](src/graphs/gdp/ger_nominal_gdp_state_per_capita.R
 ## 6. Write the graph spec function
 
 The final graph is written as a function. 
-Add a function under `src/graphs/<category>/` (`gdp/`, `employment/`, `prices/`, or `trade/` — reuse an existing file if your graph is a close relative of what's already there, e.g. shares a cached raw fetch). The function should take `y_axis`/`caption` (or whatever labels the plot needs) plus `decimal_mark`/`big_mark` as arguments, defaulting to German formatting (`decimal_mark = ","`, `big_mark = "."`) since that's the primary audience — the English call overrides them:
+Add a function under `src/graphs/<category>/` (`gdp/`, `employment/`, `prices/`, or `trade/` — reuse an existing file if your graph is a close relative of what's already there, e.g. shares a cached raw fetch). The function should take `y_axis`/`source` (or whatever labels the plot needs) plus `decimal_mark`/`big_mark` as arguments, defaulting to German formatting (`decimal_mark = ","`, `big_mark = "."`) since that's the primary audience — the English call overrides them:
 
 ```r
 # src/graphs/gdp/my_new_graph.R
-my_new_graph <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
+my_new_graph <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
   dat <- with_cache("genesis_XXXXX-XXXX", genesis_fetch("XXXXX-XXXX")) |>
     parse_genesis(value_var = "...", series_name = "my_series", geo = "DEU") |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                   decimal_mark = decimal_mark, big_mark = big_mark)
 }
 ```
@@ -817,7 +817,7 @@ To inspect intermediate values while iterating, source it without triggering ren
 ```r
 source("src/bootstrap.R")
 source("src/graphs/gdp/my_new_graph.R")
-p <- my_new_graph("Test axis", "Test caption")
+p <- my_new_graph("Test axis", "Test source")
 render_graph(p, "test_my_new_graph", "out/test")
 ```
 

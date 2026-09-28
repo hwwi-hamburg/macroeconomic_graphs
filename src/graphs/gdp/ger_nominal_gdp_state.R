@@ -1,6 +1,6 @@
 # Nominal GDP (Mrd. EUR) for German Bundesländer - bar chart, latest available year.
 # GENESIS 82111-0010, BIP006 (GDP at current prices, Mill. EUR). Sorted alphabetically.
-ger_nominal_gdp_state <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
+ger_nominal_gdp_state <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
   raw <- with_cache("genesis_82111-0010",
                     genesis_fetch("82111-0010"))
   dat <- raw[!is.na(raw$value_variable_code) & raw$value_variable_code == "BIP006" &
@@ -20,7 +20,7 @@ ger_nominal_gdp_state <- function(y_axis, caption, decimal_mark = ",", big_mark 
       labels = function(x) format(x, big.mark = big_mark,
                                    decimal.mark = decimal_mark, scientific = FALSE)
     ) +
-    ggplot2::labs(x = "", y = y_axis, caption = caption) +
+    ggplot2::labs(x = "", y = y_axis, caption = source) +
     theme_hwwi() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust = 1))
 }

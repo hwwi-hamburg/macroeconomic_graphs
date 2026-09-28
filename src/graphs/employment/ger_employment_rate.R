@@ -2,7 +2,7 @@
 # Computed as: annual-average Erwerbspersonen (13321-0006, KONZEPTW, original)
 #              divided by Bevölkerungsstand (12411-0001, Dec-31 reference).
 # Replaces retired table 81000-0011 (ERW088 no longer published directly).
-ger_employment_rate <- function(y_axis, caption, decimal_mark = ",") {
+ger_employment_rate <- function(y_axis, source, decimal_mark = ",") {
   raw_ep  <- with_cache("genesis_13321-0006",
                          genesis_fetch("13321-0006"))
   raw_pop <- with_cache("genesis_12411-0001",
@@ -38,7 +38,7 @@ ger_employment_rate <- function(y_axis, caption, decimal_mark = ",") {
     geo    = "DEU"
   )
 
-  plot_timeseries(dat, y_axis = y_axis, caption = caption, decimal_mark = decimal_mark)
+  plot_timeseries(dat, y_axis = y_axis, source = source, decimal_mark = decimal_mark)
 }
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────

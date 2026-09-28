@@ -3,7 +3,7 @@
 
 .commodity_imports_base <- function(table, geo, class_filters_extra = list(),
                                      extra_fetch_args = list(), cache_prefix,
-                                     commodity_codes, y_axis, caption, labels = NULL,
+                                     commodity_codes, y_axis, source, labels = NULL,
                                      decimal_mark = ",", big_mark = ".") {
   codes_key <- paste(commodity_codes, collapse = ",")
   raw <- with_cache(
@@ -28,7 +28,7 @@
     labels <- vapply(labels, function(label) paste(strwrap(label, width = 32), collapse = "\n"),
                      character(1), USE.NAMES = TRUE)
   }
-  plot_timeseries_multi(dat, y_axis = y_axis, caption = caption, labels = labels,
+  plot_timeseries_multi(dat, y_axis = y_axis, source = source, labels = labels,
                          colors = c(blue, dark_blue, dark_grey,
                                     dark_rubin, rubin, light_blue),
                          decimal_mark = decimal_mark, big_mark = big_mark,
@@ -36,16 +36,16 @@
     ggplot2::guides(color = ggplot2::guide_legend(nrow = 2, byrow = TRUE))
 }
 
-commodity_imports_germany <- function(y_axis, caption, labels = NULL,
+commodity_imports_germany <- function(y_axis, source, labels = NULL,
                                        commodity_codes = c("EGW669", "EGW518", "EGW522", "EGW646"),
                                        decimal_mark = ",", big_mark = ".")
   .commodity_imports_base("51000-0006", "DEU",
                            cache_prefix     = "genesis_51000-0006_",
                            commodity_codes  = commodity_codes,
-                           y_axis = y_axis, caption = caption, labels = labels,
+                           y_axis = y_axis, source = source, labels = labels,
                            decimal_mark = decimal_mark, big_mark = big_mark)
 
-commodity_imports_hamburg <- function(y_axis, caption, labels = NULL,
+commodity_imports_hamburg <- function(y_axis, source, labels = NULL,
                                        commodity_codes = c("EGW669", "EGW518", "EGW522", "EGW646"),
                                        decimal_mark = ",", big_mark = ".")
   .commodity_imports_base("51000-0035", "HH",
@@ -54,7 +54,7 @@ commodity_imports_hamburg <- function(y_axis, caption, labels = NULL,
                                                       regionalkey      = "02"),
                            cache_prefix        = "genesis_51000-0035_HH_",
                            commodity_codes     = commodity_codes,
-                           y_axis = y_axis, caption = caption, labels = labels,
+                           y_axis = y_axis, source = source, labels = labels,
                            decimal_mark = decimal_mark, big_mark = big_mark)
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────

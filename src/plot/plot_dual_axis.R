@@ -1,4 +1,4 @@
-plot_dual_axis <- function(dat, caption,
+plot_dual_axis <- function(dat, source,
                             y_axis_left, y_axis_right,
                             series_left, series_right,
                             decimal_mark = ".", big_mark = ",",
@@ -52,7 +52,7 @@ plot_dual_axis <- function(dat, caption,
                                      decimal.mark = decimal_mark, scientific = FALSE)
       )
     ) +
-    ggplot2::labs(x = "", caption = paste0(caption, " ", year %||% format(Sys.Date(), "%Y"))) +
+    ggplot2::labs(x = "", caption = paste0(source, " ", year %||% format(Sys.Date(), "%Y"))) +
     theme_hwwi() +
     ggplot2::theme(
       legend.position  = "bottom",

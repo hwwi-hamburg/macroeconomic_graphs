@@ -27,7 +27,7 @@
   ) |> dplyr::arrange(date)
 }
 
-ger_survey_interest_cpi <- function(caption,
+ger_survey_interest_cpi <- function(source,
                                      label_band     = "Interest rate band",
                                      label_effr     = "Effective Federal Funds rate",
                                      label_ecb_main = "ECB interest rate for main refinancing operations",
@@ -98,7 +98,7 @@ ger_survey_interest_cpi <- function(caption,
                                     labels = function(x) format(x, decimal.mark = decimal_mark,
                                                                  scientific = FALSE))
     ) +
-    ggplot2::labs(x = "", caption = caption) +
+    ggplot2::labs(x = "", caption = source) +
     theme_hwwi() +
     ggplot2::theme(legend.position = "bottom") +
     ggplot2::guides(
@@ -114,12 +114,12 @@ list(id = "ger_survey_interest_cpi", category = "Prices", label = "Survey on Dev
     render = function() {
         GER <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")
-        render_graph(ger_survey_interest_cpi(caption = "Datenquelle: Destatis, Deutsche Bundesbank, Federal Reserve System (US)",
+        render_graph(ger_survey_interest_cpi(source = "Datenquelle: Destatis, Deutsche Bundesbank, Federal Reserve System (US)",
             label_band = "Zinsbandbreite", label_effr = "Effektiver Tagesgeldsatz (USA)", label_ecb_main = "EZB-Hauptrefinanzierungssatz",
             label_cpi = "Verbraucherpreisindex", y_axis_left = "Zinssatz in %", y_axis_right = "Veränderung Verbraucherpreisindex zum Vorjahresmonat in %",
             decimal_mark = ","), "Survey on development of interest rate and german consumer-pric-index_ger",
             GER)
-        render_graph(ger_survey_interest_cpi(caption = "Data source: Destatis, German Federal Bank, Board of Governors of the Federal Reserve System (US)",
+        render_graph(ger_survey_interest_cpi(source = "Data source: Destatis, German Federal Bank, Board of Governors of the Federal Reserve System (US)",
             label_band = "Interest rate band", label_effr = "Effektive Federal Funds rate", label_ecb_main = "ECB interest rate for main refinancing operations",
             label_cpi = "Consumer price index", y_axis_left = "Interest rate in %", y_axis_right = "Change of consumer price index to previous year's month in %",
             decimal_mark = "."), "Survey on development of interest rate and german consumer-pric-index_en",

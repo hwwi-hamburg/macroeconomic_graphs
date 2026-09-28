@@ -29,20 +29,20 @@
 }
 
 #' Real wage index level (rebased, base year = DATA_START_MONTH), Germany
-ger_real_wage_index <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
+ger_real_wage_index <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
   dat <- .ger_real_wage_level_helper() |>
     trim_start_month(DATA_START_MONTH)
-  plot_timeseries(dat, y_axis = y_axis, caption = caption,
+  plot_timeseries(dat, y_axis = y_axis, source = source,
                    decimal_mark = decimal_mark, big_mark = big_mark)
 }
 
 #' Real wage growth (YoY %), Germany
-ger_real_wage_growth <- function(y_axis, caption, decimal_mark = ",", big_mark = ".") {
+ger_real_wage_growth <- function(y_axis, source, decimal_mark = ",", big_mark = ".") {
   dat <- .ger_real_wage_level_helper() |>
     yoy_growth(value_col = "value") |>
     trim_start_month(DATA_START_MONTH) |>
     dplyr::filter(!is.na(value))
-  plot_bar_growth(dat, y_axis = y_axis, caption = caption,
+  plot_bar_growth(dat, y_axis = y_axis, source = source,
                    decimal_mark = decimal_mark)
 }
 
