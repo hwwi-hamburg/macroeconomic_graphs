@@ -12,9 +12,11 @@
 .start_month_flag <- grep("^--start-month=", .cli_args, value = TRUE)
 .output_folder_flag <- grep("^--output-folder=", .cli_args, value = TRUE)
 .language_flag <- grep("^--language=", .cli_args, value = TRUE)
+.list_graphs_flag <- any(tolower(.cli_args) == "--list-graphs")
 
 if (length(.start_year_flag) > 1L || length(.start_month_flag) > 1L ||
-    length(.output_folder_flag) > 1L || length(.language_flag) > 1L) {
+    length(.output_folder_flag) > 1L || length(.language_flag) > 1L ||
+    sum(tolower(.cli_args) == "--list-graphs") > 1L) {
   stop("Each CLI option may be specified only once", call. = FALSE)
 }
 if (length(.start_year_flag) > 0 && length(.start_month_flag) > 0) {
@@ -95,7 +97,7 @@ dir.create(.run_out_dir, recursive = TRUE, showWarnings = FALSE)
 OUT_DIR <- .run_out_dir
 options(hwwi.output.dir = .run_out_dir)
 
-if (!is.null(.custom_start_month) || !is.null(.output_folder)) {
+if (!is.null(.custom_start_month) || !is.null(.output_folder) || .list_graphs_flag) {
   cat("Output folder:", .run_out_dir, "\n")
 }
 
@@ -113,6 +115,41 @@ if (!is.null(.language)) {
 .read_line <- function(prompt) {
   cat(prompt)
   readLines(con = stdin(), n = 1)
+}
+
+.write_graph_list <- function(path, reg, selected = NULL, title = "HWWI Macroeconomic Standard Graphs") {
+  if (is.null(selected)) {
+    selected <- seq_along(reg)
+  }
+
+  lines <- c(
+    "",
+    strrep("─", 58),
+    sprintf("  %s", title),
+    strrep("─", 58),
+    ""
+  )
+
+  cur_cat <- ""
+  for (i in selected) {
+    g <- reg[[i]]
+    if (g$category != cur_cat) {
+      if (nzchar(cur_cat)) lines <- c(lines, "")
+      lines <- c(lines, sprintf("  %s", g$category))
+      cur_cat <- g$category
+    }
+    lines <- c(lines, sprintf("    %2d  %s", i, g$label))
+  }
+
+  lines <- c(lines, "", strrep("─", 58), "")
+  writeLines(lines, path)
+}
+
+if (.list_graphs_flag) {
+  list_path <- file.path(OUT_DIR, "available_graphs.txt")
+  .write_graph_list(list_path, .graphs)
+  cat("Graph list written to", list_path, "\n")
+  quit(status = 0)
 }
 
 .show_menu <- function(reg, show_cli_options = FALSE) {
@@ -145,6 +182,7 @@ if (!is.null(.language)) {
     cat("    --start-month=YYYY-MM  Set the earliest data year-month\n")
     cat("    --output-folder=NAME   Save files in out/custom/NAME/\n")
     cat("    --language=de|en       Render German or English labels only\n")
+    cat("    --list-graphs          Write all available graph IDs and labels to txt\n")
     cat("  Example:\n")
     cat("    Rscript src/cli.R --output-folder=report --language=en gdp\n")
   }
@@ -193,6 +231,7 @@ if (!is.null(.language)) {
 #      Rscript src/cli.R --start-year=1995 gdp
 #      Rscript src/cli.R --start-month=1995-06 gdp
 #      Rscript src/cli.R --output-folder=report --language=en gdp
+#      Rscript src/cli.R --list-graphs
 .cli_args <- .cli_args[!tolower(.cli_args) %in% "render"]
 
 if (length(.cli_args) > 0) {
@@ -264,18 +303,8 @@ if (length(errors)) {
 } else {
   output_dir <- getOption("hwwi.output.dir", OUT_DIR)
   if (!is.null(.output_folder)) {
-    index_path <- file.path(output_dir, "index.md")
-    lines <- c(
-      "# Generated graphs",
-      "",
-      "| Plot ID | Label |",
-      "| --- | --- |",
-      vapply(selected, function(i) {
-        g <- .graphs[[i]]
-        sprintf("| `%s` | %s |", g$id, g$label)
-      }, character(1))
-    )
-    writeLines(lines, index_path)
+    index_path <- file.path(output_dir, "index.txt")
+    .write_graph_list(index_path, .graphs, selected = selected)
   }
   cat(sprintf("  ✓ %d graph(s) generated in %s/\n", n_total, output_dir))
 }

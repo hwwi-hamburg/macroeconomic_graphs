@@ -99,6 +99,12 @@ Rscript src/run_trade.R
 
 The main CLI reports per-graph success/failure. The category-specific batch scripts report failures; in both cases, a failure in one graph doesn't stop the rest of the batch.
 
+#### List of available graphs
+To generate a list of all available graphs in the output folder, run the following command:
+
+```bash
+Rscript src/cli.R --list-graphs
+```
 ## Adding new graphs
 
 For more information on how to add a new graph, see [ADDING_GRAPHS.md](ADDING_GRAPHS.md).
