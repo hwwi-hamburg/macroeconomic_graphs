@@ -825,3 +825,17 @@ render_graph(p, "test_my_new_graph", "out/test")
 ```
 
 or just `print(p)` in an interactive R session / RStudio viewer to inspect the plot without writing a file.
+
+## 9. Adding new functions to the library
+
+If the library doesn't provide some kind of functionality you may require, you can add new functions to the library. 
+
+#### Adding a new fetcher
+If you want to add a new fetcher, create a new file in `src/fetch/` and add a function that returns a tibble in the standard shape. 
+
+
+#### Adding a new transform
+If you want to add a new transformation, create a new file in `src/transform/` and add a function that takes a tibble in the standard shape and returns a tibble in the standard shape. 
+
+#### Adding a new plot helper
+If you want to add a new plot helper, create a new file in `src/plot/` and add a function that takes a tibble in the standard shape and returns a ggplot object. 
