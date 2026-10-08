@@ -805,9 +805,9 @@ Furthermore, at the bottom is boilerplate code to allow standalone execution and
 Conventions to match the existing entries:
 - `id`: unique, snake_case, stable (used for logging and error messages — don't rename once graphs are in production use)
 - `category`: one of `"GDP"`, `"Employment"`, `"Prices"`, `"Trade"` (drives the menu grouping and the `run_*.R` batch filters)
-- `label`: the full name of the graph, shown in the CLI menu and in both graph lists (`Available graphs.html` and `Graph list.html`)
-- `source` (optional): data source shown in the `Graph list.html` of custom output folders. If omitted, the source is taken from the chart caption (without the "Data source:" prefix and the year).
-- `notes` (optional): free-text remarks for users of the graph (e.g. adjustments, breaks in the series), shown in `Graph list.html`
+- `label`: the full name of the graph, shown in the CLI menu and in both graph lists (`List of available graphs.html` and `List of generated graphs.html`)
+- `source` (optional): data source shown in the `List of generated graphs.html` of custom output folders. If omitted, the source is taken from the chart caption (without the "Data source:" prefix and the year).
+- `notes` (optional): free-text remarks for users of the graph (e.g. adjustments, breaks in the series), shown in `List of generated graphs.html`
 - In render: 
   - `DE`: output path of the German labeling version
   - `EN`: output path of the English labeling version

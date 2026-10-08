@@ -1,20 +1,20 @@
 # Graph lists for colleagues browsing the output folders.
 #
-# - Long list ("Available graphs.html"), written to the standard output folder:
+# - Long list ("List of available graphs.html"), written to the standard output folder:
 #   every graph in the catalog with its full name and links that open the
 #   German/English image, preceded by a short usage text maintained in
 #   src/templates/available_graphs_intro.md. Links point to the files each
 #   graph writes in the standard folder (found with a dry run of its render
 #   function, see expected_graph_files()); graphs not rendered yet show "–".
-# - Short list ("Graph list.html"), written to custom output folders
+# - Short list ("List of generated graphs.html"), written to custom output folders
 #   (--output-folder / --start-year / --start-month): only the graphs of that
 #   run, with full name, file names, source, and notes.
 #
 # Both lists number graphs like the CLI menu, so `Rscript src/cli.R 12` renders
 # graph no. 12.
 
-GRAPH_OVERVIEW_FILE  <- "Available graphs.html"
-GRAPH_SELECTION_FILE <- "Graph list.html"
+GRAPH_OVERVIEW_FILE  <- "List of available graphs.html"
+GRAPH_SELECTION_FILE <- "List of generated graphs.html"
 GRAPH_OVERVIEW_INTRO <- "src/templates/available_graphs_intro.md"
 
 # ── Expected files ────────────────────────────────────────────────────────────
@@ -237,7 +237,7 @@ write_graph_overview <- function(catalog, out_dir = OUT_DIR, intro_file = GRAPH_
   }
 
   html <- .gl_page(
-    "Available graphs",
+    "List of available graphs",
     sprintf("%d graphs · list updated %s", length(catalog), format(Sys.time(), "%d.%m.%Y %H:%M")),
     c(intro,
       '<input id="search" type="search" placeholder="Search graphs, e.g. Hamburg, inflation, exports …" aria-label="Search graphs">',
@@ -269,7 +269,7 @@ write_graph_selection <- function(catalog, ids, out_dir = OUT_DIR, entries = ren
   }
 
   html <- .gl_page(
-    "Graph list",
+    "List of generated graphs",
     sprintf("%d graphs in this folder · generated %s", length(rows), format(Sys.time(), "%d.%m.%Y %H:%M")),
     c("<table><thead><tr><th class=\"num\">No.</th><th style=\"width:30%\">Graph</th><th style=\"width:30%\">File</th><th>Source</th><th>Notes</th></tr></thead><tbody>",
       rows,

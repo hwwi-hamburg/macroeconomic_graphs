@@ -5,7 +5,7 @@
 #   --start-month=YYYY-MM  override the earliest year-month fetched
 #   --output-folder=NAME   save selected graphs in out/custom/NAME/
 #   --language=de|en       render only German or only English labels
-#   --list-graphs          only rewrite "Available graphs.html", render nothing
+#   --list-graphs          only rewrite "List of available graphs.html", render nothing
 
 .cli_args <- commandArgs(trailingOnly = TRUE)
 
@@ -115,7 +115,7 @@ if (.list_graphs) {
     stop("--list-graphs cannot be combined with --start-year, --start-month, or --output-folder",
          call. = FALSE)
   }
-  cat("Graph list written to", write_graph_overview(.graphs, .base_out_dir), "\n")
+  cat("List of available graphs written to", write_graph_overview(.graphs, .base_out_dir), "\n")
   quit(status = 0)
 }
 
@@ -158,7 +158,7 @@ if (.list_graphs) {
     cat("    --start-month=YYYY-MM  Set the earliest data year-month\n")
     cat("    --output-folder=NAME   Save files in out/custom/NAME/\n")
     cat("    --language=de|en       Render German or English labels only\n")
-    cat("    --list-graphs          Only rewrite the 'Available graphs' list\n")
+    cat("    --list-graphs          Only rewrite the list of available graphs\n")
     cat("  Example:\n")
     cat("    Rscript src/cli.R --output-folder=report --language=en gdp\n")
   }
@@ -280,10 +280,10 @@ cat("\n")
   NULL
 })
 .list_path <- c(
-  .write_list(write_graph_overview(.graphs, .base_out_dir)),
+  "List of available graphs" = .write_list(write_graph_overview(.graphs, .base_out_dir)),
   if (!identical(.run_out_dir, .base_out_dir)) {
-    .write_list(write_graph_selection(
-      .graphs, vapply(.graphs[selected], `[[`, character(1), "id"), .run_out_dir))
+    c("List of generated graphs" = .write_list(write_graph_selection(
+      .graphs, vapply(.graphs[selected], `[[`, character(1), "id"), .run_out_dir)))
   }
 )
 
@@ -294,7 +294,7 @@ if (length(errors)) {
   output_dir <- getOption("hwwi.output.dir", OUT_DIR)
   cat(sprintf("  ✓ %d graph(s) generated in %s/\n", n_total, output_dir))
 }
-for (p in .list_path) cat("  Graph list: ", p, "\n", sep = "")
+for (n in names(.list_path)) cat("  ", n, ": ", .list_path[[n]], "\n", sep = "")
 
 .hr()
 cat("\n")
