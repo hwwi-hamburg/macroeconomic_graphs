@@ -182,6 +182,21 @@ expected_graph_files <- function(catalog, out_dir = OUT_DIR) {
 
 # ── Long list: all available graphs ───────────────────────────────────────────
 
+# Contact for the intro's {{CONTACT}} placeholder. It comes from
+# GRAPH_LIST_CONTACT in the git-ignored src/local_config.R, so names and
+# e-mail addresses stay out of the repository.
+.gl_contact <- function() {
+  contact <- if (exists("GRAPH_LIST_CONTACT", envir = .GlobalEnv)) {
+    get("GRAPH_LIST_CONTACT", envir = .GlobalEnv)
+  }
+  if (is.character(contact) && length(contact) == 1L && nzchar(trimws(contact))) {
+    return(trimws(contact))
+  }
+  message("Note: GRAPH_LIST_CONTACT is not set; add it to src/local_config.R ",
+          "to show a contact in \"", GRAPH_OVERVIEW_FILE, "\".")
+  "[contact not configured]"
+}
+
 write_graph_overview <- function(catalog, out_dir = OUT_DIR, intro_file = GRAPH_OVERVIEW_INTRO) {
   expected <- expected_graph_files(catalog, out_dir)
 
@@ -216,7 +231,9 @@ write_graph_overview <- function(catalog, out_dir = OUT_DIR, intro_file = GRAPH_
   }
 
   intro <- if (file.exists(intro_file)) {
-    c('<div class="intro">', .gl_markdown(readLines(intro_file, encoding = "UTF-8", warn = FALSE)), "</div>")
+    lines <- readLines(intro_file, encoding = "UTF-8", warn = FALSE)
+    lines <- gsub("{{CONTACT}}", .gl_contact(), lines, fixed = TRUE)
+    c('<div class="intro">', .gl_markdown(lines), "</div>")
   }
 
   html <- .gl_page(

@@ -133,6 +133,12 @@ The file `src/local_config.R` is used to override the default configuration sett
 OUT_DIR="../macroeconomic_graphs_outputs"
 ```
 
+The same file holds the contact person shown at the top of `Available graphs.html`. It is kept out of the repository so that names and e-mail addresses are not published on GitHub:
+
+```r
+GRAPH_LIST_CONTACT <- "Jane Doe (doe@example.org)"
+```
+
 
 #### Developer Note
 Fetched data is cached to `cache/<key>.rds` so repeated runs don't re-hit the data sources. Fetchers always pull the entire available history and trim to `DATA_START_MONTH` afterwards, so a different `--start-year`/`--start-month` reuses the same cache entry rather than triggering a fresh fetch — only the display window changes. Each cache entry auto-refreshes at most once per calendar month; to force a refetch sooner, delete the relevant `.rds` file (or call `bust_cache()` in an R session).

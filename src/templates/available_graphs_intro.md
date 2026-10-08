@@ -8,4 +8,4 @@ This page lists all standard macroeconomic graphs that HWWI produces automatical
 
 ## Need something different?
 
-If you need a graph that is not on this list, or a variation of an existing graph (e.g. a different start date or other countries), please contact **[NAME, E-MAIL]**.
+If you need a graph that is not on this list, or a variation of an existing graph (e.g. a different start date or other countries), please contact **{{CONTACT}}**.
