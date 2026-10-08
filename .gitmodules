@@ -1,0 +1,3 @@
+[submodule "hwwi-theme"]
+	path = hwwi-theme
+	url = ../hwwi-theme.git
