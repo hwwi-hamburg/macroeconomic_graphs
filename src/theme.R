@@ -1,13 +1,14 @@
 #------------------------------------------
 # Title: HWWI Basic Graph Settings (project layer)
-# Purpose: Load the shared HWWI theme from the hwwi-theme submodule and add
+# Purpose: Load the shared HWWI theme from the hwwi-theme subtree and add
 #          the project-specific extensions this repository relies on.
 #------------------------------------------
 
 .hwwi_theme_file <- "hwwi-theme/hwwi_theme.R"
 if (!file.exists(.hwwi_theme_file)) {
-  stop("HWWI theme submodule not found at '", .hwwi_theme_file, "'. ",
-       "Run `git submodule update --init` from the project root.", call. = FALSE)
+  stop("HWWI theme not found at '", .hwwi_theme_file, "'. ",
+       "Run scripts from the project root; see 'Cloning this Project' in README.md.",
+       call. = FALSE)
 }
 source(.hwwi_theme_file)
 
