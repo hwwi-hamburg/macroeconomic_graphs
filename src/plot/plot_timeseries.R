@@ -1,6 +1,6 @@
 plot_timeseries <- function(dat, y_axis, source,
                              decimal_mark = ".", big_mark = ",",
-                             color = blue, x_breaks = "5 years",
+                             color = hwwi_blue, x_breaks = "5 years",
                              y_limits = NULL, y_breaks = ggplot2::waiver(),
                              linewidth = 1.8,
                              angle = 0,
@@ -23,7 +23,7 @@ plot_timeseries <- function(dat, y_axis, source,
 # factor levels so the larger-value series comes first (drawn behind the shorter).
 plot_bar_date <- function(dat, y_axis, source, labels = NULL,
                            decimal_mark = ".", big_mark = ",",
-                           colors = c(scales::alpha(blue, 0.6), rubin),
+                           colors = c(scales::alpha(hwwi_blue, 0.6), hwwi_rubin),
                            x_breaks = "2 years", y_limits = NULL,
                           angle = 0, year = NULL) {
   ggplot2::ggplot(dat, ggplot2::aes(x = date, y = value, fill = series)) +
@@ -45,7 +45,7 @@ plot_bar_date <- function(dat, y_axis, source, labels = NULL,
 
 plot_timeseries_multi <- function(dat, y_axis, source, labels = NULL,
                                    decimal_mark = ".", big_mark = ",",
-                                   colors = hwwi_palette, x_breaks = "5 years",
+                                   colors = hwwi_palette_default, x_breaks = "5 years",
                                    y_limits = NULL, linewidth = 1.8, angle = 0,
                                    year = NULL) {
   ggplot2::ggplot(dat, ggplot2::aes(x = date, y = value, color = series)) +

@@ -11,7 +11,7 @@
                         series_name = series_name, geo = "DEU") |>
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   plot_bar(dat, y_axis = y_axis, source = source,
-            decimal_mark = decimal_mark, colors = c(alpha(blue, 0.9))) +
+            decimal_mark = decimal_mark, colors = c(alpha(hwwi_blue, 0.9))) +
     ggplot2::theme(legend.position = "none")
 }
 

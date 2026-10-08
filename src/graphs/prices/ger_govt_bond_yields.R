@@ -76,8 +76,8 @@ ger_govt_bond_yields <- function(y_axis, source, decimal_mark = ",",
     plot_dat$series <- plot_dat$geo
   }
 
-  palette <- c(light_blue, blue, dark_blue, grey, dark_rubin,
-               dark_grey, rubin, light_blue, blue, dark_rubin)
+  palette <- c(hwwi_light_blue, hwwi_blue, hwwi_dark_blue, hwwi_grey, hwwi_dark_rubin,
+               hwwi_dark_grey, hwwi_rubin, hwwi_light_blue, hwwi_blue, hwwi_dark_rubin)
 
   ggplot2::ggplot(plot_dat,
     ggplot2::aes(x = date, y = value, color = series)) +

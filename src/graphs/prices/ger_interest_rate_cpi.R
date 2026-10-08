@@ -44,7 +44,7 @@ ger_interest_rate_cpi <- function(source,
     dat,
     y_axis = y_axis,
     source = source,
-    colors = c(blue, rubin),
+    colors = c(hwwi_blue, hwwi_rubin),
     decimal_mark = decimal_mark,
     big_mark = big_mark,
     x_breaks = "2 years"

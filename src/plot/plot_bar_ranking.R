@@ -1,6 +1,6 @@
 plot_bar_ranking <- function(dat, source, x_axis = "",
                               decimal_mark = ".", big_mark = ",",
-                              color = blue, year = NULL) {
+                              color = hwwi_blue, year = NULL) {
   dat$geo <- factor(dat$geo, levels = rev(unique(dat$geo)))
   ggplot2::ggplot(dat, ggplot2::aes(x = value, y = geo)) +
     ggplot2::geom_col(fill = color) +

@@ -12,9 +12,9 @@
 
   if (show_trend) {
     ggplot2::ggplot(dat, ggplot2::aes(x = date, y = value)) +
-      ggplot2::geom_line(linewidth = 1.6, color = blue) +
+      ggplot2::geom_line(linewidth = 1.6, color = hwwi_blue) +
       ggplot2::stat_smooth(method = "lm", formula = y ~ x, se = FALSE,
-                            linetype = "dashed", linewidth = 1, color = blue,
+                            linetype = "dashed", linewidth = 1, color = hwwi_blue,
                             fullrange = FALSE) +
       ggplot2::scale_x_date(date_breaks = x_breaks, date_labels = "%Y") +
       ggplot2::scale_y_continuous(

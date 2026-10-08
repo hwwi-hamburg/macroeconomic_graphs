@@ -7,8 +7,8 @@ gdp_world_by_region <- function(y_axis, source, labels,
     dplyr::filter(!is.na(value)) |>
     dplyr::mutate(series = dplyr::coalesce(region_labels[geo], series))
   plot_timeseries_multi(dat, y_axis = y_axis, source = source,
-                        colors = c(light_blue, blue, dark_blue,
-                                   rubin, dark_rubin, grey, dark_grey),
+                        colors = c(hwwi_light_blue, hwwi_blue, hwwi_dark_blue,
+                                   hwwi_rubin, hwwi_dark_rubin, hwwi_grey, hwwi_dark_grey),
                         decimal_mark = decimal_mark, big_mark = big_mark)
 }
 

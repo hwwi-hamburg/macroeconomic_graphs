@@ -359,7 +359,7 @@ All builders are located in `src/plot/` and append the current year to `source`.
 plot_timeseries(
   dat, y_axis, source,
   decimal_mark = ".", big_mark = ",",
-  color = blue, x_breaks = "5 years",
+  color = hwwi_blue, x_breaks = "5 years",
   y_limits = NULL, y_breaks = ggplot2::waiver(), linewidth = 1.8
 )
 ```
@@ -394,7 +394,7 @@ An example can be found [here](src/graphs/employment/ger_employed_seasonal.R).
 plot_timeseries_multi(
   dat, y_axis, source, labels = NULL,
   decimal_mark = ".", big_mark = ",",
-  colors = hwwi_palette, x_breaks = "5 years",
+  colors = hwwi_palette_default, x_breaks = "5 years",
   y_limits = NULL, linewidth = 1.8
 )
 ```
@@ -432,7 +432,7 @@ An example can be found [here](src/graphs/employment/ger_unemployed_west_east.R)
 plot_bar_date(
   dat, y_axis, source, labels = NULL,
   decimal_mark = ".", big_mark = ",",
-  colors = c(scales::alpha(blue, 0.6), rubin),
+  colors = c(scales::alpha(hwwi_blue, 0.6), hwwi_rubin),
   x_breaks = "2 years", y_limits = NULL
 )
 ```
@@ -466,7 +466,7 @@ An example can be found [here](src/graphs/trade/hh_trade_monthly.R).
 ```r
 plot_bar_growth(
   dat, y_axis, source,
-  decimal_mark = ".", color = blue, x_breaks = "2 years"
+  decimal_mark = ".", color = hwwi_blue, x_breaks = "2 years"
 )
 ```
 
@@ -496,7 +496,7 @@ An example can be found [here](src/graphs/gdp/income_gdppc_growth.R).
 plot_bar(
   dat, y_axis, source, labels = NULL,
   decimal_mark = ".",
-  colors = c(alpha(blue, 0.9), alpha(rubin, 0.9)),
+  colors = c(alpha(hwwi_blue, 0.9), alpha(hwwi_rubin, 0.9)),
   y_limits = NULL, position = "dodge"
 )
 ```
@@ -532,7 +532,7 @@ plot_bar_deviation(
   x_axis = "",
   decimal_mark = ".", big_mark = ",",
   positive_label = "Above average", negative_label = "Below average",
-  colors = c(blue, rubin)
+  colors = c(hwwi_blue, hwwi_rubin)
 )
 ```
 
@@ -564,7 +564,7 @@ An example can be found [here](src/graphs/trade/trade_deviation.R).
 plot_bar_ranking(
   dat, source,
   x_axis = "",
-  decimal_mark = ".", big_mark = ",", color = blue
+  decimal_mark = ".", big_mark = ",", color = hwwi_blue
 )
 ```
 
@@ -595,7 +595,7 @@ plot_dual_axis(
   dat, source,
   y_axis_left, y_axis_right, series_left, series_right,
   decimal_mark = ".", big_mark = ",",
-  colors = c(blue, rubin), x_breaks = "5 years",
+  colors = c(hwwi_blue, hwwi_rubin), x_breaks = "5 years",
   y_max_right = NULL, y_min_at_zero = TRUE
 )
 ```
@@ -668,7 +668,7 @@ An example can be found [here](src/graphs/trade/trade_state_pies.R).
 ```r
 plot_choropleth_world(
   dat, fill_col = "value", legend_title = "", source = "",
-  low = "white", high = blue,
+  low = "white", high = hwwi_blue,
   xlim = c(-179, 179), ylim = c(-56, 85)
 )
 ```
@@ -729,7 +729,7 @@ An example can be found [here](src/graphs/trade/trade_deviation.R).
 ```r
 plot_choropleth_ger(
   dat, fill_col = "value", legend_title = "", source = "",
-  low = rubin, high = dark_rubin
+  low = hwwi_rubin, high = hwwi_dark_rubin
 )
 ```
 
@@ -751,7 +751,7 @@ Parameters:
 - `low`: Color used at the low end of the scale.
 - `high`: Color used at the high end of the scale.
 
-Brand colors (`blue`, `rubin`, `dark_blue`, `dark_rubin`, `light_blue`, `grey`, `dark_grey`, and the `hwwi_palette`/`hwwi_palette_rb` vectors) are defined in [src/theme.R](src/theme.R) — reuse them rather than hardcoding new colors.
+Brand colors (`hwwi_blue`, `hwwi_rubin`, `hwwi_dark_blue`, `hwwi_dark_rubin`, `hwwi_light_blue`, `hwwi_grey`, `hwwi_dark_grey`, and the `hwwi_palette_default`/`hwwi_palette_rb` vectors) are defined in the `hwwi-theme` submodule ([hwwi-theme/hwwi_theme.R](hwwi-theme/hwwi_theme.R)) — reuse them rather than hardcoding new colors.
 
 An example can be found [here](src/graphs/gdp/ger_nominal_gdp_state_per_capita.R).
 

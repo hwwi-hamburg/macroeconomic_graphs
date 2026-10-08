@@ -27,7 +27,7 @@ ger_nominal_gdp_state_per_capita <- function(y_axis, source,
   dat    <- dat[order(dat$value, decreasing = TRUE), ]
   y_high <- ceiling(max(dat$value, na.rm = TRUE) / 10000) * 10000
   ggplot2::ggplot(dat, ggplot2::aes(x = factor(geo, levels = dat$geo), y = value)) +
-    ggplot2::geom_col(fill = blue, width = 0.8) +
+    ggplot2::geom_col(fill = hwwi_blue, width = 0.8) +
     ggplot2::scale_y_continuous(
       limits = c(0, y_high),
       breaks = seq(0, y_high, by = 10000),
@@ -44,7 +44,7 @@ ger_nominal_gdp_state_per_capita_map <- function(legend_title, source,
   dat <- .read_gdp_state_per_capita()
   plot_choropleth_ger(dat, fill_col = "value",
                       legend_title = legend_title, source = source,
-                      low = "white", high = rubin, year = year)
+                      low = "white", high = hwwi_rubin, year = year)
 }
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
