@@ -751,7 +751,7 @@ Parameters:
 - `low`: Color used at the low end of the scale.
 - `high`: Color used at the high end of the scale.
 
-Brand colors (`hwwi_blue`, `hwwi_rubin`, `hwwi_dark_blue`, `hwwi_dark_rubin`, `hwwi_light_blue`, `hwwi_grey`, `hwwi_dark_grey`, and the `hwwi_palette_default`/`hwwi_palette_rb` vectors) are defined in the `hwwi-theme` submodule ([hwwi-theme/hwwi_theme.R](hwwi-theme/hwwi_theme.R)) — reuse them rather than hardcoding new colors.
+Brand colors (`hwwi_blue`, `hwwi_rubin`, `hwwi_dark_blue`, `hwwi_dark_rubin`, `hwwi_light_blue`, `hwwi_grey`, `hwwi_dark_grey`, and the `hwwi_palette_default`/`hwwi_palette_rb` vectors) are defined in the shared HWWI theme ([hwwi-theme/hwwi_theme.R](hwwi-theme/hwwi_theme.R)) — reuse them rather than hardcoding new colors.
 
 An example can be found [here](src/graphs/gdp/ger_nominal_gdp_state_per_capita.R).
 
