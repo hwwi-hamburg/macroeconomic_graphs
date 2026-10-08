@@ -31,6 +31,7 @@ ger_nominal_gdp <- function(y_axis, source, decimal_mark = ",", big_mark = ".")
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_bip_annual_growth", category = "GDP", label = "Germany Annual GDP Growth (Destatis)",
+    notes = "Price-adjusted, chain-linked; change on previous year in %. Latest year provisional. GENESIS 81000-0001.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -40,6 +41,7 @@ list(id = "ger_bip_annual_growth", category = "GDP", label = "Germany Annual GDP
             decimal_mark = "."), "GER BIP annual growth - chain index_en", EN)
     }),
 list(id = "ger_bip_annual_development", category = "GDP", label = "Germany Annual GDP Level - Chain Index (Destatis)",
+    notes = "Price-adjusted chain index, 2020 = 100. Latest year provisional. GENESIS 81000-0001.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -49,6 +51,7 @@ list(id = "ger_bip_annual_development", category = "GDP", label = "Germany Annua
             decimal_mark = "."), "GER BIP annual level - chain index_en", EN)
     }),
 list(id = "ger_bip_annual_volume", category = "GDP", label = "Germany Annual GDP - Chain-linked Volume (Mrd EUR, Destatis)",
+    notes = "Price-adjusted, chain-linked volumes, reference year 2020. Latest year provisional. GENESIS 81000-0001.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -59,7 +62,9 @@ list(id = "ger_bip_annual_volume", category = "GDP", label = "Germany Annual GDP
             decimal_mark = ".", big_mark = ","), "GER BIP annual - chain-linked volume data (bn EUR)_en",
             EN)
     }),
-list(id = "ger_nominal_gdp", category = "GDP", label = "Germany Nominal GDP (Destatis)", render = function() {
+list(id = "ger_nominal_gdp", category = "GDP", label = "Germany Nominal GDP (Destatis)",
+    notes = "At current prices (not price-adjusted). Latest year provisional. GENESIS 81000-0001.",
+    render = function() {
     DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
     EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
     render_graph(ger_nominal_gdp("Nominales BIP (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",

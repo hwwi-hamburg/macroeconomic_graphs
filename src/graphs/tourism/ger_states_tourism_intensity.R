@@ -101,6 +101,7 @@
       id = "ger_states_tourism_intensity",
       category = "Tourism",
       label = "Germany and States Tourism intensity (nights per 1000 inhabitants)",
+    notes = "Overnight stays per 1,000 inhabitants, own calculation. GENESIS 45412-0001, 45412-0020, 12411-0001, 12411-0010.",
       render = function() {
         DE <- file.path(OUT_DIR, "tourism graphs/German labeling")
         EN <- file.path(OUT_DIR, "tourism graphs/English labeling")

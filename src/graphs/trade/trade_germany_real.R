@@ -37,6 +37,7 @@ trade_import_germany_real_services <- function(y_axis, source, decimal_mark = ",
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_export_germany_real", category = "Trade", label = "Germany Real Exports (VGR national accounts)",
+    notes = "Price-adjusted chain index, 2020 = 100; national accounts, not foreign trade statistics. GENESIS 81000-0027.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -46,6 +47,7 @@ list(id = "trade_export_germany_real", category = "Trade", label = "Germany Real
             decimal_mark = "."), "Export Germany real VGR_en", EN)
     }),
 list(id = "trade_import_germany_real", category = "Trade", label = "Germany Real Imports (VGR national accounts)",
+    notes = "Price-adjusted chain index, 2020 = 100; national accounts, not foreign trade statistics. GENESIS 81000-0027.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -55,6 +57,7 @@ list(id = "trade_import_germany_real", category = "Trade", label = "Germany Real
             decimal_mark = "."), "Import Germany real VGR_en", EN)
     }),
 list(id = "trade_export_germany_real_goods", category = "Trade", label = "Germany Real Exports of Goods (VGR)",
+    notes = "Price-adjusted, chain-linked volumes, reference year 2020; national accounts. GENESIS 81000-0027.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -66,6 +69,7 @@ list(id = "trade_export_germany_real_goods", category = "Trade", label = "German
             EN)
     }),
 list(id = "trade_export_germany_real_services", category = "Trade", label = "Germany Real Exports of Services (VGR)",
+    notes = "Price-adjusted, chain-linked volumes, reference year 2020; national accounts. GENESIS 81000-0027.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -77,6 +81,7 @@ list(id = "trade_export_germany_real_services", category = "Trade", label = "Ger
             EN)
     }),
 list(id = "trade_import_germany_real_goods", category = "Trade", label = "Germany Real Imports of Goods (VGR)",
+    notes = "Price-adjusted, chain-linked volumes, reference year 2020; national accounts. GENESIS 81000-0027.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -88,6 +93,7 @@ list(id = "trade_import_germany_real_goods", category = "Trade", label = "German
             EN)
     }),
 list(id = "trade_import_germany_real_services", category = "Trade", label = "Germany Real Imports of Services (VGR)",
+    notes = "Price-adjusted, chain-linked volumes, reference year 2020; national accounts. GENESIS 81000-0027.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

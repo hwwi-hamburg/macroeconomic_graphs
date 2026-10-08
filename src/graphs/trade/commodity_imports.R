@@ -61,6 +61,7 @@ commodity_imports_hamburg <- function(y_axis, source, labels = NULL,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_commodity_imports_hamburg", category = "Trade", label = "Hamburg Monthly Imports by Commodity Group",
+    notes = "Nominal values by commodity group (EGW); monthly, not seasonally adjusted. Foreign trade statistics, GENESIS 51000-0035.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -74,6 +75,7 @@ list(id = "trade_commodity_imports_hamburg", category = "Trade", label = "Hambur
             big_mark = ","), "Hamburg Commodity Imports monthly_en", EN)
     }),
 list(id = "trade_commodity_imports_germany", category = "Trade", label = "Germany Monthly Imports by Commodity Group",
+    notes = "Nominal values by commodity group (EGW); monthly, not seasonally adjusted. Foreign trade statistics, GENESIS 51000-0006.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

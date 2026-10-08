@@ -11,6 +11,7 @@ trade_world_exports <- function(y_axis, source, decimal_mark = ".", big_mark = "
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_world_exports", category = "Trade", label = "World Exports of Goods and Services (WDI)",
+    notes = "Exports of goods and services at constant prices, US$ (World Bank NE.EXP.GNFS.KD).",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

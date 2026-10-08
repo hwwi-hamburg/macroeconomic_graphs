@@ -72,7 +72,9 @@ trade_import_germany_pie <- function(source, big_mark = ".", decimal_mark = ",")
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
-list(id = "trade_export_germany_pie", category = "Trade", label = "Germany Export Structure (pie)", render = function() {
+list(id = "trade_export_germany_pie", category = "Trade", label = "Germany Export Structure (pie)",
+    notes = "Top 10 commodity groups plus 'Other'; nominal values, previous calendar year. GENESIS 51000-0005.",
+    render = function() {
     DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     yr <- as.integer(format(Sys.Date(), "%Y")) - 1
@@ -82,7 +84,9 @@ list(id = "trade_export_germany_pie", category = "Trade", label = "Germany Expor
         decimal_mark = "."), paste0("Germany's Export Structure in ", yr, " pie_en"), EN, width = 9,
         height = 7, dpi = 400)
 }),
-list(id = "trade_import_germany_pie", category = "Trade", label = "Germany Import Structure (pie)", render = function() {
+list(id = "trade_import_germany_pie", category = "Trade", label = "Germany Import Structure (pie)",
+    notes = "Top 10 commodity groups plus 'Other'; nominal values, previous calendar year. GENESIS 51000-0005.",
+    render = function() {
     DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     yr <- as.integer(format(Sys.Date(), "%Y")) - 1
@@ -92,7 +96,9 @@ list(id = "trade_import_germany_pie", category = "Trade", label = "Germany Impor
         decimal_mark = "."), paste0("Germany's Import Structure in ", yr, " pie_en"), EN, width = 9,
         height = 7, dpi = 400)
 }),
-list(id = "trade_export_hamburg_pie", category = "Trade", label = "Hamburg Export Structure (pie)", render = function() {
+list(id = "trade_export_hamburg_pie", category = "Trade", label = "Hamburg Export Structure (pie)",
+    notes = "Top 10 commodity groups plus 'Other'; nominal values, previous calendar year. GENESIS 51000-0034.",
+    render = function() {
     DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     yr <- as.integer(format(Sys.Date(), "%Y")) - 1
@@ -102,7 +108,9 @@ list(id = "trade_export_hamburg_pie", category = "Trade", label = "Hamburg Expor
         decimal_mark = "."), paste0("Hamburg's Export Structure in ", yr, " pie_en"), EN, width = 9,
         height = 5.5, dpi = 400)
 }),
-list(id = "trade_import_hamburg_pie", category = "Trade", label = "Hamburg Import Structure (pie)", render = function() {
+list(id = "trade_import_hamburg_pie", category = "Trade", label = "Hamburg Import Structure (pie)",
+    notes = "Top 10 commodity groups plus 'Other'; nominal values, previous calendar year. GENESIS 51000-0034.",
+    render = function() {
     DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     yr <- as.integer(format(Sys.Date(), "%Y")) - 1
@@ -113,6 +121,7 @@ list(id = "trade_import_hamburg_pie", category = "Trade", label = "Hamburg Impor
         height = 5.5, dpi = 400)
 }),
 list(id = "trade_export_lowersaxony_pie", category = "Trade", label = "Lower Saxony Export Structure (pie)",
+    notes = "Top 10 commodity groups plus 'Other'; nominal values, previous calendar year. GENESIS 51000-0034.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -125,6 +134,7 @@ list(id = "trade_export_lowersaxony_pie", category = "Trade", label = "Lower Sax
             EN, width = 9, height = 5.5, dpi = 400)
     }),
 list(id = "trade_import_lowersaxony_pie", category = "Trade", label = "Lower Saxony Import Structure (pie)",
+    notes = "Top 10 commodity groups plus 'Other'; nominal values, previous calendar year. GENESIS 51000-0034.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

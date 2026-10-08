@@ -165,6 +165,7 @@ ls_import_deviation_choropleth <- function(legend_title, source, year = NULL)
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_hh_export_deviation_group", category = "Trade", label = "Hamburg vs Germany: Export Structure by Commodity Group",
+    notes = "Share of each commodity group in Hamburg's exports minus its share in Germany's, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -176,6 +177,7 @@ list(id = "trade_hh_export_deviation_group", category = "Trade", label = "Hambur
             "HH vs GER Export Structure Deviation by Group_en", EN, height = 10)
     }),
 list(id = "trade_hh_import_deviation_group", category = "Trade", label = "Hamburg vs Germany: Import Structure by Commodity Group",
+    notes = "Share of each commodity group in Hamburg's imports minus its share in Germany's, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -187,6 +189,7 @@ list(id = "trade_hh_import_deviation_group", category = "Trade", label = "Hambur
             "HH vs GER Import Structure Deviation by Group_en", EN, height = 10)
     }),
 list(id = "trade_ls_export_deviation_group", category = "Trade", label = "Lower Saxony vs Germany: Export Structure by Commodity Group",
+    notes = "Share of each commodity group in Lower Saxony's exports minus its share in Germany's, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -198,6 +201,7 @@ list(id = "trade_ls_export_deviation_group", category = "Trade", label = "Lower 
             "LS vs GER Export Structure Deviation by Group_en", EN, height = 10)
     }),
 list(id = "trade_ls_import_deviation_group", category = "Trade", label = "Lower Saxony vs Germany: Import Structure by Commodity Group",
+    notes = "Share of each commodity group in Lower Saxony's imports minus its share in Germany's, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -209,6 +213,7 @@ list(id = "trade_ls_import_deviation_group", category = "Trade", label = "Lower 
             "LS vs GER Import Structure Deviation by Group_en", EN, height = 10)
     }),
 list(id = "trade_hh_export_topbottom_country", category = "Trade", label = "Hamburg Top Export Partners (pp deviation vs Germany)",
+    notes = "Share of each country in the state's exports minus its share in Germany's exports, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -221,6 +226,7 @@ list(id = "trade_hh_export_topbottom_country", category = "Trade", label = "Hamb
             decimal_mark = "."), paste0("Hamburg Top Export Partners ", yr, "_en"), EN, height = 7)
     }),
 list(id = "trade_hh_import_topbottom_country", category = "Trade", label = "Hamburg Top Import Partners (pp deviation vs Germany)",
+    notes = "Share of each country in the state's imports minus its share in Germany's imports, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -233,6 +239,7 @@ list(id = "trade_hh_import_topbottom_country", category = "Trade", label = "Hamb
             decimal_mark = "."), paste0("Hamburg Top Import Partners ", yr, "_en"), EN, height = 7)
     }),
 list(id = "trade_ls_export_topbottom_country", category = "Trade", label = "Lower Saxony Top Export Partners (pp deviation vs Germany)",
+    notes = "Share of each country in the state's exports minus its share in Germany's exports, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -245,6 +252,7 @@ list(id = "trade_ls_export_topbottom_country", category = "Trade", label = "Lowe
             decimal_mark = "."), paste0("Lower Saxony Top Export Partners ", yr, "_en"), EN, height = 7)
     }),
 list(id = "trade_ls_import_topbottom_country", category = "Trade", label = "Lower Saxony Top Import Partners (pp deviation vs Germany)",
+    notes = "Share of each country in the state's imports minus its share in Germany's imports, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -257,6 +265,7 @@ list(id = "trade_ls_import_topbottom_country", category = "Trade", label = "Lowe
             decimal_mark = "."), paste0("Lower Saxony Top Import Partners ", yr, "_en"), EN, height = 7)
     }),
 list(id = "trade_hh_export_deviation_country_map", category = "Trade", label = "HH Export - Deviations from German Average (by category)",
+    notes = "Share of each commodity group in Hamburg's exports minus its share in Germany's, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -271,6 +280,7 @@ list(id = "trade_hh_export_deviation_country_map", category = "Trade", label = "
             height = 7)
     }),
 list(id = "trade_hh_import_deviation_country_map", category = "Trade", label = "HH Import - Deviations from German Average (by category)",
+    notes = "Share of each commodity group in Hamburg's imports minus its share in Germany's, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -285,6 +295,7 @@ list(id = "trade_hh_import_deviation_country_map", category = "Trade", label = "
             height = 7)
     }),
 list(id = "trade_hh_export_deviation_country", category = "Trade", label = "HH Export - Deviations from German Average by Country",
+    notes = "Share of each country in the state's exports minus its share in Germany's exports, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -299,6 +310,7 @@ list(id = "trade_hh_export_deviation_country", category = "Trade", label = "HH E
             "_en"), EN, height = 7)
     }),
 list(id = "trade_hh_import_deviation_country", category = "Trade", label = "HH Import - Deviations from German Average by Country",
+    notes = "Share of each country in the state's imports minus its share in Germany's imports, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -313,6 +325,7 @@ list(id = "trade_hh_import_deviation_country", category = "Trade", label = "HH I
             "_en"), EN, height = 7)
     }),
 list(id = "trade_hh_export_comparison_country_2025", category = "Trade", label = "Hamburg vs Germany Export Share Comparison by Country in 2025",
+    notes = "Share of each country in the state's exports minus its share in Germany's exports, in percentage points; 2025. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -322,6 +335,7 @@ list(id = "trade_hh_export_comparison_country_2025", category = "Trade", label =
             year = 2025), "Hamburg vs Germany Export Share Comparison by Country in 2025_en", EN)
     }),
 list(id = "trade_hh_import_comparison_country_2025", category = "Trade", label = "Hamburg vs Germany Import Share Comparison by Country in 2025",
+    notes = "Share of each country in the state's imports minus its share in Germany's imports, in percentage points; 2025. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -331,6 +345,7 @@ list(id = "trade_hh_import_comparison_country_2025", category = "Trade", label =
             year = 2025), "Hamburg vs Germany Import Share Comparison by Country in 2025_en", EN)
     }),
 list(id = "trade_ls_export_deviation_country", category = "Trade", label = "Lower Saxony Export - Deviations from German Average by Country",
+    notes = "Share of each country in the state's exports minus its share in Germany's exports, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -345,6 +360,7 @@ list(id = "trade_ls_export_deviation_country", category = "Trade", label = "Lowe
             "_en"), EN, height = 7)
     }),
 list(id = "trade_ls_import_deviation_country", category = "Trade", label = "Lower Saxony Import - Deviations from German Average by Country",
+    notes = "Share of each country in the state's imports minus its share in Germany's imports, in percentage points; previous calendar year. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -359,6 +375,7 @@ list(id = "trade_ls_import_deviation_country", category = "Trade", label = "Lowe
             "_en"), EN, height = 7)
     }),
 list(id = "trade_ls_export_comparison_country_2025", category = "Trade", label = "Lower Saxony vs Germany Export Share Comparison by Country in 2025",
+    notes = "Share of each country in the state's exports minus its share in Germany's exports, in percentage points; 2025. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -368,6 +385,7 @@ list(id = "trade_ls_export_comparison_country_2025", category = "Trade", label =
             year = 2025), "Lower Saxony vs Germany Export Share Comparison by Country in 2025_en", EN)
     }),
 list(id = "trade_ls_import_comparison_country_2025", category = "Trade", label = "Lower Saxony vs Germany Import Share Comparison by Country in 2025",
+    notes = "Share of each country in the state's imports minus its share in Germany's imports, in percentage points; 2025. Own calculation.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

@@ -39,6 +39,7 @@ ger_unemployment_seasonal <- function(y_axis, source, decimal_mark = ",", big_ma
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_unemployment_seasonal", category = "Employment", label = "Germany Unemployment Rate, Quarterly Seasonally Adjusted",
+    notes = "ILO concept, own calculation: (labour force - employed) / labour force; residence concept; inputs seasonally adjusted by Destatis (X13 JDemetra+). GENESIS 13321-0006, 13321-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")

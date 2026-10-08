@@ -40,6 +40,7 @@
       id = "hh_unemployment_monthly",
       category = "Employment",
       label = "Hamburg unemployment rate monthly",
+    notes = "Registered unemployment rate based on dependent civilian labour force; monthly, not seasonally adjusted. GENESIS 13211-0008.",
       render = function() {
         DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")

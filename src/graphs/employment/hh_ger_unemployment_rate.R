@@ -49,6 +49,7 @@
     id = "hh_ger_unemployment_annual",
     category = "Employment",
     label = "Hamburg and Germany unemployment rate",
+    notes = "Registered unemployment rate based on dependent civilian labour force; annual averages. GENESIS 13211-0001, 13211-0007.",
     render = function() {
       DE <- file.path(OUT_DIR, "employment graphs/German labeling")
       EN <- file.path(OUT_DIR, "employment graphs/English labeling")

@@ -39,6 +39,7 @@ ger_bip_quarterly_volume_orig <- function(y_axis, source, decimal_mark = ",", bi
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_bip_quarterly_development", category = "GDP", label = "Germany Quarterly GDP Level - Chain Index (Destatis)",
+    notes = "Seasonally and calendar adjusted by Destatis (X13 JDemetra+); price-adjusted chain index, 2020 = 100. GENESIS 81000-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -48,6 +49,7 @@ list(id = "ger_bip_quarterly_development", category = "GDP", label = "Germany Qu
             decimal_mark = "."), "GER BIP quarterly level - chain index_en", EN)
     }),
 list(id = "ger_bip_quarterly_growth", category = "GDP", label = "Germany Quarterly GDP Growth Rate (Destatis)",
+    notes = "Seasonally and calendar adjusted by Destatis (X13 JDemetra+); price-adjusted, change in %. GENESIS 81000-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -57,6 +59,7 @@ list(id = "ger_bip_quarterly_growth", category = "GDP", label = "Germany Quarter
             decimal_mark = "."), "GER BIP quarterly growth_en", EN)
     }),
 list(id = "ger_bip_quarterly_volume_orig", category = "GDP", label = "Germany Quarterly GDP - Chain-linked Volume (Mrd EUR, original)",
+    notes = "Not seasonally adjusted (original values); price-adjusted, chain-linked volumes, reference year 2020. GENESIS 81000-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -68,6 +71,7 @@ list(id = "ger_bip_quarterly_volume_orig", category = "GDP", label = "Germany Qu
             "GER BIP quarterly - chain-linked volume data (bn EUR)_en", EN)
     }),
 list(id = "ger_bip_quarterly_volume", category = "GDP", label = "Germany Quarterly GDP - Chain-linked Volume (Mrd EUR, SA)",
+    notes = "Seasonally and calendar adjusted by Destatis (X13 JDemetra+); price-adjusted, chain-linked volumes, reference year 2020. GENESIS 81000-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")

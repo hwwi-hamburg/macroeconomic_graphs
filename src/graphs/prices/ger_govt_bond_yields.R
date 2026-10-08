@@ -98,6 +98,7 @@ ger_govt_bond_yields <- function(y_axis, source, decimal_mark = ",",
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_govt_bond_yields", category = "Prices", label = "Long-Term Government Bond Yields: Top/Bottom 5 EU Countries (Eurostat)",
+    notes = "10-year benchmark government bond yields, monthly; top and bottom 5 EU countries. Eurostat ei_mfir_m (MF-LTGBY-RT).",
     render = function() {
         DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")

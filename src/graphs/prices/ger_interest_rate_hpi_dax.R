@@ -107,6 +107,7 @@ ger_interest_rate_hpi_dax <- function(source,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_interest_rate_hpi_dax", category = "Prices", label = "Development of Interest Rates, House Price Index and DAX",
+    notes = "House price index (annual) and DAX (monthly) rebased to 100 at the start of the period, own calculation. ECB band: deposit facility rate to marginal lending rate. Sources: Bundesbank, GENESIS 61262-0001, Yahoo Finance.",
     render = function() {
         DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")

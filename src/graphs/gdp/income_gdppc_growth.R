@@ -15,6 +15,7 @@ gdp_low_income_growth    <- function(y_axis, source, decimal_mark = ".") .wdi_gd
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "high_income_gdppc_growth", category = "GDP", label = "High Income GDP Per Capita Growth (WDI)",
+    notes = "GDP per capita growth at constant prices, in % (World Bank NY.GDP.PCAP.KD.ZG). World Bank income classification.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -25,6 +26,7 @@ list(id = "high_income_gdppc_growth", category = "GDP", label = "High Income GDP
             "HIC GDP p.c. real annual Growth_en", EN)
     }),
 list(id = "upper_middle_gdppc_growth", category = "GDP", label = "Upper Middle Income GDP Per Capita Growth (WDI)",
+    notes = "GDP per capita growth at constant prices, in % (World Bank NY.GDP.PCAP.KD.ZG). World Bank income classification.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -36,6 +38,7 @@ list(id = "upper_middle_gdppc_growth", category = "GDP", label = "Upper Middle I
             "UMC GDP p.c. real annual Growth_en", EN)
     }),
 list(id = "lower_middle_gdppc_growth", category = "GDP", label = "Lower Middle Income GDP Per Capita Growth (WDI)",
+    notes = "GDP per capita growth at constant prices, in % (World Bank NY.GDP.PCAP.KD.ZG). World Bank income classification.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -47,6 +50,7 @@ list(id = "lower_middle_gdppc_growth", category = "GDP", label = "Lower Middle I
             "LMC GDP p.c. real annual Growth_en", EN)
     }),
 list(id = "low_income_gdppc_growth", category = "GDP", label = "Low Income GDP Per Capita Growth (WDI)",
+    notes = "GDP per capita growth at constant prices, in % (World Bank NY.GDP.PCAP.KD.ZG). World Bank income classification.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")

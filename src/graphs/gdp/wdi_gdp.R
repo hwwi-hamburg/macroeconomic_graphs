@@ -33,7 +33,9 @@ gdp_germany_growth <- function(y_axis, source, decimal_mark = ".")
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
-list(id = "world_gdp_development", category = "GDP", label = "World Real GDP Development", render = function() {
+list(id = "world_gdp_development", category = "GDP", label = "World Real GDP Development",
+    notes = "GDP at constant prices, US$ (World Bank NY.GDP.MKTP.KD).",
+    render = function() {
     DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
     EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
     render_graph(gdp_world_development("BIP (in Milliarden 2015 US$)", "Datenquelle: Nationale Statistik der Weltbank und OECD",
@@ -41,7 +43,9 @@ list(id = "world_gdp_development", category = "GDP", label = "World Real GDP Dev
     render_graph(gdp_world_development("GDP (in Billion 2015 US$)", "Data Source: World Bank National Accounts Data, and OECD National Accounts Data Files",
         decimal_mark = ".", big_mark = ","), "W GDP real annual Level_en", EN)
 }),
-list(id = "world_gdp_growth", category = "GDP", label = "World GDP Growth Rate (WDI)", render = function() {
+list(id = "world_gdp_growth", category = "GDP", label = "World GDP Growth Rate (WDI)",
+    notes = "Annual GDP growth at constant prices, in % (World Bank NY.GDP.MKTP.KD.ZG).",
+    render = function() {
     DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
     EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
     render_graph(gdp_world_growth("BIP-Wachstum (in %)", "Datenquelle: Nationale Statistik der Weltbank und OECD",
@@ -50,6 +54,7 @@ list(id = "world_gdp_growth", category = "GDP", label = "World GDP Growth Rate (
         "W GDP real annual Growth_en", EN)
 }),
 list(id = "germany_gdp_development", category = "GDP", label = "Germany Real GDP Development (WDI)",
+    notes = "GDP at constant prices, US$ (World Bank NY.GDP.MKTP.KD).",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -58,7 +63,9 @@ list(id = "germany_gdp_development", category = "GDP", label = "Germany Real GDP
         render_graph(gdp_germany_development("Real GDP (in Billion 2015 US$)", "Data Source: World Bank National Accounts Data, and OECD National Accounts Data Files",
             big_mark = ","), "GER GDP real annual Level WDI_en", EN)
     }),
-list(id = "germany_gdp_growth", category = "GDP", label = "Germany GDP Growth Rate (WDI)", render = function() {
+list(id = "germany_gdp_growth", category = "GDP", label = "Germany GDP Growth Rate (WDI)",
+    notes = "Annual GDP growth at constant prices, in % (World Bank NY.GDP.MKTP.KD.ZG).",
+    render = function() {
     DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
     EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
     render_graph(gdp_germany_growth("BIP-Wachstum (in %)", "Datenquelle: Nationale Statistik der Weltbank und OECD",

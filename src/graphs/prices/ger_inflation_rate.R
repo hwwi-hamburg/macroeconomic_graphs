@@ -16,6 +16,7 @@ ger_inflation_rate <- function(y_axis, source, row_indicator = 2,  y_limits = c(
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_inflation_rate", category = "Prices", label = "Germany Inflation Rate (monthly YoY)",
+    notes = "Change in the consumer price index on the same month of the previous year, in %. GENESIS 61111-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")

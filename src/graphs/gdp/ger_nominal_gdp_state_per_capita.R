@@ -51,6 +51,7 @@ ger_nominal_gdp_state_per_capita_map <- function(legend_title, source,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_nominal_gdp_state_per_capita", category = "GDP", label = "Germany Nominal GDP per Capita by State (StatLA)",
+    notes = "At current prices, per inhabitant. From a manually updated file of the Statistical Offices of the Federation and the Länder; the year shown is the file's vintage.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
@@ -60,6 +61,7 @@ list(id = "ger_nominal_gdp_state_per_capita", category = "GDP", label = "Germany
             decimal_mark = ".", big_mark = ","), "GER Nominal GDP by State per Capita_en", EN, height = 7)
     }),
 list(id = "ger_nominal_gdp_state_per_capita_map", category = "GDP", label = "Germany Nominal GDP per Capita by State - Choropleth (StatLA)",
+    notes = "At current prices, per inhabitant. From a manually updated file of the Statistical Offices of the Federation and the Länder; the year shown is the file's vintage.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")

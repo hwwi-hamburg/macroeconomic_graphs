@@ -29,6 +29,7 @@ ger_nominal_gdp_state <- function(y_axis, source, decimal_mark = ",", big_mark =
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_nominal_gdp_state", category = "GDP", label = "Germany Nominal GDP by State - Bar Chart (Destatis)",
+    notes = "At current prices; latest available year. Regional accounts of the Länder (VGRdL), GENESIS 82111-0010.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")

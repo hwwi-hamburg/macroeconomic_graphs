@@ -42,6 +42,7 @@ trade_import_germany_country <- function(legend_title, source, year = "2025") {
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_export_hamburg_country", category = "Trade", label = "Hamburg Exports by Country (choropleth)",
+    notes = "Nominal values by country of destination; previous calendar year. Foreign trade statistics.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -52,6 +53,7 @@ list(id = "trade_export_hamburg_country", category = "Trade", label = "Hamburg E
             year = yr), paste0("Hamburg Export by Country ", yr, "_en"), EN)
     }),
 list(id = "trade_import_hamburg_country", category = "Trade", label = "Hamburg Imports by Country (choropleth)",
+    notes = "Nominal values by country of origin; previous calendar year. Foreign trade statistics.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -62,6 +64,7 @@ list(id = "trade_import_hamburg_country", category = "Trade", label = "Hamburg I
             year = yr), paste0("Hamburg Import by Country ", yr, "_en"), EN)
     }),
 list(id = "trade_export_lowersaxony_country", category = "Trade", label = "Lower Saxony Exports by Country (choropleth)",
+    notes = "Nominal values by country of destination; previous calendar year. Foreign trade statistics.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -74,6 +77,7 @@ list(id = "trade_export_lowersaxony_country", category = "Trade", label = "Lower
             yr, "_en"), EN)
     }),
 list(id = "trade_import_lowersaxony_country", category = "Trade", label = "Lower Saxony Imports by Country (choropleth)",
+    notes = "Nominal values by country of origin; previous calendar year. Foreign trade statistics.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -86,6 +90,7 @@ list(id = "trade_import_lowersaxony_country", category = "Trade", label = "Lower
             yr, "_en"), EN)
     }),
 list(id = "trade_export_germany_country", category = "Trade", label = "Germany Exports by Country (choropleth)",
+    notes = "Nominal values by country of destination; previous calendar year. Foreign trade statistics.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -96,6 +101,7 @@ list(id = "trade_export_germany_country", category = "Trade", label = "Germany E
             year = yr), paste0("Germany Export by Country ", yr, "_en"), EN)
     }),
 list(id = "trade_import_germany_country", category = "Trade", label = "Germany Imports by Country (choropleth)",
+    notes = "Nominal values by country of origin; previous calendar year. Foreign trade statistics.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

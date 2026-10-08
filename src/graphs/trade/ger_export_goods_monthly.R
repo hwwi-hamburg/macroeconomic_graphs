@@ -16,6 +16,7 @@ ger_export_goods_monthly <- function(y_axis, source, decimal_mark = ",", big_mar
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_export_goods_monthly", category = "Trade", label = "Germany Monthly Goods Exports - Level (Mrd EUR)",
+    notes = "Nominal values, foreign trade statistics; not seasonally adjusted. Latest months provisional. GENESIS 51000-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

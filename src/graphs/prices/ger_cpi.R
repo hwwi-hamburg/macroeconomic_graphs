@@ -12,7 +12,9 @@ ger_cpi <- function(y_axis, source, y_limits = c(40, 130)) {
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
-list(id = "ger_cpi", category = "Prices", label = "Germany Consumer Price Index", render = function() {
+list(id = "ger_cpi", category = "Prices", label = "Germany Consumer Price Index",
+    notes = "Consumer price index, 2020 = 100; annual averages. GENESIS 61111-0001.",
+    render = function() {
     DE <- file.path(OUT_DIR, "prices graphs/German labeling")
     EN <- file.path(OUT_DIR, "prices graphs/English labeling")
     render_graph(ger_cpi("Verbraucherpreisindex (2020=100)", "Datenquelle: Statistisches Bundesamt (Destatis)"),

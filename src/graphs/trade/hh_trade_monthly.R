@@ -38,6 +38,7 @@ hh_import_pandemic <- function(y_axis, source, labels,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_hh_export_pandemic", category = "Trade", label = "Hamburg Monthly Exports since COVID-19 Pandemic",
+    notes = "Nominal values from January 2019, total and excluding aircraft (EGW 883); Hamburg's trade is strongly affected by aircraft deliveries. GENESIS 51000-0031, 51000-0035.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -49,6 +50,7 @@ list(id = "trade_hh_export_pandemic", category = "Trade", label = "Hamburg Month
             "Hamburg Total Exports since Pandemic_en", EN)
     }),
 list(id = "trade_hh_import_pandemic", category = "Trade", label = "Hamburg Monthly Imports since COVID-19 Pandemic",
+    notes = "Nominal values from January 2019, total and excluding aircraft (EGW 883); Hamburg's trade is strongly affected by aircraft deliveries. GENESIS 51000-0031, 51000-0035.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -60,6 +62,7 @@ list(id = "trade_hh_import_pandemic", category = "Trade", label = "Hamburg Month
             "Hamburg Total Imports since Pandemic_en", EN)
     }),
 list(id = "hh_export_monthly", category = "Trade", label = "Hamburg Monthly Exports (total/excl. aircraft)",
+    notes = "Nominal values, total and excluding aircraft (EGW 883); Hamburg's trade is strongly affected by aircraft deliveries. GENESIS 51000-0031, 51000-0035.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -71,6 +74,7 @@ list(id = "hh_export_monthly", category = "Trade", label = "Hamburg Monthly Expo
             EN)
     }),
 list(id = "hh_import_monthly", category = "Trade", label = "Hamburg Monthly Imports (total/excl. aircraft)",
+    notes = "Nominal values, total and excluding aircraft (EGW 883); Hamburg's trade is strongly affected by aircraft deliveries. GENESIS 51000-0031, 51000-0035.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

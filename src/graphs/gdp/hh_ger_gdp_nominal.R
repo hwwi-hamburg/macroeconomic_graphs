@@ -56,6 +56,7 @@ source("src/bootstrap.R")
     id = "hh_ger_nominal_bip_annual",
     category = "GDP",
     label = "Hamburg and Germany nominal GDP",
+    notes = "At current prices (not price-adjusted). GENESIS 81000-0001 (Germany), 82111-0010 (Hamburg).",
     render = function() {
       DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
       EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
