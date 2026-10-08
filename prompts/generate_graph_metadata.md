@@ -11,11 +11,17 @@ Project rules:
 
 - Metadata belongs at the bottom of the same graph file in `.graph_specs`.
 - Create one entry for every distinct graph output implemented by the file.
-- Every entry must contain exactly these fields:
+- Every entry must contain these required fields:
   - `id`: unique, stable, descriptive snake_case identifier.
   - `category`: one of `GDP`, `Employment`, `Prices`, or `Trade`.
   - `label`: concise English label suitable for the CLI menu.
   - `render`: a zero-argument function that renders German and English outputs.
+- Entries may additionally contain these optional fields:
+  - `source`: the data source in English, taken from the English caption
+    without the "Data source:" prefix. Omit it if it would be identical to the
+    caption, because the graph lists fall back to the caption.
+  - `notes`: short remarks for users of the graph. Only add notes that follow
+    from the code (e.g. seasonal adjustment, rebasing); otherwise omit them.
 - Use `file.path(OUT_DIR, "<Category> graphs/German labeling")` and the
   equivalent English directory. Preserve the capitalization already used by
   other graphs in the same category.

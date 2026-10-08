@@ -58,6 +58,7 @@
       id = "hh_ger_cpi_monthly",
       category = "Prices",
       label = "Hamburg and Germany Consumer Price Index monthly",
+    notes = "Consumer price index, 2020 = 100; monthly, shown from 2015. GENESIS 61111-0002 (Germany), 61111-0011 (Hamburg).",
       render = function() {
         DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")

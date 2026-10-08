@@ -79,6 +79,7 @@ trade_import_germany <- function(y_axis, source, decimal_mark = ",", y_limits = 
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_export_hamburg", category = "Trade", label = "Hamburg Exports (total/excl. aircraft)",
+    notes = "Annual nominal values summed from monthly data, total and excluding aircraft (EGW 883); Hamburg's trade is strongly affected by aircraft deliveries. GENESIS 51000-0031, 51000-0035.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -90,6 +91,7 @@ list(id = "trade_export_hamburg", category = "Trade", label = "Hamburg Exports (
             EN)
     }),
 list(id = "trade_import_hamburg", category = "Trade", label = "Hamburg Imports (total/excl. aircraft)",
+    notes = "Annual nominal values summed from monthly data, total and excluding aircraft (EGW 883); Hamburg's trade is strongly affected by aircraft deliveries. GENESIS 51000-0031, 51000-0035.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -100,7 +102,9 @@ list(id = "trade_import_hamburg", category = "Trade", label = "Hamburg Imports (
             labels = c("Total Imports", "Imports excl. Aircraft"), decimal_mark = "."), "Import Hamburg_en",
             EN)
     }),
-list(id = "trade_export_germany", category = "Trade", label = "Germany Total Exports (annual)", render = function() {
+list(id = "trade_export_germany", category = "Trade", label = "Germany Total Exports (annual)",
+    notes = "Annual nominal values, foreign trade statistics. GENESIS 51000-0001.",
+    render = function() {
     DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     render_graph(trade_export_germany("Ausfuhren (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
@@ -108,7 +112,9 @@ list(id = "trade_export_germany", category = "Trade", label = "Germany Total Exp
     render_graph(trade_export_germany("Exports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "Export Germany_en", EN)
 }),
-list(id = "trade_import_germany", category = "Trade", label = "Germany Total Imports (annual)", render = function() {
+list(id = "trade_import_germany", category = "Trade", label = "Germany Total Imports (annual)",
+    notes = "Annual nominal values, foreign trade statistics. GENESIS 51000-0001.",
+    render = function() {
     DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     render_graph(trade_import_germany("Einfuhren (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
@@ -116,7 +122,9 @@ list(id = "trade_import_germany", category = "Trade", label = "Germany Total Imp
     render_graph(trade_import_germany("Imports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "Import Germany_en", EN)
 }),
-list(id = "trade_export_lowersaxony", category = "Trade", label = "Lower Saxony Exports (total)", render = function() {
+list(id = "trade_export_lowersaxony", category = "Trade", label = "Lower Saxony Exports (total)",
+    notes = "Annual nominal values, foreign trade statistics. GENESIS 51000-0030.",
+    render = function() {
     DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     render_graph(trade_export_lowersaxony("Exporte (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",
@@ -124,7 +132,9 @@ list(id = "trade_export_lowersaxony", category = "Trade", label = "Lower Saxony 
     render_graph(trade_export_lowersaxony("Exports (in Billion EUR)", "Data source: Federal statistical office (Destatis)",
         decimal_mark = "."), "Export Lower Saxony_en", EN)
 }),
-list(id = "trade_import_lowersaxony", category = "Trade", label = "Lower Saxony Imports (total)", render = function() {
+list(id = "trade_import_lowersaxony", category = "Trade", label = "Lower Saxony Imports (total)",
+    notes = "Annual nominal values, foreign trade statistics. GENESIS 51000-0030.",
+    render = function() {
     DE <- file.path(OUT_DIR, "trade graphs/German labeling")
     EN <- file.path(OUT_DIR, "trade graphs/English labeling")
     render_graph(trade_import_lowersaxony("Importe (in Mrd. EUR)", "Datenquelle: Statistisches Bundesamt (Destatis)",

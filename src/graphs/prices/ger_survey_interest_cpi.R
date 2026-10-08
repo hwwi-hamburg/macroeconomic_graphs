@@ -111,6 +111,7 @@ ger_survey_interest_cpi <- function(source,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_survey_interest_cpi", category = "Prices", label = "Survey on Development of Interest Rates and German Consumer Price Index",
+    notes = "Interest rates as monthly averages: ECB rates from the Bundesbank, Fed rates (effective federal funds rate and target range) from FRED. Consumer price index: change on the same month of the previous year, in % (GENESIS 61111-0002).",
     render = function() {
         DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")

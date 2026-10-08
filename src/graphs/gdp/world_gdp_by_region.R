@@ -15,7 +15,9 @@ gdp_world_by_region <- function(y_axis, source, labels,
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
-list(id = "world_gdp_by_region", category = "GDP", label = "World GDP Per Capita by Region", render = function() {
+list(id = "world_gdp_by_region", category = "GDP", label = "World GDP Per Capita by Region",
+    notes = "GDP per capita, PPP, constant 2021 international $ (World Bank NY.GDP.PCAP.PP.KD). World Bank regional aggregates.",
+    render = function() {
     DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
     EN <- file.path(OUT_DIR, "GDP graphs/English labeling")
     render_graph(gdp_world_by_region("BIP Pro Kopf, PPP (in 2021 International $)", "Datenquelle: Nationale Statistik der Weltbank und OECD",

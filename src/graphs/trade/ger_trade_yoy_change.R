@@ -40,6 +40,7 @@ ger_import_yoy_change <- function(y_axis, source, decimal_mark = ",")
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_ger_export_yoy_change", category = "Trade", label = "Germany Monthly Exports: Year-on-Year Change",
+    notes = "Absolute change on the same month of the previous year, own calculation; nominal values. GENESIS 51000-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -49,6 +50,7 @@ list(id = "trade_ger_export_yoy_change", category = "Trade", label = "Germany Mo
             decimal_mark = "."), "Germany Monthly Exports YoY Change_en", EN)
     }),
 list(id = "trade_ger_import_yoy_change", category = "Trade", label = "Germany Monthly Imports: Year-on-Year Change",
+    notes = "Absolute change on the same month of the previous year, own calculation; nominal values. GENESIS 51000-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

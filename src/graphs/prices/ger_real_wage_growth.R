@@ -49,7 +49,9 @@ ger_real_wage_growth <- function(y_axis, source, decimal_mark = ",", big_mark = 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
-list(id = "ger_real_wage_growth", category = "Prices", label = "GER real wage growth (YoY %)", render = function() {
+list(id = "ger_real_wage_growth", category = "Prices", label = "GER real wage growth (YoY %)",
+    notes = "Real wage index (nominal wages adjusted for consumer prices); change on previous year in %, own calculation. GENESIS 62361-0020.",
+    render = function() {
     DE <- file.path(OUT_DIR, "Prices graphs/German labeling")
     EN <- file.path(OUT_DIR, "Prices graphs/English labeling")
     render_graph(ger_real_wage_growth("Veränderung ggü. Vorjahr in %", "Datenquelle: Statistisches Bundesamt (Destatis)"),
@@ -57,7 +59,9 @@ list(id = "ger_real_wage_growth", category = "Prices", label = "GER real wage gr
     render_graph(ger_real_wage_growth("YoY change in %", "Data source: Federal statistical office (Destatis)",
         decimal_mark = ".", big_mark = ","), "GER real wage growth_en", EN)
 }),
-list(id = "ger_real_wage_index", category = "Prices", label = "GER real wage index (level)", render = function() {
+list(id = "ger_real_wage_index", category = "Prices", label = "GER real wage index (level)",
+    notes = "Real wage index (nominal wages adjusted for consumer prices), 2025 = 100. GENESIS 62361-0020.",
+    render = function() {
     DE <- file.path(OUT_DIR, "Prices graphs/German labeling")
     EN <- file.path(OUT_DIR, "Prices graphs/English labeling")
     render_graph(ger_real_wage_index("Index", "Datenquelle: Statistisches Bundesamt (Destatis)"), "GER real wage index_de",

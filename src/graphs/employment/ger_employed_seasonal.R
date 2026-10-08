@@ -22,6 +22,7 @@ ger_employed_seasonal <- function(y_axis, source, decimal_mark = ",", big_mark =
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_employed_seasonal", category = "Employment", label = "Germany Employed Persons, Quarterly Seasonally Adjusted",
+    notes = "Seasonally adjusted by Destatis (X13 JDemetra+); domestic concept (place of work); in thousands. GENESIS 13321-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")

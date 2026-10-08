@@ -32,6 +32,7 @@ ger_unemployed_west_east <- function(y_axis, source, labels = NULL,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_unemployed_west_east", category = "Employment", label = "Germany Registered Unemployed: West vs East",
+    notes = "Registered unemployed, annual averages. West: former federal territory; East: new Länder (Destatis classification). GENESIS 13211-0001.",
     render = function() {
         DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")

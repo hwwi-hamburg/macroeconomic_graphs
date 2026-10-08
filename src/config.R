@@ -17,6 +17,11 @@ REGION_ISO3C <- c("EAS", "ECS", "LCN", "MEA", "NAC", "SAS", "SSF")
 OUT_DIR   <- "out"
 CACHE_DIR <- "cache"
 
+# ── Graph lists ───────────────────────────────────────────────────────────────
+# Contact shown in "List of available graphs.html" (e.g. "Jane Doe, doe@example.org").
+# Set it in the git-ignored src/local_config.R so it is not published.
+GRAPH_LIST_CONTACT <- NULL
+
 # ── Render defaults ───────────────────────────────────────────────────────────
 OUT_FORMAT <- "jpeg"
 OUT_WIDTH  <- 11    # inches

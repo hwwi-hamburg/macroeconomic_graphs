@@ -33,6 +33,15 @@ render_graph <- function(plot, title, out_dir, format = OUT_FORMAT,
   requested_language <- getOption("hwwi.render.language")
   output_language <- .render_language_from_dir(out_dir)
 
+  # Dry run (see expected_graph_files()): note the path without evaluating
+  # `plot`, so nothing is fetched or written.
+  if (isTRUE(getOption("hwwi.dry.run"))) {
+    path <- file.path(out_dir, paste0(title, ".", format))
+    .render_log$planned[[length(.render_log$planned) + 1L]] <- list(
+      path = path, language = .render_language(path, output_language))
+    return(invisible(path))
+  }
+
   # `plot` is a lazy argument. Returning before it is evaluated means that a
   # one-language run does not fetch data or build the unrequested variant.
   if (!is.null(requested_language) && !is.na(output_language) &&
@@ -49,8 +58,35 @@ render_graph <- function(plot, title, out_dir, format = OUT_FORMAT,
   path <- file.path(out_dir, paste0(title, ".", format))
   ggplot2::ggsave(filename = path, plot = plot, width = width, height = height,
                   dpi = dpi, units = "in", bg = "white")
+  .record_render(path, output_language, plot)
   invisible(path)
 }
+
+# Files written in this R session, used to build the graph lists. Each entry
+# holds the graph id (from with_graph_context()), the file path, its label
+# language, and the chart caption, which serves as the fallback source text.
+.render_log <- new.env(parent = emptyenv())
+.render_log$entries <- list()
+.render_log$planned <- list()
+
+# Label language from the output folder, or else from a _de/_en file suffix.
+.render_language <- function(path, dir_language) {
+  if (!is.na(dir_language)) return(dir_language)
+  stem <- tools::file_path_sans_ext(path)
+  if (grepl("_de$", stem)) "de" else if (grepl("_en$", stem)) "en" else NA_character_
+}
+
+.record_render <- function(path, language, plot) {
+  caption <- if (inherits(plot, "ggplot")) plot$labels$caption else NULL
+  .render_log$entries[[length(.render_log$entries) + 1L]] <- list(
+    id = getOption("hwwi.current.graph", NA_character_),
+    path = path,
+    language = .render_language(path, language),
+    caption = if (is.character(caption) && length(caption) == 1L) caption else NA_character_
+  )
+}
+
+rendered_files <- function() .render_log$entries
 
 render_all <- function(specs_dir = "src/graphs", out_base = "Graphs",
                        format = "jpeg", width = 11, height = 6, dpi = 300) {

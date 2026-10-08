@@ -28,6 +28,7 @@ hh_import_yoy_change <- function(y_axis, source, labels,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_hh_export_yoy_change", category = "Trade", label = "Hamburg Monthly Exports: Year-on-Year Change",
+    notes = "Change on the same month of the previous year in %, own calculation; total and excluding aircraft (EGW 883); Hamburg's trade is strongly affected by aircraft deliveries. GENESIS 51000-0031, 51000-0035.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -39,6 +40,7 @@ list(id = "trade_hh_export_yoy_change", category = "Trade", label = "Hamburg Mon
             EN)
     }),
 list(id = "trade_hh_import_yoy_change", category = "Trade", label = "Hamburg Monthly Imports: Year-on-Year Change",
+    notes = "Change on the same month of the previous year in %, own calculation; total and excluding aircraft (EGW 883); Hamburg's trade is strongly affected by aircraft deliveries. GENESIS 51000-0031, 51000-0035.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

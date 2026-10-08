@@ -41,6 +41,7 @@ ger_employed_unemployed <- function(source,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_employed_unemployed", category = "Employment", label = "Germany Employed and Unemployed Persons",
+    notes = "Annual averages. Employed persons: national accounts, domestic concept; unemployed: registered with the Federal Employment Agency. GENESIS 81000-0015, 13211-0001.",
     render = function() {
         DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")

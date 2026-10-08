@@ -101,6 +101,7 @@
       id = "hh_ger_gva_by_sectors_yearonyear_growth",
       category = "GDP",
       label = "Hamburg and Germany Gross value added by sectors (year on year growth)",
+    notes = "Gross value added by economic sector; change on previous year in %, own calculation. GENESIS 82111-0002, 82111-0011.",
       render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")

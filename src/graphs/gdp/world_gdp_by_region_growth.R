@@ -65,6 +65,7 @@ gdp_world_by_region_growth <- function(y_axis, source, labels = NULL,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "world_gdp_by_region_growth", category = "GDP", label = "World GDP Per Capita Growth by Region",
+    notes = "GDP per capita growth at constant prices, in % (World Bank NY.GDP.PCAP.KD.ZG). World Bank regional aggregates.",
     render = function() {
         DE <- file.path(OUT_DIR, "GDP graphs/German labeling")
         EN <- file.path(OUT_DIR, "GDP graphs/English labeling")

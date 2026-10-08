@@ -47,6 +47,7 @@ ger_employed_gdp_quarterly <- function(source,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_employed_gdp_quarterly", category = "Employment", label = "Germany Employed Persons and GDP - Quarterly Seasonally Adjusted",
+    notes = "Seasonally adjusted by Destatis (X13 JDemetra+). Employed persons: domestic concept (place of work); GDP: price-adjusted, chain-linked volumes, also calendar adjusted. GENESIS 13321-0002, 81000-0002.",
     render = function() {
         DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")

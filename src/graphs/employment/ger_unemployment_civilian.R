@@ -31,6 +31,7 @@ ger_unemployment_civilian <- function(y_axis, source,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_unemployment_civilian", category = "Employment", label = "Germany Unemployment Rate: Civilian and Registered (annual)",
+    notes = "Registered unemployment rates based on all civilian labour force and on dependent civilian labour force; annual averages. GENESIS 13211-0001.",
     render = function() {
         DE <- file.path(OUT_DIR, "employment graphs/German labeling")
         EN <- file.path(OUT_DIR, "employment graphs/English labeling")

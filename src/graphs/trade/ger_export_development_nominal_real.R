@@ -31,6 +31,7 @@ ger_import_development_nominal_real <- function(y_axis, source, labels = NULL,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "trade_ger_export_nominal_real", category = "Trade", label = "Germany Export Development: Nominal vs Real",
+    notes = "Nominal: foreign trade statistics (GENESIS 51000-0001); real: price-adjusted, national accounts (GENESIS 81000-0027). The two concepts are not directly comparable.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
@@ -42,6 +43,7 @@ list(id = "trade_ger_export_nominal_real", category = "Trade", label = "Germany 
             "GER Export Development - Nominal vs Real_en", EN)
     }),
 list(id = "trade_ger_import_nominal_real", category = "Trade", label = "Germany Import Development: Nominal vs Real",
+    notes = "Nominal: foreign trade statistics (GENESIS 51000-0001); real: price-adjusted, national accounts (GENESIS 81000-0027). The two concepts are not directly comparable.",
     render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")

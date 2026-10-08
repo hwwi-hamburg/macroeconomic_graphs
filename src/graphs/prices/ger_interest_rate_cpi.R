@@ -55,6 +55,7 @@ ger_interest_rate_cpi <- function(source,
 # Metadata and rendering live with the implementation so discovery needs no central registry.
 .graph_specs <- list(
 list(id = "ger_interest_rate_cpi", category = "Prices", label = "Germany: ECB Deposit Rate and Inflation Rate",
+    notes = "ECB deposit facility rate as monthly average of daily values (FRED ECBDFR). Inflation: change in the consumer price index on the same month of the previous year, in % (GENESIS 61111-0002).",
     render = function() {
         DE <- file.path(OUT_DIR, "prices graphs/German labeling")
         EN <- file.path(OUT_DIR, "prices graphs/English labeling")

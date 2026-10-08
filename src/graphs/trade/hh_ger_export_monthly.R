@@ -75,6 +75,7 @@
       id = "hh_ger_export_index_monthly",
       category = "Trade",
       label = "Hamburg and Germany Exports monthly seasonal adjusted",
+    notes = "Nominal values, seasonally adjusted by HWWI (X-13ARIMA-SEATS) and rebased to 2020 = 100 (own calculation). GENESIS 51000-0002 (Germany), 51000-0031 (Hamburg).",
       render = function() {
         DE <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
