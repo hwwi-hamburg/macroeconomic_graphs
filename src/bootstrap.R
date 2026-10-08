@@ -5,6 +5,7 @@ if (file.exists("src/local_config.R")) source("src/local_config.R")
 source("src/graph_modules.R")
 source("src/theme.R")
 source("src/render.R")
+source("src/graph_lists.R")
 
 # Source all helper functions
 folders <- c(

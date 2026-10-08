@@ -120,6 +120,12 @@ Runs with `--start-year=YYYY` or `--start-month=YYYY-MM` write to `out/custom st
 
 Runs with `--output-folder=NAME` output all graphs into `out/NAME/`. Add `--language=de` or `--language=en` to generate only one label variant.
 
+#### Graph lists
+Every run writes an HTML list next to the graphs, which colleagues can open in any browser:
+
+- **`Available graphs.html`** in the main output folder lists every graph with its menu number, full name, and links that open the German or English image (graphs that have not been generated yet show "–"). It starts with a short usage text, which can be edited in [src/templates/available_graphs_intro.md](src/templates/available_graphs_intro.md). The list is rewritten after every run of `src/cli.R` and the `run_*.R` scripts. To rewrite it without rendering anything, run `Rscript src/cli.R --list-graphs`.
+- **`Graph list.html`** in custom output folders (`--output-folder`, `--start-year`, `--start-month`) lists the graphs of that run with menu number, full name, file names, source, and notes. Sources and notes come from the optional `source` and `notes` metadata fields (see [ADDING_GRAPHS.md](ADDING_GRAPHS.md)).
+
 #### Change the master output folder
 The file `src/local_config.R` is used to override the default configuration settings stored in the file `src/config.R`. It is loaded later in `bootstrap.R` and can be used to change the default output folder. For example, to change the output folder to `../macroeconomic_graph_outputs`, create a file `src/local_config.R` with the following content:
 

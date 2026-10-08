@@ -5,8 +5,12 @@
 #   --start-month=YYYY-MM  override the earliest year-month fetched
 #   --output-folder=NAME   save selected graphs in out/custom/NAME/
 #   --language=de|en       render only German or only English labels
+#   --list-graphs          only rewrite "Available graphs.html", render nothing
 
 .cli_args <- commandArgs(trailingOnly = TRUE)
+
+.list_graphs <- "--list-graphs" %in% tolower(.cli_args)
+.cli_args <- .cli_args[tolower(.cli_args) != "--list-graphs"]
 
 .start_year_flag <- grep("^--start-year=", .cli_args, value = TRUE)
 .start_month_flag <- grep("^--start-month=", .cli_args, value = TRUE)
@@ -106,6 +110,15 @@ if (!is.null(.language)) {
 
 .graphs <- discover_graphs()
 
+if (.list_graphs) {
+  if (!identical(.run_out_dir, .base_out_dir)) {
+    stop("--list-graphs cannot be combined with --start-year, --start-month, or --output-folder",
+         call. = FALSE)
+  }
+  cat("Graph list written to", write_graph_overview(.graphs, .base_out_dir), "\n")
+  quit(status = 0)
+}
+
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 .hr <- function() cat(strrep("─", 58), "\n", sep = "")
@@ -145,6 +158,7 @@ if (!is.null(.language)) {
     cat("    --start-month=YYYY-MM  Set the earliest data year-month\n")
     cat("    --output-folder=NAME   Save files in out/custom/NAME/\n")
     cat("    --language=de|en       Render German or English labels only\n")
+    cat("    --list-graphs          Only rewrite the 'Available graphs' list\n")
     cat("  Example:\n")
     cat("    Rscript src/cli.R --output-folder=report --language=en gdp\n")
   }
@@ -193,6 +207,7 @@ if (!is.null(.language)) {
 #      Rscript src/cli.R --start-year=1995 gdp
 #      Rscript src/cli.R --start-month=1995-06 gdp
 #      Rscript src/cli.R --output-folder=report --language=en gdp
+#      Rscript src/cli.R --list-graphs
 .cli_args <- .cli_args[!tolower(.cli_args) %in% "render"]
 
 if (length(.cli_args) > 0) {
@@ -247,7 +262,7 @@ for (k in seq_along(selected)) {
   t0 <- proc.time()[["elapsed"]]
 
   tryCatch({
-    g$render()
+    with_graph_context(g$id, g$render())
     cat(sprintf("done (%.0fs)\n", proc.time()[["elapsed"]] - t0))
   }, error = function(e) {
     cat("FAILED\n")
@@ -258,27 +273,28 @@ for (k in seq_along(selected)) {
 cat("\n")
 .hr()
 
+# Graph lists are written after every run, even if some graphs failed: the long
+# list of the standard folder always, and the short list for custom folders.
+.write_list <- function(expr) tryCatch(expr, error = function(e) {
+  cat("  ✗ Could not write graph list: ", conditionMessage(e), "\n", sep = "")
+  NULL
+})
+.list_path <- c(
+  .write_list(write_graph_overview(.graphs, .base_out_dir)),
+  if (!identical(.run_out_dir, .base_out_dir)) {
+    .write_list(write_graph_selection(
+      .graphs, vapply(.graphs[selected], `[[`, character(1), "id"), .run_out_dir))
+  }
+)
+
 if (length(errors)) {
   cat("  Errors:\n")
   for (e in errors) cat("  ✗ ", e, "\n", sep = "")
 } else {
   output_dir <- getOption("hwwi.output.dir", OUT_DIR)
-  if (!is.null(.output_folder)) {
-    index_path <- file.path(output_dir, "index.md")
-    lines <- c(
-      "# Generated graphs",
-      "",
-      "| Plot ID | Label |",
-      "| --- | --- |",
-      vapply(selected, function(i) {
-        g <- .graphs[[i]]
-        sprintf("| `%s` | %s |", g$id, g$label)
-      }, character(1))
-    )
-    writeLines(lines, index_path)
-  }
   cat(sprintf("  ✓ %d graph(s) generated in %s/\n", n_total, output_dir))
 }
+for (p in .list_path) cat("  Graph list: ", p, "\n", sep = "")
 
 .hr()
 cat("\n")

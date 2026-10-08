@@ -2,17 +2,30 @@
 #
 # A graph file exports `.graph_specs`, a list of graph definitions. Each
 # definition contains id, category, label, and a zero-argument render function.
+# Optional `source` and `notes` strings are shown in the generated graph lists;
+# when `source` is omitted, the lists fall back to the rendered chart caption.
 # Keeping that definition in the graph file makes the file self-contained while
 # still allowing the CLI to build a project-wide catalog automatically.
 
-graph_spec <- function(id, category, label, render, status = "stable") {
+graph_spec <- function(id, category, label, render, status = "stable",
+                       source = NULL, notes = NULL) {
   list(
     id = id,
     category = category,
     label = label,
     render = render,
-    status = status
+    status = status,
+    source = source,
+    notes = notes
   )
+}
+
+# Run `expr` with `id` recorded as the graph being rendered, so render_graph()
+# can attribute every written file to its graph (see .record_render()).
+with_graph_context <- function(id, expr) {
+  old <- options(hwwi.current.graph = id)
+  on.exit(options(old), add = TRUE)
+  expr
 }
 
 .graph_source_files <- function(graphs_dir = "src/graphs") {
@@ -47,6 +60,12 @@ validate_graph_specs <- function(specs) {
       problems <- c(problems, paste0(source_file, " has an invalid category"))
     if (!is.function(spec$render))
       problems <- c(problems, paste0(source_file, " has a non-function render field"))
+    for (field in c("source", "notes")) {
+      value <- spec[[field]]
+      if (!is.null(value) && (!is.character(value) || length(value) != 1L))
+        problems <- c(problems, sprintf("%s (%s) has an invalid %s; use one string",
+                                        source_file, spec$id, field))
+    }
   }
 
   ids <- vapply(specs, function(x) x$id %||% NA_character_, character(1))
@@ -99,7 +118,7 @@ run_graph_specs <- function(specs, ids = NULL) {
   for (spec in specs) {
     message("Rendering ", spec$id, " ...")
     tryCatch(
-      spec$render(),
+      with_graph_context(spec$id, spec$render()),
       error = function(e) {
         errors <<- c(errors, paste0(spec$id, ": ", conditionMessage(e)))
       }
