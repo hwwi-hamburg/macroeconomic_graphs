@@ -83,7 +83,7 @@ ger_survey_interest_cpi <- function(source,
       ggplot2::aes(x = date, y = value, color = series), linewidth = 1.4) +
     ggplot2::scale_color_manual("",
       values = setNames(
-        c(rubin, dark_grey, blue),
+        c(hwwi_rubin, hwwi_dark_grey, hwwi_blue),
         c(label_cpi, label_ecb_main, label_effr)
       )
     ) +

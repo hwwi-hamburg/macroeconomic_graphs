@@ -4,7 +4,7 @@ plot_bar_deviation <- function(dat, source,
                                 big_mark        = ",",
                                 positive_label  = "Above average",
                                 negative_label  = "Below average",
-                                colors          = c(blue, rubin),
+                                colors          = c(hwwi_blue, hwwi_rubin),
                                 year            = NULL) {
   dat <- dat[order(dat$value), ]
   dat$series <- factor(dat$series, levels = unique(dat$series))

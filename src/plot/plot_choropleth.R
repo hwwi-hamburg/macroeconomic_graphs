@@ -5,14 +5,14 @@
     legend.direction     = "horizontal",
     legend.key.height    = grid::unit(0.45, "cm"),
     legend.text          = ggplot2::element_text(size = 9),
-    legend.title         = ggplot2::element_text(size = 10, colour = dark_grey, face = "bold"),
+    legend.title         = ggplot2::element_text(size = 10, colour = hwwi_dark_grey, face = "bold"),
     legend.background    = ggplot2::element_blank(),
     plot.caption         = ggplot2::element_text(hjust = 0, margin = ggplot2::margin(t = 10))
   )
 }
 
 plot_choropleth_world <- function(dat, fill_col = "value", legend_title = "",
-                                   source = "", low = "white", high = blue,
+                                   source = "", low = "white", high = hwwi_blue,
                                    xlim = c(-179, 179), ylim = c(-56, 85), year = NULL) {
   # Some GENESIS country tables include a monetary observation and a tiny
   # auxiliary observation under the same country code. Choropleths need one
@@ -56,7 +56,7 @@ plot_choropleth_world_div <- function(dat, fill_col = "value", legend_title = ""
     ggplot2::geom_sf(data = dat_sf, ggplot2::aes(fill = .data[[fill_col]]),
                      na.rm = TRUE, colour = NA) +
     ggplot2::geom_sf(data = world, fill = NA, linewidth = 0.2, colour = "grey70") +
-    ggplot2::scale_fill_gradient2(low = rubin, mid = "white", high = blue,
+    ggplot2::scale_fill_gradient2(low = hwwi_rubin, mid = "white", high = hwwi_blue,
                                    midpoint = 0, na.value = "grey88",
                                    limits = c(-abs_max, abs_max),
                                    breaks = scales::breaks_pretty(n = 4),
@@ -73,7 +73,7 @@ plot_choropleth_world_div <- function(dat, fill_col = "value", legend_title = ""
 }
 
 plot_choropleth_ger <- function(dat, fill_col = "value", legend_title = "",
-                                  source = "", low = rubin, high = dark_rubin, year = NULL) {
+                                  source = "", low = hwwi_rubin, high = hwwi_dark_rubin, year = NULL) {
   states     <- rnaturalearth::ne_states(country = "germany", returnclass = "sf")
   lbl_pts    <- sf::st_point_on_surface(states)
   dat_sf     <- dplyr::left_join(dat, states[, c("name", "geometry")],

@@ -1,7 +1,7 @@
 # Single-series annual bar chart for growth rate data.
 # Adds bold % text labels, 1% y-axis breaks, 2-year x-axis breaks.
 plot_bar_growth <- function(dat, y_axis, source, decimal_mark = ".",
-                             color = blue, x_breaks = "2 years", year = NULL) {
+                             color = hwwi_blue, x_breaks = "2 years", year = NULL) {
   y_min <- floor(min(dat$value, na.rm = TRUE))
   y_max <- ceiling(max(dat$value, na.rm = TRUE))
   ggplot2::ggplot(dat, ggplot2::aes(x = date, y = value)) +
@@ -24,7 +24,7 @@ plot_bar_growth <- function(dat, y_axis, source, decimal_mark = ".",
 
 plot_bar <- function(dat, y_axis, source, labels = NULL,
                       decimal_mark = ".",
-                      colors = c(alpha(blue, 0.9), alpha(rubin, 0.9)),
+                      colors = c(alpha(hwwi_blue, 0.9), alpha(hwwi_rubin, 0.9)),
                       y_limits = NULL, position = "dodge", year = NULL) {
   ggplot2::ggplot(dat, ggplot2::aes(
     x = date,

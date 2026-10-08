@@ -15,7 +15,7 @@ gdp_world_by_region_growth <- function(y_axis, source, labels = NULL,
 
   year_levels <- levels(bar_dat$year)
   bar_colors  <- setNames(
-    c(blue, rubin, grey)[seq_along(year_levels)],
+    c(hwwi_blue, hwwi_rubin, hwwi_grey)[seq_along(year_levels)],
     year_levels
   )
 

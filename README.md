@@ -1,5 +1,26 @@
+## Cloning this Project
+This project includes the hwwi-hamburg/hwwi-theme repository as a submodule. To clone this repository and its submodules, run the following command:
+
+```bash
+git clone --recursive https://github.com/hwwi-hamburg/macroeconomic_graphs.git
+```
+
+If you cloned the repository without the `--recursive` flag (this includes cloning through RStudio's "New Project → Version Control" or GitHub Desktop), or if you already had a clone from before the submodule was added, initialize the submodule with:
+
+```bash
+git submodule update --init
+```
+
+When pulling updates, also update the theme to the version this repository expects:
+
+```bash
+git pull --recurse-submodules
+```
+
+(or run `git submodule update` after a plain `git pull`). You also need read access to the `hwwi-hamburg/hwwi-theme` repository.
+
 ## Requirements
-Most R package dependencies are installed automatically on first run via `pacman::p_load` (see [src/theme.R](src/theme.R)): `tidyverse`, `sf`, `ggplot2`, `extrafont`, `patchwork`, `countrycode`, `scales`, `ggrepel`, `ggnewscale`, `rnaturalearth`, `rnaturalearthdata`, `WDI`, `readxl`, `httr`, `jsonlite`, and `xml2`.
+Most R package dependencies are installed automatically on first run via `pacman::p_load` (see [hwwi-theme/hwwi_theme.R](hwwi-theme/hwwi_theme.R) and [src/theme.R](src/theme.R)): `tidyverse`, `sf`, `ggplot2`, `extrafont`, `patchwork`, `countrycode`, `scales`, `ggrepel`, `ggnewscale`, `rnaturalearth`, `rnaturalearthdata`, `WDI`, `readxl`, `httr`, `jsonlite`, and `xml2`.
 
 `restatis` and `httr2` are loaded by [src/bootstrap.R](src/bootstrap.R). The `seasonal` package is required by graphs that perform X-13ARIMA-SEATS adjustment locally.
 
@@ -134,6 +155,7 @@ Fetched data is cached to `cache/<key>.rds` so repeated runs don't re-hit the da
 ## Project structure
 
 ```
+hwwi-theme/               Git submodule: shared HWWI colors and ggplot2 theme
 src/
   cli.R                   User Interface
   run_gdp.R               Batch runner: GDP graphs only
@@ -143,7 +165,7 @@ src/
   config.R                Global constants (start month, paths, render defaults)
   graph_modules.R         Discovers, validates, and runs self-contained graph modules
   render.R                ggsave wrapper used by every graph
-  theme.R                 HWWI brand colors and shared ggplot2 theme
+  theme.R                 Loads hwwi-theme/ and adds project-specific theme extensions
   fetch/                  Data source adapters (GENESIS, WDI, Bundesbank, Excel) + cache
   transform/               Reusable data transforms (YoY growth, rebasing, seasonal adj.)
   plot/                   Chart-type builders (timeseries, bar, choropleth, pie, ...)

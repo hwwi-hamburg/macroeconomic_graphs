@@ -66,8 +66,8 @@
     scale_fill_manual(
       name=NULL,
       values = c(
-        "Hamburg" = rubin,
-        "Deutschland" = blue
+        "Hamburg" = hwwi_rubin,
+        "Deutschland" = hwwi_blue
       )
     ) +
     scale_y_continuous(

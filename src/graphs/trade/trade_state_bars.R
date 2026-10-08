@@ -60,7 +60,7 @@ trade_export_germany <- function(y_axis, source, decimal_mark = ",", y_limits = 
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   plot_bar(dat, y_axis = y_axis, source = source,
             decimal_mark = decimal_mark, y_limits = y_limits,
-            colors = c(alpha(blue, 0.9)))
+            colors = c(alpha(hwwi_blue, 0.9)))
 }
 
 trade_import_germany <- function(y_axis, source, decimal_mark = ",", y_limits = NULL) {
@@ -72,7 +72,7 @@ trade_import_germany <- function(y_axis, source, decimal_mark = ",", y_limits = 
     dplyr::filter(date >= as.Date(paste0(DATA_START_MONTH, "-01")))
   plot_bar(dat, y_axis = y_axis, source = source,
             decimal_mark = decimal_mark, y_limits = y_limits,
-            colors = c(alpha(rubin, 0.9)))
+            colors = c(alpha(hwwi_rubin, 0.9)))
 }
 
 # ── Graph module ─────────────────────────────────────────────────────────────────────────────

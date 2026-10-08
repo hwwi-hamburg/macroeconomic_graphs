@@ -62,7 +62,7 @@
     labels = labels,
     decimal_mark = ".",
     big_mark = ",",
-    colors = hwwi_palette,
+    colors = hwwi_palette_default,
     x_breaks = "1 year",
     y_limits = NULL,
     linewidth = 1.8,

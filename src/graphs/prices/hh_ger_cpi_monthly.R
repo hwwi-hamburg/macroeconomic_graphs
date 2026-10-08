@@ -42,7 +42,7 @@
     labels = NULL,
     decimal_mark = ",",
     big_mark = ".",
-    colors = c(dark_blue, dark_rubin),
+    colors = c(hwwi_dark_blue, hwwi_dark_rubin),
     x_breaks = "1 year",
     y_limits = NULL,
     linewidth = 1.8,

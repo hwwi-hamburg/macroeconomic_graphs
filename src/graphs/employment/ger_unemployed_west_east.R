@@ -23,7 +23,7 @@ ger_unemployed_west_east <- function(y_axis, source, labels = NULL,
   dat <- dplyr::bind_rows(west, east)
   plot_timeseries_multi(dat, y_axis = y_axis, source = source,
                          labels = labels,
-                         colors = c(rubin, blue),
+                         colors = c(hwwi_rubin, hwwi_blue),
                          decimal_mark = decimal_mark, big_mark = big_mark,
                          x_breaks = "2 years")
 }
