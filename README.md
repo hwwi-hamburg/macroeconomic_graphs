@@ -1,27 +1,3 @@
-## Cloning this Project
-Clone the repository as usual (from the command line, RStudio, or GitHub Desktop):
-
-```bash
-git clone https://github.com/hwwi-hamburg/macroeconomic_graphs.git
-```
-
-The shared HWWI theme from [hwwi-hamburg/hwwi-theme](https://github.com/hwwi-hamburg/hwwi-theme) is included in the `hwwi-theme/` folder as a git subtree, so no extra steps are needed.
-
-**Existing clones from the submodule period:** if your clone still has `hwwi-theme` as a submodule, run this once before pulling:
-
-```bash
-git submodule deinit -f hwwi-theme
-rm -rf hwwi-theme .git/modules/hwwi-theme
-git pull
-```
-
-#### Updating the theme
-Change the theme in the `hwwi-theme` repository, not in this folder. To bring the latest version into this project, run from the project root and commit the result:
-
-```bash
-git subtree pull --prefix=hwwi-theme https://github.com/hwwi-hamburg/hwwi-theme.git main --squash
-```
-
 ## Requirements
 Most R package dependencies are installed automatically on first run via `pacman::p_load` (see [hwwi-theme/hwwi_theme.R](hwwi-theme/hwwi_theme.R) and [src/theme.R](src/theme.R)): `tidyverse`, `sf`, `ggplot2`, `extrafont`, `patchwork`, `countrycode`, `scales`, `ggrepel`, `ggnewscale`, `rnaturalearth`, `rnaturalearthdata`, `WDI`, `readxl`, `httr`, `jsonlite`, and `xml2`.
 
@@ -189,4 +165,13 @@ src/
     employment/           Employment graph specs
     prices/               Prices graph specs
     trade/                Trade graph specs
+```
+
+#### Updating the theme
+The theme is included as a git subtree of the [hwwi-hamburg/hwwi-theme](https://github.com/hwwi-hamburg/hwwi-theme) repository.
+
+Change the theme in the `hwwi-theme` repository, not in this folder. To bring the latest version into this project, run from the project root and commit the result:
+
+```bash
+git subtree pull --prefix=hwwi-theme https://github.com/hwwi-hamburg/hwwi-theme.git main --squash
 ```
