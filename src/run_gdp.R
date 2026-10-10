@@ -1,4 +1,5 @@
 source("src/bootstrap.R")
+check_genesis_connection()
 .graphs <- discover_graphs()
 
 for (g in .graphs) {
