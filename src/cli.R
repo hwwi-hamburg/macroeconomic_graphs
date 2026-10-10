@@ -108,6 +108,10 @@ if (!is.null(.language)) {
   cat("Label language:", if (.language == "de") "German" else "English", "\n")
 }
 
+# Check the GENESIS login before anything downloads, so a missing or expired
+# login gets one clear explanation instead of cryptic per-graph errors.
+if (!.list_graphs) check_genesis_connection()
+
 .graphs <- discover_graphs()
 
 if (.list_graphs) {

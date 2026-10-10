@@ -6,15 +6,51 @@
 # start_month/end_year explicitly. Trim to the display window downstream with
 # trim_start_month() or an explicit date filter.
 genesis_fetch <- function(table_key, start_month = 1900, end_year = 2100, ...) {
-  restatis::gen_table(
-    name      = table_key,
-    database  = "genesis",
-    startyear = start_month_year(start_month),
-    endyear   = as.integer(end_year),
-    language  = "de",
-    all_character = TRUE,
-    ...
+  tryCatch(
+    restatis::gen_table(
+      name      = table_key,
+      database  = "genesis",
+      startyear = start_month_year(start_month),
+      endyear   = as.integer(end_year),
+      language  = "de",
+      all_character = TRUE,
+      ...
+    ),
+    error = function(e) {
+      # Skip the hint when check_genesis_connection() already printed it.
+      hint <- if (isTRUE(getOption("hwwi.genesis.unavailable"))) "" else paste0(" ", GENESIS_LOGIN_HINT)
+      stop("Could not download GENESIS table ", table_key, " from Destatis: ",
+           gsub("\\s+", " ", conditionMessage(e)), hint, call. = FALSE)
+    }
   )
+}
+
+GENESIS_LOGIN_HINT <- paste(
+  "Check that you are logged in to GENESIS (see 'Log In' in README.md) and",
+  "that you are connected to the internet."
+)
+
+# Check once that GENESIS accepts the stored login. Returns TRUE or FALSE and
+# prints instructions on failure; graphs with cached data still work offline.
+check_genesis_connection <- function() {
+  reason <- tryCatch({
+    suppressMessages(restatis::gen_logincheck(database = "genesis"))
+    NULL
+  }, error = function(e) conditionMessage(e))
+  if (is.null(reason)) return(invisible(TRUE))
+  options(hwwi.genesis.unavailable = TRUE)
+
+  cat(
+    "\n✗ Cannot connect to the Destatis GENESIS database.\n",
+    "  Reason: ", gsub("\\s+", " ", reason), "\n\n",
+    "  Graphs whose data is not in the local cache will fail. To fix this:\n",
+    "  1. Log in once in R:  restatis::gen_auth_save(\"genesis\", use_token = TRUE)\n",
+    "  2. Save the key it prints as GENESIS_KEY in ~/.Renviron and restart R\n",
+    "     (details under 'Log In' in README.md).\n",
+    "  3. Check your internet connection (and VPN, if you use one).\n\n",
+    sep = ""
+  )
+  invisible(FALSE)
 }
 
 # Trim a standard tibble to the requested display window.

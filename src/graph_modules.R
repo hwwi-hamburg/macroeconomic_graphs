@@ -91,7 +91,16 @@ discover_graphs <- function(graphs_dir = "src/graphs") {
 
   for (file in files) {
     env <- new.env(parent = .GlobalEnv)
-    sys.source(file, envir = env)
+    # A file that fails to load (e.g. one fetching data at top level while
+    # GENESIS is unreachable) is skipped so the remaining graphs stay usable.
+    loaded <- tryCatch({
+      sys.source(file, envir = env)
+      TRUE
+    }, error = function(e) {
+      cat("  ✗ Skipping ", file, ": ", conditionMessage(e), "\n", sep = "")
+      FALSE
+    })
+    if (!loaded) next
     file_specs <- env$.graph_specs
     if (is.null(file_specs)) next
     if (!is.list(file_specs)) {
